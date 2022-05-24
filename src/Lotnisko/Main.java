@@ -1,4 +1,4 @@
-package com.company;
+package Lotnisko;
 
 public class Main {
 
