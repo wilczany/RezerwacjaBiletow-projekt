@@ -18,10 +18,18 @@ public class Lot {
         Bilety=new Bilet[s.getLiczbaMiejsc];
         przylot= Calendar.getInstance();
         przylot.setTime(data.getTime());
-        przylot.add(Calendar.HOUR,trasa.getOdleglosc*10);
+        przylot.add(Calendar.HOUR,trasa.getOdleglosc*100);
     }
     Lot(Lot l,Calendar){
-
+        trasa=t.getTrasa();
+        samolot=l.getSamolot();
     }
 
+    public Lotnisko.Trasa getTrasa() {
+        return trasa;
+    }
+
+    public Lotnisko.Samolot getSamolot() {
+        return samolot;
+    }
 }
