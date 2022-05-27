@@ -11,25 +11,35 @@ public class Lot {
     Calendar data,przylot;
     int numer_lotu;
     Bilet[] bilety;
-    Lot(Trasa t, Samolot s, Calendar data){
+    Lot(Trasa t, Samolot s, Date d){
         trasa=t;
         samolot=s;
         numer_lotu=this.hashCode();
-        Bilety=new Bilet[s.getLiczbaMiejsc];
-        przylot= Calendar.getInstance();
-        przylot.setTime(data.getTime());
-        przylot.add(Calendar.HOUR,trasa.getOdleglosc*100);
+        bilety=new Bilet[s.getLiczbaMiejsc];
+        setDate(d,s.getOdleglosc)
+
     }
-    Lot(Lot l,Calendar){
+    Lot(Lot l,Date d){
         trasa=t.getTrasa();
         samolot=l.getSamolot();
+        numer_lotu=this.hashCode();
+        bilety=new Bilet[l.getSamolot().getLiczbaMiejsc];
+        setDate(d,s.getOdleglosc);
     }
 
-    public Lotnisko.Trasa getTrasa() {
+    public Trasa getTrasa() {
         return trasa;
     }
 
-    public Lotnisko.Samolot getSamolot() {
+    public Samolot getSamolot() {
         return samolot;
+    }
+
+    private void setDate(Date d,int dlugosc){
+       this.data=Calendar.getInstance();
+       this.przylot=Calendar.getInstance();
+       data.setTime(d);
+       przylot.setTime(d);
+       przylot.add(Calendar.HOUR,dlugosc*100);
     }
 }
