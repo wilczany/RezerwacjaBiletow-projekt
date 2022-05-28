@@ -3,22 +3,40 @@ package Lotnisko;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * bileciki do kontroli
+ */
 public class Bilet {
     Calendar data=Calendar.getInstance();
-    Calendar powrot=null;
+    //Calendar powrot=null;
     Trasa trasa;
     public final int id;
-    boolean czyDwustronny;
+    //boolean czyDwustronny;
     boolean zajety =false;
 
-    public Bilet(Date data,Trasa trasa) {
+    /**
+     *Standardowy konstruktor
+     * @param data data lotu
+     * @param trasa trasa lotu
+     */
+
+    protected Bilet(Date data,Trasa trasa) {
         this.data.setTime(data);
         this.trasa=trasa;
-        czyDwustronny=false;
+      //  czyDwustronny=false;
         id=this.hashCode();
     }
-    public Bilet(Date data1,Date data2){
-        czyDwustronny=true;
+
+    /***
+     * chyba nie bede uzywac tego konstrukotra.Bilety powrotne robimy tworzac oddziela pule biletow c:
+     * @param data1
+     * @param data2
+     */
+    public Bilet(Date data1,Date data2,Trasa trasa){
+        this.data.setTime(data1);
+        this.trasa=trasa;
+        //this.powrot.setTime(data2)
+        //czyDwustronny=true;
         id=this.hashCode();
     }
     /*
@@ -27,9 +45,19 @@ public class Bilet {
     }
      */
 
+    /***
+     *
+     * @return
+     */
+
     public boolean czyZajety(){
         return zajety;
     }
+
+    /**
+     * Rezerwacja biletu
+     * @return zarezerwowany bilet
+     */
     public Bilet zajmij(){
         zajety =true;
         return this;

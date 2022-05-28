@@ -5,14 +5,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * Klasa reprezetujaca lot
+ */
 
 public class Lot {
+
     Trasa trasa;
     Samolot samolot;
     Calendar data,przylot;
     int numer_lotu;
     ArrayList<Bilet> bilety= new ArrayList<>();
+
+    /***
+     * Zwykle tworzenie lotow
+     * @param t trasa lotu
+     * @param s samolot przeznaczony do lotu
+     * @param d data odlotu
+     */
     Lot(Trasa t, Samolot s, Date d){
         trasa=t;
         samolot=s;
@@ -24,6 +34,12 @@ public class Lot {
         }
 
     }
+
+    /***
+     * Konstruktor przeznaczony do lotow powtarzajacych sie
+     * @param l podanie isntiejacego lotu
+     * @param d data odlotu
+     */
     Lot(Lot l,Date d){
         trasa=l.getTrasa();
         samolot=l.getSamolot();
@@ -34,6 +50,11 @@ public class Lot {
         }
     }
 
+    /***
+     *prywatna metoda do zmiany daty lotu
+     * @param d data odlotu
+     * @param dlugosc odlegosc miedzy lotniskami
+     */
 
     private void setDate(Date d,int dlugosc){
        this.data=Calendar.getInstance();
@@ -42,6 +63,11 @@ public class Lot {
        przylot.setTime(d);
        przylot.add(Calendar.HOUR,dlugosc*100);
     }
+
+    /***
+     * sprawdzanie czy lot ma wolne bilety
+     * @return
+     */
     public boolean czyPelen(){
 
         for (Bilet b:bilety) {
@@ -50,6 +76,12 @@ public class Lot {
         }
         return true;
     }
+
+    /***
+     * pobranie wolnego bietu
+     * @return ww. bilet
+     * @throws Exception
+     */
     public Bilet dejBilet()throws Exception{
         for (Bilet b:bilety) {
             if(b.czyZajety()){
