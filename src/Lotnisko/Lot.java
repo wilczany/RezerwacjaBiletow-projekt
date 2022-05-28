@@ -1,5 +1,7 @@
 package Lotnisko;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,30 +12,28 @@ public class Lot {
     Samolot samolot;
     Calendar data,przylot;
     int numer_lotu;
-    Bilet[] bilety;
+    ArrayList<Bilet> bilety= new ArrayList<>();
     Lot(Trasa t, Samolot s, Date d){
         trasa=t;
         samolot=s;
         numer_lotu=this.hashCode();
-        bilety=new Bilet[s.getLiczbaMiejsc];
-        setDate(d,s.getOdleglosc)
+        //DYSTANS NA CALKOWITE
+        setDate(d, (int) t.getDystans());
+        for(int i=0;i<s.getLiczbaMiejsc();i++){
+            bilety.add(new Bilet(data.getTime(),trasa));
+        }
 
     }
     Lot(Lot l,Date d){
-        trasa=t.getTrasa();
+        trasa=l.getTrasa();
         samolot=l.getSamolot();
         numer_lotu=this.hashCode();
-        bilety=new Bilet[l.getSamolot().getLiczbaMiejsc];
-        setDate(d,s.getOdleglosc);
+        setDate(d,(int)l.getTrasa().getDystans());
+        for(int i=0;i<l.getSamolot().getLiczbaMiejsc();i++){
+            bilety.add(new Bilet(data.getTime(),trasa));
+        }
     }
 
-    public Trasa getTrasa() {
-        return trasa;
-    }
-
-    public Samolot getSamolot() {
-        return samolot;
-    }
 
     private void setDate(Date d,int dlugosc){
        this.data=Calendar.getInstance();
@@ -42,4 +42,55 @@ public class Lot {
        przylot.setTime(d);
        przylot.add(Calendar.HOUR,dlugosc*100);
     }
+    public boolean czyPelen(){
+
+        for (Bilet b:bilety) {
+            if(b.czyZajety())
+                return false;
+        }
+        return true;
+    }
+    public Bilet dejBilet()throws Exception{
+        for (Bilet b:bilety) {
+            if(b.czyZajety()){
+                return b.zajmij();
+            }
+        }
+        throw new Exception("SAMOLOT PELNY");
+    }
+    //GETTERS
+    public Trasa getTrasa() {
+        return trasa;
+    }
+
+    public Samolot getSamolot() {
+        return samolot;
+    }
+
+    public ArrayList<Bilet> getBilety() {
+        return bilety;
+    }
+
+    public Calendar getData() {
+        return data;
+    }
+
+    public Calendar getPrzylot() {
+        return przylot;
+    }
+
+    @Override
+    public String toString() {
+
+        SimpleDateFormat SDF=new SimpleDateFormat("yyyy-MM-dd  HH:mm");
+        String dataf=SDF.format(data);
+        String przylotf=SDF.format(przylot);
+
+        return "Lot: "+numer_lotu+
+                "\ntrasa=" + trasa +
+                "\nsamolot=" + samolot +
+                "\ndata=" + dataf +
+                "\nprzylot=" + przylotf;
+    }
+
 }

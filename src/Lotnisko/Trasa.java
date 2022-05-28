@@ -3,9 +3,9 @@ package Lotnisko;
 import java.lang.Math;
 
 public class Trasa {
-    private double dystans;
+    final private double dystans;
     
-    private Lotnisko l1, l2;
+    final private Lotnisko l1, l2;
 
     public Trasa(Lotnisko l1, Lotnisko l2){
         Lotnisko l3 = new Lotnisko(l1);
@@ -21,6 +21,10 @@ public class Trasa {
         double a = (l4.getX() - l3.getX()), b = (l4.getY() - l3.getY());
         a*=a; b*=b;
         this.dystans = Math.sqrt(a+b);
+    }
+
+    public double getDystans() {
+        return dystans;
     }
 
     public String toString(){
