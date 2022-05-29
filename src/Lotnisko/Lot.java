@@ -29,7 +29,7 @@ public class Lot {
         numer_lotu=this.hashCode();
         //DYSTANS NA CALKOWITE
         setDate(d, (int) t.getDystans());
-        for(int i=0;i<s.getLiczbaMiejsc();i++){
+        for(int i=0;i<s.getMiejsca();i++){
             bilety.add(new Bilet(data.getTime(),trasa));
         }
 
@@ -45,7 +45,7 @@ public class Lot {
         samolot=l.getSamolot();
         numer_lotu=this.hashCode();
         setDate(d,(int)l.getTrasa().getDystans());
-        for(int i=0;i<l.getSamolot().getLiczbaMiejsc();i++){
+        for(int i=0;i<l.getSamolot().getMiejsca();i++){
             bilety.add(new Bilet(data.getTime(),trasa));
         }
     }

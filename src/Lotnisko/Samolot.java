@@ -1,18 +1,43 @@
 package Lotnisko;
 
-public class Samolot {
-    String ID
-    int Miejsca,Zasieg,Predkosc;
+public abstract class Samolot {
+    
+    public int Miejsca;
+    public int Zasieg;
+    public int Predkosc;
 
-    Samolot(String I, int M, int Z, int P)
+    public
+    String ID;
+
+    Samolot(String I)
     {
         this.ID=I;
-        this.Miejsca=M;
-        this.Zasieg=Z;
-        this.Predkosc=P;
     }
 
-    int getLiczbaMiejsc(){
-        return 1;
+    void setMiejsca(int m){
+        Samolot.Miejsca=m;
     }
+
+    void setZasieg(int m)
+    {
+        Samolot.Zasieg=m;
+    }
+
+    void setPredkosc(int m) {
+        Samolot.Predkosc=m;
+    }
+    
+    int getMiejsca(){
+        return Miejsca;
+    }
+
+    int getZasieg()
+    {
+        return Zasieg;
+    }
+
+    int getPredkosc() {
+        return Predkosc;
+    }
+
 }
