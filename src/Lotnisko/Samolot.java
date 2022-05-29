@@ -1,13 +1,12 @@
 package Lotnisko;
 
 public abstract class Samolot {
-    
+
     public int Miejsca;
     public int Zasieg;
     public int Predkosc;
 
-    public
-    String ID;
+    public String ID;
 
     Samolot(String I)
     {
@@ -15,18 +14,18 @@ public abstract class Samolot {
     }
 
     void setMiejsca(int m){
-        Samolot.Miejsca=m;
+        Miejsca=m;
     }
 
     void setZasieg(int m)
     {
-        Samolot.Zasieg=m;
+        Zasieg=m;
     }
 
     void setPredkosc(int m) {
-        Samolot.Predkosc=m;
+        Predkosc=m;
     }
-    
+
     int getMiejsca(){
         return Miejsca;
     }

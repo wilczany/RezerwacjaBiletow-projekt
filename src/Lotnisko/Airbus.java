@@ -2,8 +2,8 @@ package Lotnisko;
 
 public class Airbus extends Samolot {
     protected
-    Airbus(){
-
+    Airbus(String id){
+        super(id);
     }
 
     int Miejsca=160;
