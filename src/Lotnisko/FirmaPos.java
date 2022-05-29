@@ -1,5 +1,11 @@
 package Lotnisko;
 
-public class FirmaPos {
-    
+public class FirmaPos extends Klient {
+    String NIP,Nazwa;
+
+    FirmaPos(String I, String N)
+    {
+        this.NIP=I;
+        this.Nazwa=N;
+    }
 }

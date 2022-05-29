@@ -1,5 +1,5 @@
 package Lotnisko;
 
-public class ATR {
+public class ATR extends Samolot {
     
 }

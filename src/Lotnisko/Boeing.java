@@ -1,5 +1,5 @@
 package Lotnisko;
 
-public class Boeing {
+public class Boeing extends Samolot {
     
 }
