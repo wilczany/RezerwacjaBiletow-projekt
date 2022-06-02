@@ -1,5 +1,6 @@
 //Patryk
-package Lotnisko;
+package Lotnisko.Trasy;
+
 import java.lang.Math;
 
 public class Trasa {

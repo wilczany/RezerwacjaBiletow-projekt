@@ -1,5 +1,5 @@
 //Patryk
-package Lotnisko;
+package Lotnisko.Trasy;
 //Zmiany w lotniskach nie są przewidywane, ale może dodamy w przyszłości
 //zmianę nazw lotnisk. Ze względu na to niepotrzebne są settery.
 

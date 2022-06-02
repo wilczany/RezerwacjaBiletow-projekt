@@ -1,4 +1,7 @@
-package Lotnisko;
+package Lotnisko.Loty;
+
+import Lotnisko.Samoloty.Samolot;
+import Lotnisko.Trasy.Trasa;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class Lot {
     ArrayList<Bilet> bilety= new ArrayList<>();
 
     /***
-     * Zwykle tworzenie lotow
+     * Zwykle tworzenie lotow. Klasa samolot zawiera predkosc, koniecznie uwzglednic
      * @param t trasa lotu
      * @param s samolot przeznaczony do lotu
      * @param d data odlotu

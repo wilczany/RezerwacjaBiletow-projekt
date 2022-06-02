@@ -1,4 +1,4 @@
-package Lotnisko;
+package Lotnisko.Samoloty;
 
 public abstract class Samolot {
 
@@ -26,11 +26,11 @@ public abstract class Samolot {
         Predkosc=m;
     }
 
-    int getMiejsca(){
+    public int getMiejsca(){
         return Miejsca;
     }
 
-    int getZasieg()
+    public int getZasieg()
     {
         return Zasieg;
     }

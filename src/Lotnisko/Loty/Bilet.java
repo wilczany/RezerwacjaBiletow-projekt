@@ -1,4 +1,6 @@
-package Lotnisko;
+package Lotnisko.Loty;
+
+import Lotnisko.Trasy.Trasa;
 
 import java.util.Calendar;
 import java.util.Date;
