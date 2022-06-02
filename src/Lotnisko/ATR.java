@@ -1,11 +1,11 @@
 package Lotnisko;
 
 public class ATR extends Samolot {
+    
     protected
+    int Miejsca = 120, Zasieg = 1200, Predkosc = 60;
 
-    int Miejsca=120,Zasieg=1200,Predkosc=60;
-
-    ATR(String id) {
+    protected ATR(String id) {
         super(id);
         super.Miejsca = Miejsca;
         super.Zasieg = Zasieg;

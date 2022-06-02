@@ -1,12 +1,15 @@
 package Lotnisko;
 
 public class Boeing extends Samolot {
+
     protected
-    Boeing(String id){
-    super(id);
+    int Miejsca = 30, Zasieg = 3300, Predkosc = 240;
+
+    protected Boeing(String id) {
+        super(id);
+        super.Miejsca = Miejsca;
+        super.Zasieg = Zasieg;
+        super.Predkosc = Predkosc;
     }
-    
-    int Miejsca=30;
-    int Zasieg=3300;
-    int Predkosc=240;
+
 }

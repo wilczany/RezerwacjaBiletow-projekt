@@ -1,12 +1,15 @@
 package Lotnisko;
 
 public class Airbus extends Samolot {
+    
     protected
-    Airbus(String id){
+    int Miejsca = 160, Zasieg = 2400, Predkosc = 100;
+
+    protected Airbus(String id) {
         super(id);
+        super.Miejsca = Miejsca;
+        super.Zasieg = Zasieg;
+        super.Predkosc = Predkosc;
     }
 
-    int Miejsca=160;
-    int Zasieg=2400;
-    int Predkosc=100;
 }
