@@ -1,7 +1,5 @@
 package Lotnisko.Uslugobiorcy;
 
-import Lotnisko.Uslugobiorcy.Klient;
-
 public class FirmaPos extends Klient {
     String NIP,Nazwa;
 

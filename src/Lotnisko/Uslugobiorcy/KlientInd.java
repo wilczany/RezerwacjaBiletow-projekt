@@ -1,7 +1,5 @@
 package Lotnisko.Uslugobiorcy;
 
-import Lotnisko.Uslugobiorcy.Klient;
-
 public class KlientInd extends Klient {
     String Imie,Nazwisko;
 

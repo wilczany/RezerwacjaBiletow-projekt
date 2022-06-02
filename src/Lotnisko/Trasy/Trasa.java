@@ -1,8 +1,6 @@
 //Patryk
 package Lotnisko.Trasy;
 
-import java.lang.Math;
-
 public class Trasa {
     final private double dystans;
     
