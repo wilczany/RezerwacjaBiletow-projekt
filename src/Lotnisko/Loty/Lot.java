@@ -1,9 +1,12 @@
-package Lotnisko.Loty;
+package lotnisko.loty;
 
-import Lotnisko.Samoloty.Samolot;
-import Lotnisko.Trasy.Trasa;
+import lotnisko.samoloty.Samolot;
+import lotnisko.trasy.Trasa;
 
 import java.text.SimpleDateFormat;
+
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +19,8 @@ public class Lot {
 
     Trasa trasa;
     Samolot samolot;
-    Calendar data,przylot;
+    LocalDateTime data,przylot;
+    Period czas_lotu;
     int numer_lotu;
     ArrayList<Bilet> bilety= new ArrayList<>();
 
@@ -26,30 +30,31 @@ public class Lot {
      * @param s samolot przeznaczony do lotu
      * @param d data odlotu
      */
-    Lot(Trasa t, Samolot s, Date d){
+    Lot(Trasa t, Samolot s, LocalDateTime d){
         trasa=t;
         samolot=s;
         numer_lotu=this.hashCode();
         //DYSTANS NA CALKOWITE
-        setDate(d, (int) t.getDystans());
+        setDate(d, (int)t.getDystans());
+
         for(int i=0;i<s.getMiejsca();i++){
-            bilety.add(new Bilet(data.getTime(),trasa));
+            bilety.add(new Bilet(d,trasa));
         }
 
     }
 
     /***
-     * Konstruktor przeznaczony do lotow powtarzajacych sie
-     * @param l podanie isntiejacego lotu
+     * Konstruktor przeznaczony do lotów powtarzających się
+     * @param l podanie istniejącego lotu
      * @param d data odlotu
      */
-    Lot(Lot l,Date d){
+    Lot(Lot l,LocalDateTime d){
         trasa=l.getTrasa();
         samolot=l.getSamolot();
         numer_lotu=this.hashCode();
         setDate(d,(int)l.getTrasa().getDystans());
         for(int i=0;i<l.getSamolot().getMiejsca();i++){
-            bilety.add(new Bilet(data.getTime(),trasa));
+            bilety.add(new Bilet(d,trasa));
         }
     }
 
@@ -59,22 +64,21 @@ public class Lot {
      * @param dlugosc odlegosc miedzy lotniskami
      */
 
-    private void setDate(Date d,int dlugosc){
-       this.data=Calendar.getInstance();
-       this.przylot=Calendar.getInstance();
-       data.setTime(d);
-       przylot.setTime(d);
-       przylot.add(Calendar.HOUR,dlugosc*100);
+    private void setDate(LocalDateTime d,int dlugosc){
+
+       this.data=d;
+       this.przylot=data.minusMinutes(dlugosc*10);
+       czas_lotu=Period.between(data.toLocalDate(),przylot.plusHours(12).toLocalDate());
+
     }
 
     /***
      * sprawdzanie czy lot ma wolne bilety
-     * @return
      */
     public boolean czyPelen(){
 
         for (Bilet b:bilety) {
-            if(b.czyZajety())
+            if(!b.czyZajety())
                 return false;
         }
         return true;
@@ -83,15 +87,15 @@ public class Lot {
     /***
      * pobranie wolnego bietu
      * @return ww. bilet
-     * @throws Exception
+     * @throws BrakMiejscException brak wolnych biletow
      */
-    public Bilet dejBilet()throws Exception{
+    public Bilet dejBilet()throws BrakMiejscException{
         for (Bilet b:bilety) {
-            if(b.czyZajety()){
+            if(!b.czyZajety()){
                 return b.zajmij();
             }
         }
-        throw new Exception("SAMOLOT PELNY");
+        throw new BrakMiejscException("SAMOLOT PELNY",this);
     }
     //GETTERS
     public Trasa getTrasa() {
@@ -106,12 +110,16 @@ public class Lot {
         return bilety;
     }
 
-    public Calendar getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public Calendar getPrzylot() {
+    public LocalDateTime getPrzylot() {
         return przylot;
+    }
+
+    public Period getCzas_lotu() {
+        return czas_lotu;
     }
 
     @Override

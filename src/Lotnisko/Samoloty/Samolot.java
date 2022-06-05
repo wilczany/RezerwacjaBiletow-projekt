@@ -1,4 +1,4 @@
-package Lotnisko.Samoloty;
+package lotnisko.samoloty;
 
 public abstract class Samolot {
 

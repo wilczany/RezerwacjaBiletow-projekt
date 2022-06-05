@@ -1,4 +1,4 @@
-package Lotnisko.Uslugobiorcy;
+package lotnisko.uslugobiorcy;
 
 public class Klient {
     

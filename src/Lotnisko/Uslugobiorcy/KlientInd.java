@@ -1,4 +1,4 @@
-package Lotnisko.Uslugobiorcy;
+package lotnisko.uslugobiorcy;
 
 public class KlientInd extends Klient {
     String Imie,Nazwisko;

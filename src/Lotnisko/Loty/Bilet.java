@@ -1,15 +1,14 @@
-package Lotnisko.Loty;
+package lotnisko.loty;
 
-import Lotnisko.Trasy.Trasa;
-
-import java.util.Calendar;
-import java.util.Date;
+import lotnisko.trasy.Trasa;
+import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 
 /**
  * bileciki do kontroli
  */
 public class Bilet {
-    Calendar data=Calendar.getInstance();
+    LocalDateTime data;
     //Calendar powrot=null;
     Trasa trasa;
     public final int id;
@@ -22,39 +21,36 @@ public class Bilet {
      * @param trasa trasa lotu
      */
 
-    protected Bilet(Date data,Trasa trasa) {
-        this.data.setTime(data);
+    protected Bilet(LocalDateTime data,Trasa trasa) {
+        this.data=data;
         this.trasa=trasa;
       //  czyDwustronny=false;
         id=this.hashCode();
     }
 
-    /***
+    /**
      * chyba nie bede uzywac tego konstrukotra.Bilety powrotne robimy tworzac oddziela pule biletow c:
      * @param data1
      * @param data2
      */
-    public Bilet(Date data1,Date data2,Trasa trasa){
+
+    /*
+    private Bilet(Date data1,Date data2,Trasa trasa){
         this.data.setTime(data1);
         this.trasa=trasa;
         //this.powrot.setTime(data2)
         //czyDwustronny=true;
         id=this.hashCode();
     }
+    */
+
     /*
     public void zmienDwustronny(Date powrot){
         Calendar.getInstance().setTime(powrot);
     }
      */
 
-    /***
-     *
-     * @return
-     */
 
-    public boolean czyZajety(){
-        return zajety;
-    }
 
     /**
      * Rezerwacja biletu
@@ -63,6 +59,22 @@ public class Bilet {
     public Bilet zajmij(){
         zajety =true;
         return this;
+    }
+    public void anuluj(){
+
+    }
+
+    public boolean czyZajety() {
+        return zajety;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat SDF=new SimpleDateFormat();
+        return "data:" + data +
+                ", trasa:" + trasa +
+                ", numer Biletu:" + id;
+
     }
 }
 
