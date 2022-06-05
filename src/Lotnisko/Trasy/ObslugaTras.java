@@ -104,14 +104,56 @@ public class ObslugaTras {
         return false;
     }
 
+    private boolean sprawdzKoordynaty(int x, int y){
+        for(Lotnisko l : lotniska){
+            if(x==l.getX() && y==l.getY()) return true;
+        }
+        return false;
+    }
+
     //jakkolwiek ta nazwa brzmi..
     public boolean utworzLotnisko(){
         Scanner scan = new Scanner(System.in);
         System.out.print("Podaj nazwę dla lotniska: ");
         String nazwa = scan.nextLine();
         while(sprawdzNazwe(nazwa)){
-            
+            System.out.print("'"+nazwa+"' jest już zajęte, podaj inną nazwę: ");
+            nazwa = scan.nextLine();
         }
-        
+        System.out.print("Podaj koordynaty dla lotniska.\nx: ");
+        int x = scan.nextInt();
+        System.out.print("y: ");
+        int y = scan.nextInt();
+        while(sprawdzKoordynaty(x, y)){
+            System.out.print("Koordynaty ("+x+","+y+") są już zajęte, podaj inne.\nx: ");
+            x = scan.nextInt();
+            System.out.print("y: ");
+            y = scan.nextInt();
+        }
+        Lotnisko lt = new Lotnisko(nazwa, x, y);
+        lotniska.add(lt);
+        return true;
+    }
+
+    //rozszerzyc o usuwanie rowniez lotow
+    public boolean usunLotnisko(String nazwa){
+        for(Lotnisko l : lotniska){
+            if(nazwa.equals(l.getNazwa())) lotniska.remove(l);
+        }
+        for(Trasa t : trasy){
+            if(nazwa.equals(t.getLotniska()[0].getNazwa()) || nazwa.equals(t.getLotniska()[1].getNazwa())) trasy.remove(t);
+        }
+        return true;
+    }
+
+    //rozszerzyc o usuwanie rowniez lotow
+    //moze inne parametry? przy usuwaniu interfejsem wystarczyc powinien obiekt trasy?
+    public boolean usunTrase(String nazwa1, String nazwa2){
+        Lotnisko[] lt = new Lotnisko[2];
+        for(Trasa t : trasy){
+            lt = t.getLotniska();
+            if(nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) trasy.remove(t);
+        }
+        return true;
     }
 }
