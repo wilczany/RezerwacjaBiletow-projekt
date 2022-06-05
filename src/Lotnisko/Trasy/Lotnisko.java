@@ -27,8 +27,20 @@ public class Lotnisko {
         return this.y;
     }
 
+    public String getNazwa(){
+        return this.nazwa;
+    }
+
     public String toString(){
         return "Lotnisko "+this.nazwa+", pozycja: ("+this.x+","+this.y+").";
     }
     
+    public boolean equals(Object obj){
+        if(obj == null) return false;
+        if(this == obj) return true;
+        if(getClass() != obj.getClass()) return false;
+        Lotnisko l = (Lotnisko) obj;
+        if(nazwa.equals(l.nazwa) && x==l.x && y==l.y) return true;
+        return false;
+    }
 }

@@ -19,7 +19,20 @@ public class Trasa {
         //do pierwiastkowania
         double a = (l4.getX() - l3.getX()), b = (l4.getY() - l3.getY());
         a*=a; b*=b;
-        this.dystans = Math.sqrt(a+b);
+        this.dystans = Math.sqrt(a+b)*10;
+    }
+
+    //trasy powrotnej
+    public Trasa(Trasa startowa){
+        this.l1 = new Lotnisko(startowa.l2);
+        this.l2 = new Lotnisko(startowa.l1);
+        this.dystans = startowa.dystans;
+    }
+
+    public Lotnisko[] getLotniska(){
+        Lotnisko[] l = new Lotnisko[2];
+        l[0] = l1; l[1] = l2;
+        return l;
     }
 
     public double getDystans() {
@@ -30,4 +43,12 @@ public class Trasa {
         return "Trasa z "+l1+" do "+l2+", odległość "+this.dystans/*+"?km?"+*/;
     }
     
+    public boolean equals(Object obj){
+        if(obj == null) return false;
+        if(this == obj) return true;
+        if(getClass() != obj.getClass()) return false;
+        Trasa t = (Trasa) obj;
+        if(l1.equals(t.l1) && l2.equals(t.l2)) return true;
+        return false;
+    }
 }
