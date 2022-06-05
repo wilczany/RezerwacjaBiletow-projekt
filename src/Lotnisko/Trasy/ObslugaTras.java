@@ -132,6 +132,7 @@ public class ObslugaTras {
         }
         Lotnisko lt = new Lotnisko(nazwa, x, y);
         lotniska.add(lt);
+        scan.close();
         return true;
     }
 
