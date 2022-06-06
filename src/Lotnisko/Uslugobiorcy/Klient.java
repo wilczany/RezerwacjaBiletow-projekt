@@ -4,18 +4,18 @@ public class Klient {
 
     protected Bilet b;
 
-    void dodajBilet()
+    void dodajBilet(Bilet bilet)
     {
-        this.b.dodajBilet();
+        this.b=bilet;
     }
 
     void usunBilet()
     {
-        this.b.usunBilet();
+        this.b=null;
     }
-
-    void toString()
+    @Override
+    String toString()
     {
-        return this.b;
+
     }
 }

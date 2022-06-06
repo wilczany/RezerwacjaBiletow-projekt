@@ -8,4 +8,9 @@ public class FirmaPos extends Klient {
         this.NIP=I;
         this.Nazwa=N;
     }
+    @Override
+    String toString()
+    {
+        return this.getClass().getName() + ":\n" + "Nazwa Firmy:" + Nazwa + '\t' + "NIP Firmy:" + NIP + '\n' + super.toString();
+    }
 }
