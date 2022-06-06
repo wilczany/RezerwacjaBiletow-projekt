@@ -1,4 +1,4 @@
-package lotnisko;
+package Lotnisko;
 
 public class Main {
 

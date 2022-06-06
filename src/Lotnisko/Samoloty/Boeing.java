@@ -1,4 +1,4 @@
-package lotnisko.samoloty;
+package Lotnisko.Samoloty;
 
 public class Boeing extends Samolot {
 

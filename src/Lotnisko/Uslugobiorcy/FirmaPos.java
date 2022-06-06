@@ -1,4 +1,4 @@
-package lotnisko.uslugobiorcy;
+package Lotnisko.Uslugobiorcy;
 
 public class FirmaPos extends Klient {
     String NIP,Nazwa;

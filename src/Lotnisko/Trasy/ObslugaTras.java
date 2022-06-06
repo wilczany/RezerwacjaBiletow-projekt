@@ -1,4 +1,4 @@
-package lotnisko.trasy;
+package Lotnisko.Trasy;
 import java.util.ArrayList;
 import java.util.Scanner;
 
