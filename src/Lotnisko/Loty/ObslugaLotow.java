@@ -2,16 +2,13 @@ package lotnisko.loty;
 
 import lotnisko.samoloty.Samolot;
 import lotnisko.trasy.Trasa;
-import lotnisko.uslugobiorcy.Klient;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ObslugaLotow {
     private final ArrayList<Lot> loty = new ArrayList<>();
-    public ObslugaLotow(){
 
-    }
 
 
     /**
@@ -47,7 +44,7 @@ public class ObslugaLotow {
      */
 
     void dodajLot(Lot l,LocalDateTime data)throws LotyException{
-        if(l.getSamolot().getZasieg()<l.getTrasa().getDystans()) throw new ZasiegException("Samolot ma za krotki zasieg!",l.getSamolot(),l.getTrasa().getDystans());
+        //if(l.getSamolot().getZasieg()<l.getTrasa().getDystans()) throw new ZasiegException("Samolot ma za krotki zasieg!",l.getSamolot(),l.getTrasa().getDystans());
         for (Lot locik:loty) {
             if(l.getSamolot()==locik.getSamolot()){
                 if( (data.isAfter(locik.getData()) || data.isEqual(locik.getData()) )   &&  (data.isBefore(locik.getPrzylot()) || data.isEqual(locik.getPrzylot()) )  )
@@ -90,7 +87,7 @@ public class ObslugaLotow {
 
 
     public ArrayList<Lot> getLoty(Trasa t) throws BrakLotowException {
-        ArrayList<Lot> lotyNaTrasie=new ArrayList();
+        ArrayList<Lot> lotyNaTrasie=new ArrayList<>();
         for (Lot l:loty) {
             if(l.getTrasa()==t)lotyNaTrasie.add(l);
         }
