@@ -1,5 +1,5 @@
 //Patryk
-package Lotnisko.Trasy;
+package lotnisko.trasy;
 
 public class Trasa {
     final private double dystans;
