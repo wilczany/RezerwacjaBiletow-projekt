@@ -1,6 +1,6 @@
-package Lotnisko.Uslugobiorcy;
+package lotnisko.uslugobiorcy;
 
-public class Klient {
+public abstract class Klient {
 
     protected Bilet b;
 
@@ -13,9 +13,10 @@ public class Klient {
     {
         this.b=null;
     }
-    @Override
-    String toString()
-    {
 
-    }
+    @Override
+    public  abstract String toString();
+
+
+
 }

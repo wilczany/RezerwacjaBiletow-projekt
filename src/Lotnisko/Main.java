@@ -4,15 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
         //wczytywanie samolotow
-        while()
+       /* while(true)
         {}
         //wczytywanie klientow
-        while()
+        while(true)
         {}
         //wczytywanie lotnisk
-        while()
+        while(true)
         {}
-
+            */
 
     }
 }
