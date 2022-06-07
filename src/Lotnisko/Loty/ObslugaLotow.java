@@ -1,7 +1,8 @@
-package lotnisko.loty;
+package loty;
 
-import lotnisko.samoloty.Samolot;
-import lotnisko.trasy.Trasa;
+import main.MainController;
+import samoloty.Samolot;
+import trasy.Trasa;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -96,7 +97,11 @@ public class ObslugaLotow {
         throw new BrakLotowException("Brak lotow na trasie!",t);
     }
 
+    MainController mainController;
 
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 
 
 }

@@ -1,6 +1,6 @@
-package lotnisko.loty;
+package loty;
 
-import lotnisko.samoloty.Samolot;
+import samoloty.Samolot;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,7 @@
-package lotnisko;
-import lotnisko.loty.ObslugaLotow;
-import lotnisko.trasy.ObslugaTras;
+package main;
+
+import loty.ObslugaLotow;
+import trasy.ObslugaTras;
 
 public class NaszaFirma {
     ObslugaLotow obslugaLotow=new ObslugaLotow();

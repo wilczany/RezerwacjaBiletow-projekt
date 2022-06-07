@@ -1,4 +1,4 @@
-package lotnisko.uslugobiorcy;
+package uslugobiorcy;
 
 public class Firma extends Klient {
     String NIP,Nazwa;

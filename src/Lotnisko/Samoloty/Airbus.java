@@ -1,4 +1,4 @@
-package lotnisko.samoloty;
+package samoloty;
 
 public class Airbus extends Samolot {
     

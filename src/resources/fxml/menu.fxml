@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="80.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MenuController">
+   <children>
+      <Button layoutX="374.0" layoutY="56.0" mnemonicParsing="false" onAction="#openTrasy" prefHeight="50.0" prefWidth="51.0" text="Trasy" />
+      <Button layoutX="374.0" layoutY="161.0" mnemonicParsing="false" onAction="#openLoty" prefHeight="50.0" prefWidth="51.0" text="Loty" />
+      <Button layoutX="342.0" layoutY="287.0" mnemonicParsing="false" onAction="#openObsluga" prefHeight="50.0" prefWidth="117.0" text="Obsługa Klienta" />
+      <Button layoutX="360.0" layoutY="400.0" mnemonicParsing="false" onAction="#exit" prefHeight="44.0" prefWidth="79.0" text="Wyjście" />
+   </children>
+</Pane>

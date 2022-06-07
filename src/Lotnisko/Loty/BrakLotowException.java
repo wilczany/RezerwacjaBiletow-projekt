@@ -1,6 +1,6 @@
-package lotnisko.loty;
+package loty;
 
-import lotnisko.trasy.Trasa;
+import trasy.Trasa;
 
 public class BrakLotowException extends LotyException{
     Trasa t;

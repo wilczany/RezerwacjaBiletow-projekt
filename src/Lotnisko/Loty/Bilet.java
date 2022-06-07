@@ -1,6 +1,5 @@
-package lotnisko.loty;
-
-import lotnisko.trasy.Trasa;
+package loty;
+import trasy.Trasa;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;

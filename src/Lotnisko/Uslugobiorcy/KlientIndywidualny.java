@@ -1,4 +1,5 @@
-package lotnisko.uslugobiorcy;
+package uslugobiorcy;
+
 
 public class KlientIndywidualny extends Klient {
     String Imie,Nazwisko;

@@ -1,5 +1,5 @@
 //Patryk
-package lotnisko.trasy;
+package trasy;
 
 public class Trasa {
     final private double dystans;
@@ -40,7 +40,7 @@ public class Trasa {
     }
 
     public String toString(){
-        return "Trasa z "+l1+" do "+l2+", odległość "+this.dystans/*+"?km?"+*/;
+        return "Trasa z "+l1+" do "+l2+", odległość: "+this.dystans/*+"?km?"+*/;
     }
     
     public boolean equals(Object obj){

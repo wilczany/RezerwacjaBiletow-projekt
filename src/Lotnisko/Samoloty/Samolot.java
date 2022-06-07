@@ -1,4 +1,4 @@
-package lotnisko.samoloty;
+package samoloty;
 
 import java.util.Calendar;
 
@@ -57,6 +57,9 @@ public abstract class Samolot {
         return this.Predkosc;
     }
 
+    public String getID() {
+        return ID;
+    }
 
     public String toString()
     {

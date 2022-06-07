@@ -1,6 +1,6 @@
-package lotnisko.loty;
+package loty;
 
-import lotnisko.samoloty.Samolot;
+import samoloty.Samolot;
 
 public class ZasiegException extends LotyException{
     Samolot s;

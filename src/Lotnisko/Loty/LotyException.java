@@ -1,4 +1,4 @@
-package lotnisko.loty;
+package loty;
 
 public class LotyException extends Exception{
 

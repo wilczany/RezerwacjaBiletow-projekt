@@ -1,4 +1,6 @@
-package lotnisko.uslugobiorcy;
+package uslugobiorcy;
+
+import loty.Bilet;
 
 public abstract class Klient {
 
