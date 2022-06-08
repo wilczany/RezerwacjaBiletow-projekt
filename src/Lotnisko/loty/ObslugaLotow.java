@@ -12,7 +12,6 @@ public class ObslugaLotow extends Controller {
     private final ArrayList<Lot> loty = new ArrayList<>();
 
 
-
     /**
      * Dodawanie lotow
      * @param t trasa lotu

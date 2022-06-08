@@ -16,6 +16,7 @@ public abstract class Controller {
     public void setMainController(MainController mainController){
         this.mainController=mainController;
     }
+
     @FXML
     public void back() {
         mainController.goToMenu();

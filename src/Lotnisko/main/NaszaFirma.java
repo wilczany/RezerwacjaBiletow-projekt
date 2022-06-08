@@ -11,12 +11,19 @@ import uslugobiorcy.ObslugaKlientow;
 
 import java.io.IOException;
 
-public class NaszaFirma extends Controller{
+public class NaszaFirma{
+    @FXML
+    MainController mainController;
     ObslugaLotow lotyController;
     ObslugaTras trasyController;
     ObslugaKlientow klienciController;
     ObslugaSamolotow samolotyController;
 
+
+    ObslugaLotow loty=new ObslugaLotow();
+    ObslugaTras trasy=new ObslugaTras();
+    ObslugaKlientow klienci=new ObslugaKlientow();
+    ObslugaSamolotow samoloty=new ObslugaSamolotow();
 
     @FXML
     public void openTrasy() {
@@ -29,6 +36,7 @@ public class NaszaFirma extends Controller{
         }
         trasyController =fxml.getController();
         trasyController.setMainController(mainController);
+        trasyController.setFirma(this);
         mainController.setScreen(root);
     }
 
@@ -79,6 +87,10 @@ public class NaszaFirma extends Controller{
         Platform.exit();
     }
 
+
+    public void setMainController(MainController mainController){
+        this.mainController=mainController;
+    }
 }
 
 

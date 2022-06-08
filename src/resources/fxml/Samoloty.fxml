@@ -14,7 +14,7 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button layoutX="47.0" layoutY="416.0" mnemonicParsing="false" text="Dodaj samolot" />
-      <Button layoutX="345.0" layoutY="416.0" mnemonicParsing="false" text="Usuń Samolot" />
+      <Button layoutX="47.0" layoutY="416.0" mnemonicParsing="false" onAction="#addSamolot" text="Dodaj samolot" />
+      <Button layoutX="345.0" layoutY="416.0" mnemonicParsing="false" onAction="#delSamolot" text="Usuń Samolot" />
    </children>
 </AnchorPane>

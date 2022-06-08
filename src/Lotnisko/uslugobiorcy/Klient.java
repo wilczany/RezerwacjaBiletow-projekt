@@ -2,13 +2,15 @@ package uslugobiorcy;
 
 import loty.Bilet;
 
+import java.util.ArrayList;
+
 public abstract class Klient {
 
     protected ArrayList<Bilet> b=new ArrayList<>();
 
     void dodajBilet(Bilet bilet)
     {
-        this.b=bilet;
+        b.add(bilet);
     }
 
     void usunBilet()
