@@ -66,7 +66,7 @@ public abstract class Samolot {
 
     public String toString()
     {
-        return this.getClass().getName() + ":\n" + "ID Samolotu: " + ID + " Miejsca: "  + Miejsca + " Zasieg: " + Zasieg + " Predkosc: " + Predkosc + '\n';
+        return this.getClass().getSimpleName() + ":\n" + "ID Samolotu: " + ID + " Miejsca: "  + Miejsca + " Zasieg: " + Zasieg + " Predkosc: " + '\n';
     }
 
 }
