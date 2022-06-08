@@ -9,10 +9,6 @@ public class ObslugaKlientow extends Controller{
     ArrayList<Klient> klienci =new ArrayList<>();
 
 
-
-
-
-
     //Kontroler
 
 }

@@ -12,15 +12,11 @@ import uslugobiorcy.ObslugaKlientow;
 import java.io.IOException;
 
 public class NaszaFirma extends Controller{
-    ObslugaLotow obslugaLotow;
-    ObslugaTras obslugaTras;
-    ObslugaKlientow obslugaKlientow;
-    ObslugaSamolotow obslugaSamolotow;
-    @FXML
-    public void initiaize(){
+    ObslugaLotow lotyController;
+    ObslugaTras trasyController;
+    ObslugaKlientow klienciController;
+    ObslugaSamolotow samolotyController;
 
-
-    }
 
     @FXML
     public void openTrasy() {
@@ -31,8 +27,8 @@ public class NaszaFirma extends Controller{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        obslugaTras=fxml.getController();
-        obslugaTras.setMainController(mainController);
+        trasyController =fxml.getController();
+        trasyController.setMainController(mainController);
         mainController.setScreen(root);
     }
 
@@ -46,8 +42,8 @@ public class NaszaFirma extends Controller{
             e.printStackTrace();
         }
 
-        obslugaLotow=fxml.getController();
-        obslugaLotow.setMainController(mainController);
+        lotyController=fxml.getController();
+        lotyController.setMainController(mainController);
 
 
         mainController.setScreen(root);
@@ -60,8 +56,8 @@ public class NaszaFirma extends Controller{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        obslugaSamolotow=fxml.getController();
-        obslugaSamolotow.setMainController(mainController);
+        samolotyController =fxml.getController();
+        samolotyController.setMainController(mainController);
         mainController.setScreen(root);
     }
 
@@ -73,8 +69,8 @@ public class NaszaFirma extends Controller{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        obslugaKlientow=fxml.getController();
-        obslugaKlientow.setMainController(mainController);
+        klienciController =fxml.getController();
+        klienciController.setMainController(mainController);
         mainController.setScreen(root);
     }
 

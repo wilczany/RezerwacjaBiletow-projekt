@@ -17,6 +17,9 @@ public class ObslugaTras extends Controller{
     private ArrayList<Lotnisko> lotniska = new ArrayList<Lotnisko>();
     private ArrayList<Trasa> trasy = new ArrayList<Trasa>();
 
+    public ObslugaTras() {
+        lotniska.add(new Lotnisko("Warszawa",10,5));
+    }
 
     /**
      * @param l
@@ -189,7 +192,7 @@ public class ObslugaTras extends Controller{
         ListView<String> listLotniska;
 
         public void initialize(java.net.URL url, java.util.ResourceBundle rbndl){
-            listLotniska.getItems().addAll(String.valueOf(lotniska));
+            refresh();
         }
 
         @FXML
