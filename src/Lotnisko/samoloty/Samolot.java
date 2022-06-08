@@ -31,6 +31,7 @@ public abstract class Samolot {
         }
     }
 
+    //settery tbh niepotrzebne są, chyba że dodajemy funkcję modyfikacji samolotów jako bonus xDD
     void setMiejsca(int m) {
         Miejsca = m;
     }
@@ -57,6 +58,16 @@ public abstract class Samolot {
 
     public String getID() {
         return ID;
+    }
+
+    //potrzebowałem do interfejsu
+    public boolean equals(Object obj){
+        if(obj == null) return false;
+        if(this == obj) return true;
+        if(getClass() != obj.getClass()) return false;
+        Samolot s = (Samolot) obj;
+        if(ID.equals(s.ID)) return true;
+        return false;
     }
 
     public String toString()

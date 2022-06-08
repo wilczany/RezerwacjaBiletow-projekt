@@ -170,6 +170,11 @@ public class ObslugaTras extends Controller{
             if (nazwa.equals(t.getLotniska()[0].getNazwa()) || nazwa.equals(t.getLotniska()[1].getNazwa()))
                 trasy.remove(t);
         }
+        /*
+        for(Lot l : loty){
+            if (nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa()) || nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa())) ObslugaLotow.anulujLot(ten lot);
+        }
+        */
         return true;
     }
 
@@ -181,6 +186,11 @@ public class ObslugaTras extends Controller{
             lt = t.getLotniska();
             if (nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) trasy.remove(t);
         }
+        /*
+        for(Lot l : loty){
+            if (nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa()) && nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa())) ObslugaLotow.anulujLot(ten lot);
+        }
+        */
         return true;
     }
 
