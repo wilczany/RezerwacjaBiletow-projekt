@@ -2,7 +2,6 @@ package loty;
 
 import javafx.fxml.FXML;
 import main.Controller;
-import main.NaszaFirma;
 import samoloty.Samolot;
 import trasy.Trasa;
 
@@ -11,15 +10,6 @@ import java.util.ArrayList;
 
 public class ObslugaLotow extends Controller {
     private final ArrayList<Lot> loty = new ArrayList<>();
-    private final NaszaFirma firma;
-    
-    /**
-     * Konstruktor
-     * @param f obiekt firmy, główny interfejs
-     */
-    public ObslugaLotow(Firma f){
-        this.firma = f;
-    }
 
 
     /**
