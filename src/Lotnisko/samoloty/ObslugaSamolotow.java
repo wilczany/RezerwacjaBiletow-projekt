@@ -56,4 +56,11 @@ public class ObslugaSamolotow extends Controller{
                 }
                 */
         }
+
+        @Override
+        public void refresh() {
+
+        }
+
+        public
 }
