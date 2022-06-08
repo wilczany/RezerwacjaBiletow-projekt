@@ -235,7 +235,7 @@ public class ObslugaTras extends Controller{
 
 
     }
-    void refresh(){
+    public void refresh(){
             listLotniska.getItems().clear();
         for (Lotnisko l:lotniska
              ) {listLotniska.getItems().add(String.valueOf(l));

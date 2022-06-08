@@ -20,19 +20,24 @@ public abstract class Controller {
     public void back() {
         mainController.goToMenu();
     }
+    public abstract void refresh();
+    //Pobieranie list??
+    protected ArrayList getTrasy(){
 
-    //Dodawanie czytanych z pliku??
-     ArrayList getTrasy(){
-        return new ArrayList<>();
+         return new ArrayList<>();
     }
+    protected ArrayList getSamoloty(){
 
-    ArrayList getSamoloty(){
-        return new ArrayList();
+         return new ArrayList();
     }
-    ArrayList getLoty(){
-        return new ArrayList();
-    }
+    protected ArrayList getLoty(){
 
+         return new ArrayList();
+    }
+    protected ArrayList getKlienci(){
+
+         return new ArrayList();
+    }
 
     //public abstract void initialize(java.net.URL url, java.util.ResourceBundle rbndl);
 
