@@ -1,6 +1,7 @@
 package loty;
 
-import main.MainController;
+import javafx.scene.control.ListView;
+import main.Controller;
 import samoloty.Samolot;
 import trasy.Trasa;
 
@@ -96,12 +97,10 @@ public class ObslugaLotow {
         return(lotyNaTrasie);
         throw new BrakLotowException("Brak lotow na trasie!",t);
     }
-
-    MainController mainController;
-
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
+public static class LotyController extends Controller {
 
 
+
+
+}
 }

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MenuController {
 
     private MainController mainController;
-
+    public ObslugaTras ot= new ObslugaTras();
 
     @FXML
     public void openTrasy() {
@@ -24,10 +24,9 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ObslugaTras.TrasyController control=fxml.getController();
-        control.setMainController(mainController);
+        ot=fxml.getController();
+        ot.setMainController(mainController);
         mainController.setScreen(root);
-
     }
 
     @FXML
@@ -39,7 +38,7 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ObslugaLotow control=fxml.getController();
+        ObslugaLotow.LotyController control=fxml.getController();
         control.setMainController(mainController);
         mainController.setScreen(root);
     }
@@ -52,7 +51,7 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ObslugaKlientow control=fxml.getController();
+        ObslugaKlientow.KlienciController control=fxml.getController();
         control.setMainController(mainController);
         mainController.setScreen(root);
     }

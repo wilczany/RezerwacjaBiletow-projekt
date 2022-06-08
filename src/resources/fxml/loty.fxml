@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loty.ObslugaLotow">
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loty.ObslugaLotow$LotyController">
    <children>
       <Button layoutX="701.0" layoutY="411.0" mnemonicParsing="false" onAction="#back" text="Wstecz" />
       <TableView layoutX="42.0" layoutY="20.0" prefHeight="332.0" prefWidth="717.0">
         <columns>
-          <TableColumn prefWidth="115.0" text="Id" />
-          <TableColumn prefWidth="226.0" text="Trasa" />
-            <TableColumn minWidth="0.0" prefWidth="216.0" text="Data" />
-            <TableColumn prefWidth="159.0" text="Samolot" />
+          <TableColumn fx:id="listID" prefWidth="115.0" text="ID" />
+          <TableColumn fx:id="listTrasa" prefWidth="226.0" text="Trasa" />
+            <TableColumn fx:id="listData" minWidth="0.0" prefWidth="216.0" text="Data" />
+            <TableColumn fx:id="listSamolot" prefWidth="159.0" text="Samolot" />
         </columns>
       </TableView>
       <Button layoutX="583.0" layoutY="411.0" mnemonicParsing="false" text="Anuluj Lot" />

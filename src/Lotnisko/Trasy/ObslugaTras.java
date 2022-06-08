@@ -1,9 +1,10 @@
 package trasy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
-import main.MainController;
+import main.Controller;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -12,9 +13,10 @@ import java.util.Scanner;
 
 //dodanie parametru do metod wypisujacych informacje dla uzytkownika, ktory by blokowal wypisywanie/przelaczal na tryb graficzny?
 
-public class ObslugaTras {
+public class ObslugaTras extends Controller{
     private ArrayList<Lotnisko> lotniska = new ArrayList<Lotnisko>();
     private ArrayList<Trasa> trasy = new ArrayList<Trasa>();
+
 
     /**
      * @param l
@@ -182,33 +184,49 @@ public class ObslugaTras {
     //Kontroler
 
 
-    public static class TrasyController {
-
-        private MainController mainController;
+        //TrasyController(ObslugaTras outer){this.outer=outer;}
         @FXML
-        public TextField coorX;
+        ListView<String> listLotniska;
 
+        public void initialize(java.net.URL url, java.util.ResourceBundle rbndl){
+            listLotniska.getItems().addAll(String.valueOf(lotniska));
+        }
 
         @FXML
         public void dodajLotnisko(ActionEvent event) {
-            TextInputDialog dialog = new TextInputDialog();
+            //analogicznie do metody utworzLotnisko dodalem tą metodę
+            //Analogicznie do wypisywania w konsoli i scannera
+            Dialog<String> dialog = new TextInputDialog();
             dialog.setHeaderText("Podaj nazwę dla lotniska:");
             dialog.setContentText("Nazwa: ");
-            Optional<String> result = dialog.showAndWait();
-
-            int n = Integer.parseInt(result.get());
-            System.out.println(n);
-
-        }
-
-        @FXML
-        public void back() {
-            mainController.goToMenu();
-        }
+            Optional<String> result_nazwa = dialog.showAndWait();
+            String nazwa = result_nazwa.get();
 
 
-        public void setMainController(MainController mainController) {
-            this.mainController = mainController;
+            dialog=new TextInputDialog();
+            dialog.setHeaderText("Podaj Koordynaty:");
+            dialog.setContentText("X= ");
+            Optional<String> result_X = dialog.showAndWait();
+            int x= Integer.parseInt(result_X.get());
+
+            dialog=new TextInputDialog();
+            dialog.setContentText("Y=");
+            Optional<String> result_Y=dialog.showAndWait();
+            int y=Integer.parseInt(result_Y.get());
+            Lotnisko lll=new Lotnisko(nazwa,x,y);
+            dodajLotnisko(lll);
+            refresh();
+            System.out.println(lll);
+
+
+
+
+    }
+    void refresh(){
+            listLotniska.getItems().clear();
+        for (Lotnisko l:lotniska
+             ) {listLotniska.getItems().add(String.valueOf(l));
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package uslugobiorcy;
 
+import main.Controller;
 import main.MainController;
 
 import java.util.ArrayList;
@@ -12,10 +13,9 @@ public class ObslugaKlientow {
 
 
 
+    public static class KlienciController extends Controller{
 
-    MainController mainController;
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
+
 }
