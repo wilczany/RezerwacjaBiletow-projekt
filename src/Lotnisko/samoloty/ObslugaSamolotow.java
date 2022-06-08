@@ -4,10 +4,11 @@ import javafx.fxml.FXML;
 import main.Controller;
 
 import java.util.ArrayList;
+import main.NaszaFirma;
 
 public class ObslugaSamolotow extends Controller{
         ArrayList<Samolot> flota=new ArrayList<>();
-
+        NaszaFirma firma;
 
         //FXML
 
@@ -18,10 +19,20 @@ public class ObslugaSamolotow extends Controller{
 
         @FXML
         void delSamolot(){
+        
+        }
 
         //Kontroler
         //ArrayList<Lot> loty; jednak UML troszke przestarzaly xDD
         ArrayList<Samolot> samoloty;
+
+        /**
+         * Konstruktor
+         * @param f obiekt firmy, główny interfejs
+         */
+        public ObslugaSamolotow(Firma f){
+                this.firma = f;
+        }
 
         //exception specjalne pod takie same id? sama informacja w okienku tekstowym?
         public void dodajSamolot(Samolot s){
@@ -45,3 +56,4 @@ public class ObslugaSamolotow extends Controller{
                 }
                 */
         }
+}

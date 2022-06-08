@@ -5,6 +5,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import main.Controller;
+import main.NaszaFirma;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -16,9 +17,14 @@ import java.util.Scanner;
 public class ObslugaTras extends Controller{
     private ArrayList<Lotnisko> lotniska = new ArrayList<Lotnisko>();
     private ArrayList<Trasa> trasy = new ArrayList<Trasa>();
+    NaszaFirma firma;
 
-    public ObslugaTras() {
-        lotniska.add(new Lotnisko("Warszawa",10,5));
+    /**
+     * Konstruktor
+     * @param f obiekt firmy, główny interfejs
+     */
+    public ObslugaTras(Firma f){
+        this.firma = f;
     }
 
     /**

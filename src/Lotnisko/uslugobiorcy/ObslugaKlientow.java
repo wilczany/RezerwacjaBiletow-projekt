@@ -6,11 +6,20 @@ import main.MainController;
 import java.util.ArrayList;
 
 public class ObslugaKlientow extends Controller{
-    ArrayList<Klient> klienci =new ArrayList<>();
+    ArrayList<Klient> klienci = new ArrayList<>();
+    NaszaFirma firma;
 
-public void refresh(){
+    /**
+     * Konstruktor
+     * @param f obiekt firmy, główny interfejs
+     */
+    public ObslugaLotow(Firma f){
+        this.firma = f;
+    }
 
-}
+    public void refresh(){
+
+    }
     //Kontroler
 
 }

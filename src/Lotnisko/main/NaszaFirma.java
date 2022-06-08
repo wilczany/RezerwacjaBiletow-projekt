@@ -20,10 +20,10 @@ public class NaszaFirma{
     ObslugaSamolotow samolotyController;
 
 
-    ObslugaLotow loty=new ObslugaLotow();
-    ObslugaTras trasy=new ObslugaTras();
-    ObslugaKlientow klienci=new ObslugaKlientow();
-    ObslugaSamolotow samoloty=new ObslugaSamolotow();
+    ObslugaLotow loty=new ObslugaLotow(this);
+    ObslugaTras trasy=new ObslugaTras(this);
+    ObslugaKlientow klienci=new ObslugaKlientow(this);
+    ObslugaSamolotow samoloty=new ObslugaSamolotow(this);
 
     @FXML
     public void openTrasy() {
