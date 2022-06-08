@@ -27,8 +27,8 @@ public class MainController {
         }catch(IOException e){
             e.printStackTrace();
         }
-        MenuController menu = fxml.getController();
-        menu.setMainCont(this);
+        NaszaFirma menu = fxml.getController();
+        menu.setMainController(this);
         setScreen(pane);
     }
 

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loty.ObslugaLotow$LotyController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loty.ObslugaLotow">
    <children>
       <Button layoutX="701.0" layoutY="411.0" mnemonicParsing="false" onAction="#back" text="Wstecz" />
       <TableView layoutX="42.0" layoutY="20.0" prefHeight="332.0" prefWidth="717.0">

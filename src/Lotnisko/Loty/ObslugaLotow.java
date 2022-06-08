@@ -8,7 +8,7 @@ import trasy.Trasa;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ObslugaLotow {
+public class ObslugaLotow extends Controller {
     private final ArrayList<Lot> loty = new ArrayList<>();
 
 
@@ -97,10 +97,9 @@ public class ObslugaLotow {
         return(lotyNaTrasie);
         throw new BrakLotowException("Brak lotow na trasie!",t);
     }
-public static class LotyController extends Controller {
 
 
+    //Kontroler
 
 
-}
 }

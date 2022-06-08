@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uslugobiorcy.ObslugaKlientow">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="samoloty.ObslugaSamolotow">
    <children>
       <Button layoutX="373.0" layoutY="378.0" mnemonicParsing="false" onAction="#back" text="Wstecz" />
    </children>

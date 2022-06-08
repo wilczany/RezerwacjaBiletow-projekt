@@ -5,7 +5,7 @@ import main.MainController;
 
 import java.util.ArrayList;
 
-public class ObslugaKlientow {
+public class ObslugaKlientow extends Controller{
     ArrayList<Klient> klienci =new ArrayList<>();
 
 
@@ -13,9 +13,6 @@ public class ObslugaKlientow {
 
 
 
-    public static class KlienciController extends Controller{
-
-
-    }
+    //Kontroler
 
 }
