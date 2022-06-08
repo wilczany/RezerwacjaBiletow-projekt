@@ -133,4 +133,6 @@ public class Lot {
                 "\nprzylot=" + przylotf;
     }
 
+    //
+
 }

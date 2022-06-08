@@ -1,6 +1,6 @@
 package loty;
 
-import javafx.scene.control.ListView;
+import javafx.fxml.FXML;
 import main.Controller;
 import samoloty.Samolot;
 import trasy.Trasa;
@@ -101,5 +101,13 @@ public class ObslugaLotow extends Controller {
 
     //Kontroler
 
+    @FXML
+    void initialize(){
+        getLoty();
+        refresh();
+    }
+    @FXML
+    public void refresh(){
 
+}
 }

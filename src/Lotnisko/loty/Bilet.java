@@ -28,29 +28,10 @@ public class Bilet {
         id=this.hashCode();
     }
 
-    /**
-     * chyba nie bede uzywac tego konstrukotra.Bilety powrotne robimy tworzac oddziela pule biletow c:
-     * @param data1
-     * @param data2
-     */
 
-    /*
-    private Bilet(Date data1,Date data2,Trasa trasa){
-        this.data.setTime(data1);
-        this.trasa=trasa;
-        //this.powrot.setTime(data2)
-        //czyDwustronny=true;
-        id=this.hashCode();
+    public boolean equals(Bilet b){
+        return b.id==this.id;
     }
-    */
-
-    /*
-    public void zmienDwustronny(Date powrot){
-        Calendar.getInstance().setTime(powrot);
-    }
-     */
-
-
 
     /**
      * Rezerwacja biletu
