@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="samoloty.ObslugaSamolotow">
    <children>
-      <Button layoutX="373.0" layoutY="378.0" mnemonicParsing="false" onAction="#back" text="Wstecz" />
+      <Button layoutX="680.0" layoutY="416.0" mnemonicParsing="false" onAction="#back" text="Wstecz" />
+      <TableView layoutX="47.0" layoutY="32.0" prefHeight="333.0" prefWidth="687.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button layoutX="47.0" layoutY="416.0" mnemonicParsing="false" text="Dodaj samolot" />
+      <Button layoutX="345.0" layoutY="416.0" mnemonicParsing="false" text="Usuń Samolot" />
    </children>
 </AnchorPane>
