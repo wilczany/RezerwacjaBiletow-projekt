@@ -4,14 +4,21 @@ import javafx.fxml.FXML;
 
 public abstract class Controller {
 
-    static MainController main;
+    MainController mainController;
+
+
+    NaszaFirma firma;
+
+    public void setFirma(NaszaFirma firma) {
+        this.firma = firma;
+    }
 
     public void setMainController(MainController mainController){
-        main= mainController;
+        this.mainController=mainController;
     }
     @FXML
     public void back() {
-        main.goToMenu();
+        mainController.goToMenu();
     }
 
     //public abstract void initialize(java.net.URL url, java.util.ResourceBundle rbndl);
