@@ -30,7 +30,7 @@ public class ObslugaSamolotow extends Controller{
          * Konstruktor
          * @param f obiekt firmy, główny interfejs
          */
-        public ObslugaSamolotow(Firma f){
+        public ObslugaSamolotow(NaszaFirma f){
                 this.firma = f;
         }
 

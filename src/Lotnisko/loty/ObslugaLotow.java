@@ -17,7 +17,7 @@ public class ObslugaLotow extends Controller {
      * Konstruktor
      * @param f obiekt firmy, główny interfejs
      */
-    public ObslugaLotow(Firma f){
+    public ObslugaLotow(NaszaFirma f){
         this.firma = f;
     }
 
