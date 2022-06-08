@@ -6,7 +6,7 @@ public abstract class Samolot {
     int i;
     public int Miejsca;
     public int Zasieg;
-    //public int Predkosc;
+    public int Predkosc;
     public String ID;
     
     Calendar[] tab;
@@ -40,6 +40,10 @@ public abstract class Samolot {
         Zasieg = m;
     }
 
+    void setPredkosc(int m) {
+        Predkosc = m;
+    }
+
     public int getMiejsca() {
         return this.Miejsca;
     }
@@ -48,7 +52,9 @@ public abstract class Samolot {
         return this.Zasieg;
     }
 
-
+    int getPredkosc() {
+        return this.Predkosc;
+    }
 
     public String getID() {
         return ID;
@@ -66,7 +72,7 @@ public abstract class Samolot {
 
     public String toString()
     {
-        return this.getClass().getSimpleName() + ":\n" + "ID Samolotu: " + ID + " Miejsca: "  + Miejsca + " Zasieg: " + Zasieg + " Predkosc: " + '\n';
+        return this.getClass().getName() + ":\n" + "ID Samolotu: " + ID + " Miejsca: "  + Miejsca + " Zasieg: " + Zasieg + " Predkosc: " + Predkosc + '\n';
     }
 
 }
