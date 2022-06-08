@@ -4,7 +4,7 @@ import loty.Bilet;
 
 public abstract class Klient {
 
-    protected Bilet b;
+    protected ArrayList<Bilet> b=new ArrayList<>();
 
     void dodajBilet(Bilet bilet)
     {

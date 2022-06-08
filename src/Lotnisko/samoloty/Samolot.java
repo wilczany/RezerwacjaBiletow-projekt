@@ -11,8 +11,6 @@ public abstract class Samolot {
     
     Calendar[] tab;
 
-    
-
     Samolot(String I) {
         this.ID = I;
     }
