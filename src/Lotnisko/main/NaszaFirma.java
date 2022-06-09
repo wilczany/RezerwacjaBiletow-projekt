@@ -4,18 +4,50 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import loty.Lot;
 import loty.ObslugaLotow;
 import samoloty.ObslugaSamolotow;
+import samoloty.Samolot;
+import trasy.Lotnisko;
 import trasy.ObslugaTras;
+import trasy.Trasa;
+import uslugobiorcy.Klient;
 import uslugobiorcy.ObslugaKlientow;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class NaszaFirma{
+    public ArrayList<Lotnisko> lotniska = new ArrayList<Lotnisko>();
+    public ArrayList<Trasa> trasy = new ArrayList<Trasa>();
+    public ArrayList<Samolot> samoloty=new ArrayList<>();
+    public ArrayList<Klient> klienci = new ArrayList<>();
+    public ArrayList<Lot> loty = new ArrayList<>();
+
+    public ArrayList<Lotnisko> getLotniska() {
+        return lotniska;
+    }
+
+    public ArrayList<Trasa> getTrasy() {
+        return trasy;
+    }
+
+    public ArrayList<Samolot> getSamoloty() {
+        return samoloty;
+    }
+
+    public ArrayList<Klient> getKlienci() {
+        return klienci;
+    }
+
+    public ArrayList<Lot> getLoty() {
+        return loty;
+    }
+
     @FXML
     MainController mainController;
     ObslugaLotow lotyController;
-    ObslugaTras trasyController;
+    ObslugaTras trasyController=new ObslugaTras();
     ObslugaKlientow klienciController;
     ObslugaSamolotow samolotyController;
 /*
@@ -24,10 +56,6 @@ getArray
 
 0 */
 
-    ObslugaLotow loty=new ObslugaLotow();
-    ObslugaTras trasy=new ObslugaTras();
-    ObslugaKlientow klienci=new ObslugaKlientow();
-    ObslugaSamolotow samoloty=new ObslugaSamolotow();
 
     @FXML
     public void openTrasy() {

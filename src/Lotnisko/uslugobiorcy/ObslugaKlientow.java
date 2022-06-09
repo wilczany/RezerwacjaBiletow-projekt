@@ -8,11 +8,11 @@ import main.NaszaFirma;
 import java.util.ArrayList;
 
 public class ObslugaKlientow extends Controller{
-    ArrayList<Klient> klienci = new ArrayList<>();
+
     NaszaFirma firma;
 
     public void anulujBilet(Bilet b){
-        for (Klient k:klienci
+        for (Klient k:firma.getKlienci()
              ) {
             for (Bilet bb:k.getBilety()
                  ) {

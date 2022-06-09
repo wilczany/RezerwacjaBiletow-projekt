@@ -15,9 +15,8 @@ import java.util.Scanner;
 //dodanie parametru do metod wypisujacych informacje dla uzytkownika, ktory by blokowal wypisywanie/przelaczal na tryb graficzny?
 
 public class ObslugaTras extends Controller{
-    private ArrayList<Lotnisko> lotniska = new ArrayList<Lotnisko>();
-    private ArrayList<Trasa> trasy = new ArrayList<Trasa>();
-    NaszaFirma firma;
+
+    static NaszaFirma firma;
 
     /**
      * @param l
@@ -28,14 +27,14 @@ public class ObslugaTras extends Controller{
 
         //P -- czy lotnisko juz jest dodane
         boolean P = false;
-        for (Lotnisko lt : lotniska) {
+        for (Lotnisko lt : firma.getLotniska()) {
             if (l.equals(lt)) {
                 P = true;
                 break;
             }
         }
         if (P == false) {
-            lotniska.add(l);
+            firma.getLotniska().add(l);
             return true;
         }
         return false;
@@ -53,20 +52,20 @@ public class ObslugaTras extends Controller{
         //l[] - lotniska dodawanej trasy
         boolean P = false, L1 = false, L2 = false;
         Lotnisko[] l = t.getLotniska();
-        for (Lotnisko lt : lotniska) {
+        for (Lotnisko lt : firma.getLotniska()) {
             if (l[0].equals(lt)) L1 = true;
             else if (l[1].equals(lt)) L2 = true;
             if (L1 && L2) break;
         }
         if (!L1 || !L2) return false;
-        for (Trasa tr : trasy) {
+        for (Trasa tr : firma.getTrasy()) {
             if (t.equals(tr)) {
                 P = true;
                 break;
             }
         }
         if (P == false) {
-            trasy.add(t);
+            firma.getTrasy().add(t);
             return true;
         }
         return false;
@@ -76,34 +75,35 @@ public class ObslugaTras extends Controller{
         return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
 
-
+/*
     /**
      * @return boolean
      */
-    //do uzycia przy generowaniu lotu!! 
+    //do uzycia przy generowaniu lotu!!
+    /*
     public boolean utworzTrase() {
         Scanner scan = new Scanner(System.in);
         int nr;
 
         System.out.println("Wybierz lotnisko początkowe spośród niżej podanych. ");
         int i = 1;
-        for (Lotnisko l : lotniska) {
+        for (Lotnisko l : firma.getLotniska()) {
             System.out.println(i++ + ". " + l.toString());
         }
 
         System.out.print("Numer wybranego: ");
         nr = scan.nextInt() - 1;
-        while (nr < 0 || nr > lotniska.size() - 1) {
+        while (nr < 0 || nr > firma.getLotniska().size() - 1) {
             System.out.print("Podaj prawidłowy numer lotniska :");
             nr = scan.nextInt() - 1;
         }
-        Lotnisko l1 = lotniska.get(nr);
-        lotniska.add(l1);
-        lotniska.remove(nr);
+        Lotnisko l1 = firma.getLotniska().get(nr);
+        firma.getLotniska().add(l1);
+        firma.getLotniska().remove(nr);
 
         System.out.println("Wybierz lotnisko końcowe spośród niżej podanych. ");
         i = 1;
-        for (Lotnisko l : lotniska) {
+        for (Lotnisko l : firma.getLotniska()) {
             if (!(l.equals(l1))) System.out.println(i++ + ". " + l.toString());
         }
         System.out.print("Numer wybranego: ");
@@ -119,16 +119,16 @@ public class ObslugaTras extends Controller{
         System.out.println("Dodawanie się nie powiodło, trasa jest duplikatem istniejącej.");
         return false;
     }
-
+*/
     private boolean sprawdzNazwe(String nazwa) {
-        for (Lotnisko l : lotniska) {
+        for (Lotnisko l : firma.getLotniska()) {
             if (nazwa.equals(l.getNazwa())) return true;
         }
         return false;
     }
 
     private boolean sprawdzKoordynaty(int x, int y) {
-        for (Lotnisko l : lotniska) {
+        for (Lotnisko l : firma.getLotniska()) {
             if (x == l.getX() && y == l.getY()) return true;
         }
         return false;
@@ -154,19 +154,19 @@ public class ObslugaTras extends Controller{
             y = scan.nextInt();
         }
         Lotnisko lt = new Lotnisko(nazwa, x, y);
-        lotniska.add(lt);
+        firma.getLotniska().add(lt);
         scan.close();
         return true;
     }
 
     //rozszerzyc o usuwanie rowniez lotow
     public boolean usunLotnisko(String nazwa) {
-        for (Lotnisko l : lotniska) {
-            if (nazwa.equals(l.getNazwa())) lotniska.remove(l);
+        for (Lotnisko l : firma.getLotniska()) {
+            if (nazwa.equals(l.getNazwa())) firma.getLotniska().remove(l);
         }
-        for (Trasa t : trasy) {
+        for (Trasa t : firma.getTrasy()) {
             if (nazwa.equals(t.getLotniska()[0].getNazwa()) || nazwa.equals(t.getLotniska()[1].getNazwa()))
-                trasy.remove(t);
+                firma.getTrasy().remove(t);
         }
         /*
         for(Lot l : loty){
@@ -180,9 +180,9 @@ public class ObslugaTras extends Controller{
     //moze inne parametry? przy usuwaniu interfejsem wystarczyc powinien obiekt trasy?
     public boolean usunTrase(String nazwa1, String nazwa2) {
         Lotnisko[] lt = new Lotnisko[2];
-        for (Trasa t : trasy) {
+        for (Trasa t : firma.getTrasy()) {
             lt = t.getLotniska();
-            if (nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) trasy.remove(t);
+            if (nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) firma.getTrasy().remove(t);
         }
         /*
         for(Lot l : loty){
@@ -235,7 +235,7 @@ public class ObslugaTras extends Controller{
     }
     public void refresh(){
             listLotniska.getItems().clear();
-        for (Lotnisko l:lotniska
+        for (Lotnisko l:firma.getLotniska()
              ) {listLotniska.getItems().add(String.valueOf(l));
         }
 
