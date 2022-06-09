@@ -26,13 +26,11 @@ public class TrasyController extends Controller {
     @FXML
     void initialize(){
 
-            lotniska=NaszaFirma.getInstance().obslugaTras.getLotniska();
-            //listLotniska.getItems().clear();
-            for (Lotnisko l:lotniska
-            ) {
-                listLotniska.getItems().add(l);
-            }
-            trasy=NaszaFirma.getInstance().obslugaTras.getTrasy();
+        lotniska=NaszaFirma.getInstance().obslugaTras.getLotniska();
+        for (Lotnisko l:lotniska){
+            listLotniska.getItems().add(l);
+        }
+        trasy=NaszaFirma.getInstance().obslugaTras.getTrasy();
         for (Trasa t:trasy)
             listTrasy.getItems().add(t);
         }
@@ -46,11 +44,12 @@ public class TrasyController extends Controller {
         dialog.setContentText("Nazwa: ");
         Optional<String> result_nazwa = dialog.showAndWait();
         String nazwa = result_nazwa.get();
-        if(NaszaFirma.getInstance().obslugaTras.sprawdzNazwe(nazwa) || nazwa==""){
+        if(NaszaFirma.getInstance().obslugaTras.sprawdzNazwe(nazwa) || nazwa.equals("")){
             dialog = new Dialog<String>();
             dialog.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            dialog.setContentText("Podana nazwa jest już zajęta.");
+            if(nazwa.equals("")) dialog.setContentText("Proszę wpierw podać nazwę.");
+            else dialog.setContentText("Podana nazwa jest już zajęta.");
             dialog.getDialogPane().getButtonTypes().add(bOk);
             dialog.showAndWait();
             return;
@@ -60,11 +59,30 @@ public class TrasyController extends Controller {
         dialog.setHeaderText("Podaj koordynaty:");
         dialog.setContentText("x=");
         Optional<String> result_X = dialog.showAndWait();
+        if(result_X.get().equals("") || !(result_X.get().matches("[0-9]+"))){
+            dialog = new Dialog<String>();
+            dialog.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialog.setContentText("Proszę podać prawidłową liczbę całkowitą.");
+            dialog.getDialogPane().getButtonTypes().add(bOk);
+            dialog.showAndWait();
+            return;
+        }
         int x= Integer.parseInt(result_X.get());
 
         dialog=new TextInputDialog();
+        dialog.setHeaderText("Podaj koordynaty:");
         dialog.setContentText("y=");
         Optional<String> result_Y=dialog.showAndWait();
+        if(result_Y.get().equals("") || !(result_Y.get().matches("[0-9]+"))){
+            dialog = new Dialog<String>();
+            dialog.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialog.setContentText("Proszę podać prawidłową liczbę całkowitą.");
+            dialog.getDialogPane().getButtonTypes().add(bOk);
+            dialog.showAndWait();
+            return;
+        }
         int y=Integer.parseInt(result_Y.get());
 
         if(NaszaFirma.getInstance().obslugaTras.sprawdzKoordynaty(x,y)){

@@ -19,6 +19,6 @@ public class KlientIndywidualny extends Klient {
     @Override
     public String toString()
     {
-        return this.getClass().getSimpleName() + ": " + Imie + '\t' + Nazwisko + '\n';
+        return this.getClass().getSimpleName() + ": " + Imie + ' ' + Nazwisko + '\n';
     }
 }

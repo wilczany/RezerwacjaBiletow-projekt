@@ -123,11 +123,11 @@ public class Lot {
     public String toString() {
 
         SimpleDateFormat SDF=new SimpleDateFormat("yyyy-MM-dd  HH:mm");
-        String dataf=SDF.format(data);
-        String przylotf=SDF.format(przylot);
-
+//        String dataf=SDF.format(data);
+//        String przylotf=SDF.format(przylot);
+        String dataf="dataf", przylotf="przylotf";
         return "Lot nr: "+numer_lotu+
-                "\trasa:" + trasa +
+                "\ttrasa:" + trasa +
                 "\tsamolot:" + samolot.getID() +
                 "\tdata:" + dataf +
                 "\tprzylot:" + przylotf;

@@ -18,6 +18,6 @@ public class Firma extends Klient {
     @Override
     public String toString()
     {
-        return this.getClass().getSimpleName() + ": " + Nazwa + '\t' + "NIP :" + NIP ;
+        return this.getClass().getSimpleName() + ": " + Nazwa + ", NIP: " + NIP ;
     }
 }
