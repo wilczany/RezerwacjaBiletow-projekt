@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import main.NaszaFirma;
 
 public class ObslugaSamolotow extends Controller{
-        ArrayList<Samolot> samoloty;
+
+        public ArrayList<Samolot> samoloty=new ArrayList<>();
 
         //FXML
 
 
 
-        //Kontroler
+        public ArrayList<Samolot> getSamoloty() {
+                return samoloty;
+        }
+
 
         public void dodajSamolot(Samolot s){
                 for(Samolot sm : samoloty){

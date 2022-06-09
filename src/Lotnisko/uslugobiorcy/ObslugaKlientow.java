@@ -27,6 +27,11 @@ public class ObslugaKlientow {
     public void refresh(){
 
     }
+
+    public ArrayList<Klient> getKlienci() {
+        return klienci;
+    }
+
     //Kontroler
 
 }

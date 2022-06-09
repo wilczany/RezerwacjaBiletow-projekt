@@ -1,0 +1,4 @@
+Klasa String String
+if(klasa is tamta klasa)
+pole obiektu = String pierwszy
+pole = String drugi

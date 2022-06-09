@@ -32,7 +32,7 @@ public class Lotnisko {
     }
 
     public String toString(){
-        return this.nazwa+", pozycja: ("+this.x+","+this.y+").";
+        return this.nazwa+", pozycja: ("+this.x+","+this.y+")";
     }
     
     public boolean equals(Object obj){

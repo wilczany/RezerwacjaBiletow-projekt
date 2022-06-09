@@ -83,8 +83,13 @@ public class MenuController {
 
     @FXML
     public void exit(){
-        Platform.exit();
-    }
+        try {
+            NaszaFirma.getInstance().zapis();
+            Platform.exit();
+        }catch (Exception e){
+
+        }
+        }
 
 
     public void setMainController(MainController mainController){

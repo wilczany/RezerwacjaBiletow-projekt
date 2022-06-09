@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class ObslugaLotow  {
 
-    ArrayList<Lot>loty=new ArrayList();
+
+    ArrayList<Lot>loty=new ArrayList<>();
 
     /**
      * Dodawanie lotow
@@ -100,9 +101,11 @@ public class ObslugaLotow  {
         return(lotyNaTrasie);
         throw new BrakLotowException("Brak lotow na trasie!",t);
     }
+    public ArrayList<Lot> getLoty() {
+        return loty;
+    }
 
 
-    //Kontroler
 
 
 }

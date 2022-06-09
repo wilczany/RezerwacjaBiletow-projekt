@@ -22,6 +22,7 @@ public class ObslugaTras{
     public ArrayList<Lotnisko> getLotniska() {
         return lotniska;
     }
+    public ArrayList<Trasa> getTrasy() { return trasy; }
 
     // NaszaFirma firma=NaszaFirma.getInstance();
     protected ArrayList<Lotnisko>lotniska=new ArrayList<>();
@@ -128,14 +129,14 @@ public class ObslugaTras{
         return false;
     }
 
-    private boolean sprawdzNazwe(String nazwa) {
+    public boolean sprawdzNazwe(String nazwa) {
         for (Lotnisko l : lotniska) {
             if (nazwa.equals(l.getNazwa())) return true;
         }
         return false;
     }
 
-    private boolean sprawdzKoordynaty(int x, int y) {
+    public boolean sprawdzKoordynaty(int x, int y) {
         for (Lotnisko l : lotniska) {
             if (x == l.getX() && y == l.getY()) return true;
         }
