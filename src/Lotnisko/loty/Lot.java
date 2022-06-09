@@ -126,11 +126,11 @@ public class Lot {
         String dataf=SDF.format(data);
         String przylotf=SDF.format(przylot);
 
-        return "Lot: "+numer_lotu+
-                "\ntrasa=" + trasa +
-                "\nsamolot=" + samolot +
-                "\ndata=" + dataf +
-                "\nprzylot=" + przylotf;
+        return "Lot nr: "+numer_lotu+
+                "\trasa:" + trasa +
+                "\tsamolot:" + samolot.getID() +
+                "\tdata:" + dataf +
+                "\tprzylot:" + przylotf;
     }
 
     //

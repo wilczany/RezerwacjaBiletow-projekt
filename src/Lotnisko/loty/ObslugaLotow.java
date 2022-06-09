@@ -85,6 +85,8 @@ public class ObslugaLotow extends Controller {
 
     private void anulujLot(Lot l){
 
+
+
     }
 
 

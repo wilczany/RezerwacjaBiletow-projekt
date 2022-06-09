@@ -7,9 +7,8 @@ public class Boeing extends Samolot {
 
     protected Boeing(String id) {
         super(id);
-        super.Miejsca = Miejsca;
-        super.Zasieg = Zasieg;
-        super.Predkosc = Predkosc;
+        super.Miejsca = 30;
+        super.Zasieg = 3300;
     }
 
 }
