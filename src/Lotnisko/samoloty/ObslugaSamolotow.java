@@ -1,6 +1,7 @@
 package samoloty;
 
 import javafx.fxml.FXML;
+import loty.Lot;
 import main.Controller;
 
 import java.util.ArrayList;
@@ -8,25 +9,17 @@ import main.NaszaFirma;
 
 public class ObslugaSamolotow extends Controller{
         NaszaFirma firma;
+        ArrayList<Samolot>samoloty;
 
         //FXML
 
-        @FXML
-        void addSamolot(){
 
-        }
-
-        @FXML
-        void delSamolot(){
-        
-        }
 
         //Kontroler
         //ArrayList<Lot> loty; jednak UML troszke przestarzaly xDD
 
 
 
-        //exception specjalne pod takie same id? sama informacja w okienku tekstowym?
         public void dodajSamolot(Samolot s){
                 for(Samolot sm : firma.getSamoloty()){
                         if(s.equals(sm)) return;
@@ -42,15 +35,11 @@ public class ObslugaSamolotow extends Controller{
                 }
                 if(j!=-1) firma.getSamoloty().remove(j);
                 else return;
-                /*
-                for(Lot l : loty){
-                        if(l.getSamolot().getID().equals(ID)) ObslugaLotow.anulujLot(tamten lot)
+
+                for(Lot l : NaszaFirma.getInstance().loty){
+                        //if(l.getSamolot().getID().equals(ID)) NaszaFirma.getInstance().obslugaLotow.anulujLot(l);
                 }
-                */
-        }
-
-        @Override
-        public void refresh() {
 
         }
+
 }

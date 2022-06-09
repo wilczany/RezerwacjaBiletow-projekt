@@ -1,23 +1,32 @@
 package trasy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import main.Controller;
 import main.NaszaFirma;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 
 //dodanie parametru do metod wypisujacych informacje dla uzytkownika, ktory by blokowal wypisywanie/przelaczal na tryb graficzny?
 
-public class ObslugaTras extends Controller{
+public class ObslugaTras{
 
-    static NaszaFirma firma;
+    public ArrayList<Lotnisko> getLotniska() {
+        return lotniska;
+    }
 
+    // NaszaFirma firma=NaszaFirma.getInstance();
+    ArrayList<Lotnisko>lotniska=new ArrayList<>();
+    ArrayList<Trasa>trasy=new ArrayList<>();
     /**
      * @param l
      * @return boolean
@@ -27,14 +36,14 @@ public class ObslugaTras extends Controller{
 
         //P -- czy lotnisko juz jest dodane
         boolean P = false;
-        for (Lotnisko lt : firma.getLotniska()) {
+        for (Lotnisko lt : lotniska) {
             if (l.equals(lt)) {
                 P = true;
                 break;
             }
         }
         if (P == false) {
-            firma.getLotniska().add(l);
+            lotniska.add(l);
             return true;
         }
         return false;
@@ -52,20 +61,20 @@ public class ObslugaTras extends Controller{
         //l[] - lotniska dodawanej trasy
         boolean P = false, L1 = false, L2 = false;
         Lotnisko[] l = t.getLotniska();
-        for (Lotnisko lt : firma.getLotniska()) {
+        for (Lotnisko lt : lotniska) {
             if (l[0].equals(lt)) L1 = true;
             else if (l[1].equals(lt)) L2 = true;
             if (L1 && L2) break;
         }
         if (!L1 || !L2) return false;
-        for (Trasa tr : firma.getTrasy()) {
+        for (Trasa tr : trasy) {
             if (t.equals(tr)) {
                 P = true;
                 break;
             }
         }
         if (P == false) {
-            firma.getTrasy().add(t);
+            trasy.add(t);
             return true;
         }
         return false;
@@ -75,35 +84,35 @@ public class ObslugaTras extends Controller{
         return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
 
-/*
+
     /**
      * @return boolean
      */
     //do uzycia przy generowaniu lotu!!
-    /*
+    
     public boolean utworzTrase() {
         Scanner scan = new Scanner(System.in);
         int nr;
 
         System.out.println("Wybierz lotnisko początkowe spośród niżej podanych. ");
         int i = 1;
-        for (Lotnisko l : firma.getLotniska()) {
+        for (Lotnisko l : lotniska) {
             System.out.println(i++ + ". " + l.toString());
         }
 
         System.out.print("Numer wybranego: ");
         nr = scan.nextInt() - 1;
-        while (nr < 0 || nr > firma.getLotniska().size() - 1) {
+        while (nr < 0 || nr > lotniska.size() - 1) {
             System.out.print("Podaj prawidłowy numer lotniska :");
             nr = scan.nextInt() - 1;
         }
-        Lotnisko l1 = firma.getLotniska().get(nr);
-        firma.getLotniska().add(l1);
-        firma.getLotniska().remove(nr);
+        Lotnisko l1 = lotniska.get(nr);
+        lotniska.add(l1);
+        lotniska.remove(nr);
 
         System.out.println("Wybierz lotnisko końcowe spośród niżej podanych. ");
         i = 1;
-        for (Lotnisko l : firma.getLotniska()) {
+        for (Lotnisko l : lotniska) {
             if (!(l.equals(l1))) System.out.println(i++ + ". " + l.toString());
         }
         System.out.print("Numer wybranego: ");
@@ -119,16 +128,16 @@ public class ObslugaTras extends Controller{
         System.out.println("Dodawanie się nie powiodło, trasa jest duplikatem istniejącej.");
         return false;
     }
-*/
+
     private boolean sprawdzNazwe(String nazwa) {
-        for (Lotnisko l : firma.getLotniska()) {
+        for (Lotnisko l : lotniska) {
             if (nazwa.equals(l.getNazwa())) return true;
         }
         return false;
     }
 
     private boolean sprawdzKoordynaty(int x, int y) {
-        for (Lotnisko l : firma.getLotniska()) {
+        for (Lotnisko l : lotniska) {
             if (x == l.getX() && y == l.getY()) return true;
         }
         return false;
@@ -154,19 +163,19 @@ public class ObslugaTras extends Controller{
             y = scan.nextInt();
         }
         Lotnisko lt = new Lotnisko(nazwa, x, y);
-        firma.getLotniska().add(lt);
+        lotniska.add(lt);
         scan.close();
         return true;
     }
 
     //rozszerzyc o usuwanie rowniez lotow
     public boolean usunLotnisko(String nazwa) {
-        for (Lotnisko l : firma.getLotniska()) {
-            if (nazwa.equals(l.getNazwa())) firma.getLotniska().remove(l);
+        for (Lotnisko l : lotniska) {
+            if (nazwa.equals(l.getNazwa())) lotniska.remove(l);
         }
-        for (Trasa t : firma.getTrasy()) {
+        for (Trasa t : trasy) {
             if (nazwa.equals(t.getLotniska()[0].getNazwa()) || nazwa.equals(t.getLotniska()[1].getNazwa()))
-                firma.getTrasy().remove(t);
+                trasy.remove(t);
         }
         /*
         for(Lot l : loty){
@@ -180,9 +189,9 @@ public class ObslugaTras extends Controller{
     //moze inne parametry? przy usuwaniu interfejsem wystarczyc powinien obiekt trasy?
     public boolean usunTrase(String nazwa1, String nazwa2) {
         Lotnisko[] lt = new Lotnisko[2];
-        for (Trasa t : firma.getTrasy()) {
+        for (Trasa t : trasy) {
             lt = t.getLotniska();
-            if (nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) firma.getTrasy().remove(t);
+            if (nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) trasy.remove(t);
         }
         /*
         for(Lot l : loty){
@@ -199,46 +208,40 @@ public class ObslugaTras extends Controller{
         @FXML
         ListView<String> listLotniska;
 
-        public void initialize(java.net.URL url, java.util.ResourceBundle rbndl){
-            refresh();
-        }
-
-        @FXML
-        public void dodajLotnisko(ActionEvent event) {
-            //analogicznie do metody utworzLotnisko dodalem tą metodę
-            //Analogicznie do wypisywania w konsoli i scannera
-            Dialog<String> dialog = new TextInputDialog();
-            dialog.setHeaderText("Podaj nazwę dla lotniska:");
-            dialog.setContentText("Nazwa: ");
-            Optional<String> result_nazwa = dialog.showAndWait();
-            String nazwa = result_nazwa.get();
 
 
-            dialog=new TextInputDialog();
-            dialog.setHeaderText("Podaj Koordynaty:");
-            dialog.setContentText("X= ");
-            Optional<String> result_X = dialog.showAndWait();
-            int x= Integer.parseInt(result_X.get());
-
-            dialog=new TextInputDialog();
-            dialog.setContentText("Y=");
-            Optional<String> result_Y=dialog.showAndWait();
-            int y=Integer.parseInt(result_Y.get());
-            Lotnisko lll=new Lotnisko(nazwa,x,y);
-            dodajLotnisko(lll);
-            refresh();
-            System.out.println(lll);
-
-
-
-
-    }
     public void refresh(){
+            ArrayList<Lotnisko>llll=new ArrayList<>();
+            llll=lotniska;
             listLotniska.getItems().clear();
-        for (Lotnisko l:firma.getLotniska()
+        for (Lotnisko l:llll
              ) {listLotniska.getItems().add(String.valueOf(l));
+                System.out.println(l);
         }
 
     }
+    public void odczyt(){
+        // public void getLotniska() {
+        ArrayList<Lotnisko> lotniska2=new ArrayList<>();
+        String nazwa;
+        int x, y;
+        Scanner scan=null;
+        File plik=new File("src/resources/Lotniska.txt");
+        try {scan = new Scanner(plik);}catch (Throwable t){
+            System.out.println("wyjatek");
+        }
+        while (scan.hasNextLine()) {
 
+            nazwa=scan.next();
+            x=scan.nextInt();
+            y=scan.nextInt();
+            System.out.println(nazwa+" "+x+y);
+            Lotnisko l=new Lotnisko(nazwa,x,y);
+            lotniska.add(l);
+            System.out.println(l);
+        }
+        lotniska=lotniska2;
+        // }
+        System.out.println("odczyt");
+    }
 }

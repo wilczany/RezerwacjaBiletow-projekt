@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class MainController {
 
+    Object firma=null;
+
     @FXML
     private StackPane mainStackPane;
 
@@ -27,7 +29,7 @@ public class MainController {
         }catch(IOException e){
             e.printStackTrace();
         }
-        NaszaFirma menu = fxml.getController();
+        MenuController menu = fxml.getController();
         menu.setMainController(this);
         setScreen(pane);
     }

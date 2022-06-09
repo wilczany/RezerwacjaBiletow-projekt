@@ -1,17 +1,17 @@
 package main;
 
 import javafx.fxml.FXML;
+import trasy.Lotnisko;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Controller {
 
     MainController mainController;
     NaszaFirma firma;
 
-    public void setFirma(NaszaFirma firma) {
-        this.firma = firma;
-    }
 
     public void setMainController(MainController mainController){
         this.mainController=mainController;
@@ -21,24 +21,9 @@ public abstract class Controller {
     public void back() {
         mainController.goToMenu();
     }
-    public abstract void refresh();
+    //public abstract void refresh();
     //Pobieranie list??
-    protected ArrayList getTrasy(){
 
-         return new ArrayList<>();
-    }
-    protected ArrayList getSamoloty(){
-
-         return new ArrayList();
-    }
-    protected ArrayList getLoty(){
-
-         return new ArrayList();
-    }
-    protected ArrayList getKlienci(){
-
-         return new ArrayList();
-    }
 
     //public abstract void initialize(java.net.URL url, java.util.ResourceBundle rbndl);
 

@@ -9,9 +9,9 @@ import trasy.Trasa;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ObslugaLotow extends Controller {
+public class ObslugaLotow  {
 
-    private NaszaFirma firma;
+    ArrayList<Lot>loty=new ArrayList();
 
     /**
      * Dodawanie lotow
@@ -25,7 +25,7 @@ public class ObslugaLotow extends Controller {
 
     void dodajLot(Trasa t, Samolot s, LocalDateTime data) throws LotyException{
         if(s.getZasieg()<t.getDystans()) throw new ZasiegException("Samolot ma za krotki zasieg!",s,t.getDystans());
-        for (Lot l: firma.loty) {
+        for (Lot l: loty) {
             if(l.getSamolot()==s){
                 if( (data.isAfter(l.getData()) || data.isEqual(l.getData()) )   &&  (data.isBefore(l.getPrzylot()) || data.isEqual(l.getPrzylot()) )  )
                     throw new SamolotZajetyException("Samlot jest zajety w tym czasie!",s,l.getData(),l.getPrzylot());
@@ -33,7 +33,7 @@ public class ObslugaLotow extends Controller {
 
         }
 
-        firma.loty.add(new Lot(t,s,data));
+        loty.add(new Lot(t,s,data));
 
     }
 
@@ -47,7 +47,7 @@ public class ObslugaLotow extends Controller {
 
     void dodajLot(Lot l,LocalDateTime data)throws LotyException{
         //if(l.getSamolot().getZasieg()<l.getTrasa().getDystans()) throw new ZasiegException("Samolot ma za krotki zasieg!",l.getSamolot(),l.getTrasa().getDystans());
-        for (Lot locik:firma.loty) {
+        for (Lot locik:loty) {
             if(l.getSamolot()==locik.getSamolot()){
                 if( (data.isAfter(locik.getData()) || data.isEqual(locik.getData()) )   &&  (data.isBefore(locik.getPrzylot()) || data.isEqual(locik.getPrzylot()) )  )
                     throw new SamolotZajetyException("Samlot jest zajety w tym czasie!",l.getSamolot(),locik.getData(),locik.getPrzylot());
@@ -55,7 +55,7 @@ public class ObslugaLotow extends Controller {
 
         }
 
-        firma.loty.add(new Lot(l,data));
+        loty.add(new Lot(l,data));
 
     }
 
@@ -71,7 +71,7 @@ public class ObslugaLotow extends Controller {
 
     void dodajLot(Trasa t,Samolot s,LocalDateTime data,LocalDateTime powrot)throws LotyException{
         if(s.getZasieg()<t.getDystans()) throw new ZasiegException("Samolot ma za krotki zasieg!",s,t.getDystans());
-        for (Lot l:firma.getLoty()) {
+        for (Lot l:loty) {
             if(s==l.getSamolot()){
                 if( (data.isAfter(l.getData()) || data.isEqual(l.getData()) )   &&  (data.isBefore(l.getPrzylot()) || data.isEqual(l.getPrzylot()) )  )
                     throw new SamolotZajetyException("Samlot jest zajety w tym czasie!",s,l.getData(),l.getPrzylot());
@@ -92,7 +92,7 @@ public class ObslugaLotow extends Controller {
 
     public ArrayList<Lot> getLoty(Trasa t) throws BrakLotowException {
         ArrayList<Lot> lotyNaTrasie=new ArrayList<>();
-        for (Lot l:firma.getLoty()) {
+        for (Lot l:loty) {
             if(l.getTrasa()==t)lotyNaTrasie.add(l);
         }
         if(!lotyNaTrasie.isEmpty())
@@ -103,13 +103,5 @@ public class ObslugaLotow extends Controller {
 
     //Kontroler
 
-    @FXML
-    void initialize(){
-        getLoty();
-        refresh();
-    }
-    @FXML
-    public void refresh(){
 
-}
 }

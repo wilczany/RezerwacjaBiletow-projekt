@@ -14,20 +14,36 @@ import trasy.Trasa;
 import uslugobiorcy.Klient;
 import uslugobiorcy.ObslugaKlientow;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class NaszaFirma{
-    public ArrayList<Lotnisko> lotniska = new ArrayList<Lotnisko>();
-    public ArrayList<Trasa> trasy = new ArrayList<Trasa>();
+    public ObslugaTras obslugaTras=new ObslugaTras();
+    public ObslugaSamolotow obslugaSamolotow=new ObslugaSamolotow();
+    public ObslugaLotow obslugaLotow=new ObslugaLotow();
+    public ObslugaKlientow obslugaKlientow=new ObslugaKlientow();
+    //
+    //ALBO TO
+    //
+    public ArrayList<Lotnisko> lotniska = new ArrayList<>();
+    public ArrayList<Trasa> trasy = new ArrayList<>();
     public ArrayList<Samolot> samoloty=new ArrayList<>();
     public ArrayList<Klient> klienci = new ArrayList<>();
     public ArrayList<Lot> loty = new ArrayList<>();
 
+        private NaszaFirma() {
+        }
+        public static NaszaFirma getInstance(){
+            return inner.FIRMA;
+        }
+
+
+
     public ArrayList<Lotnisko> getLotniska() {
         return lotniska;
     }
-
     public ArrayList<Trasa> getTrasy() {
         return trasy;
     }
@@ -44,85 +60,13 @@ public class NaszaFirma{
         return loty;
     }
 
-    @FXML
-    MainController mainController;
-    ObslugaLotow lotyController;
-    ObslugaTras trasyController=new ObslugaTras();
-    ObslugaKlientow klienciController;
-    ObslugaSamolotow samolotyController;
-/*
-Array
-getArray
+    public static class inner {
+    private static final NaszaFirma FIRMA= new NaszaFirma();
 
-0 */
+}
 
 
-    @FXML
-    public void openTrasy() {
-        Parent root= null;
-        FXMLLoader fxml=new FXMLLoader(this.getClass().getResource("/fxml/trasy.fxml"));
-        try{
-            root=fxml.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        trasyController =fxml.getController();
-        trasyController.setMainController(mainController);
-        trasyController.setFirma(this);
-        mainController.setScreen(root);
-    }
 
-    @FXML
-    public void openLoty(){
-        FXMLLoader fxml=new FXMLLoader(this.getClass().getResource("/fxml/loty.fxml"));
-        Parent root= null;
-        try{
-            root=fxml.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        lotyController=fxml.getController();
-        lotyController.setMainController(mainController);
-
-
-        mainController.setScreen(root);
-    }
-    public void openSamoloty(){
-        FXMLLoader fxml=new FXMLLoader(this.getClass().getResource("/fxml/Samoloty.fxml"));
-        Parent root= null;
-        try{
-            root=fxml.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        samolotyController =fxml.getController();
-        samolotyController.setMainController(mainController);
-        mainController.setScreen(root);
-    }
-
-    public void openObsluga(){
-        FXMLLoader fxml=new FXMLLoader(this.getClass().getResource("/fxml/ObslugaKlientow.fxml"));
-        Parent root= null;
-        try{
-            root=fxml.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        klienciController =fxml.getController();
-        klienciController.setMainController(mainController);
-        mainController.setScreen(root);
-    }
-
-    @FXML
-    public void exit(){
-        Platform.exit();
-    }
-
-
-    public void setMainController(MainController mainController){
-        this.mainController=mainController;
-    }
 }
 
 

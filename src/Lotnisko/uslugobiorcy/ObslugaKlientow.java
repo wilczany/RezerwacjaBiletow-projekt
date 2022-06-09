@@ -7,12 +7,12 @@ import main.NaszaFirma;
 
 import java.util.ArrayList;
 
-public class ObslugaKlientow extends Controller{
+public class ObslugaKlientow {
 
-    NaszaFirma firma;
+    ArrayList<Klient>klienci=new ArrayList<>();
 
     public void anulujBilet(Bilet b){
-        for (Klient k:firma.getKlienci()
+        for (Klient k:klienci
              ) {
             for (Bilet bb:k.getBilety()
                  ) {
