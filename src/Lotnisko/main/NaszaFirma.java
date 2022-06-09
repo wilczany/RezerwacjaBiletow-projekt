@@ -34,19 +34,25 @@ public class NaszaFirma {
     public ArrayList<Lot> loty = new ArrayList<>();
 
     String n1, n2;
-    int m1, m2;
+    int i, m1, m2;
 
     private NaszaFirma() {
         File plik1 = new File("/resources/lotniska.txt");
         Scanner sc1 = new Scanner(plik1);
+        PrintWriter pw1 = new PrintWriter(plik1);
         File plik2 = new File("/resources/samoloty.txt");
         Scanner sc2 = new Scanner(plik2);
+        PrintWriter pw2 = new PrintWriter(plik2);
         File plik3 = new File("/resources/klienci.txt");
         Scanner sc3 = new Scanner(plik3);
+        PrintWriter pw3 = new PrintWriter(plik3);
         File plik4 = new File("/resources/loty.txt");
         Scanner sc4 = new Scanner(plik4);
-        File plik5 = new File("/resources/bilety.txt");
+        PrintWriter pw4 = new PrintWriter(plik4);
+        File plik5 = new File("/resources/trasy.txt");
         Scanner sc5 = new Scanner(plik5);
+        PrintWriter pw5 = new PrintWriter(plik5);
+
         while (sc1.hasNextLine()) {
             n1 = sc1.next();
             m1 = sc1.nextInt();
@@ -64,8 +70,35 @@ public class NaszaFirma {
         while (sc3.hasNextLine()) {
             n1 = sc3.next();
             n2 = sc3.next();
-            Klienc l = new Klienc(n1, n2);
+            Klient k = new Klient(n1, n2);
             klienci.add(l);
+        }
+
+    }
+
+    void zapis() {
+        i=0;
+        while (lotniska[i]!=null) {
+            pw1.println(lotniska[i]);
+            i++;
+        }
+        i=0;
+        while (samoloty[i]!=null) {
+            pw2.println(samoloty[i]);
+            i++;
+        }
+        i=0;
+        while (klienci[i]!=null) {
+            pw3.println(klienci[i]);
+            i++;
+        }
+        while (loty[i]!=null) {
+            pw4.println(loty[i]);
+            i++;
+        }
+        while (trasy[i]!=null) {
+            pw5.println(trasy[i]);
+            i++;
         }
 
     }
