@@ -39,22 +39,20 @@ public class NaszaFirma {
     int m1, m2;
 
     private NaszaFirma() {
-       Scanner sc1;
-        Scanner sc2;
-        Scanner sc3;
-        Scanner sc4;
-        Scanner sc5;
-        try{
-        File plik1 = new File("src/resources/lotniska.txt");
-         sc1 = new Scanner(plik1);
-       /* File plik2 = new File("/resources/samoloty.txt");
-         sc2 = new Scanner(plik2);
-        File plik3 = new File("/resources/klienci.txt");
-         sc3 = new Scanner(plik3);
-        File plik4 = new File("/resources/loty.txt");
-         sc4 = new Scanner(plik4);
-        File plik5 = new File("/resources/bilety.txt");
-         sc5 = new Scanner(plik5);*/}
+       Scanner scLotn, scTr, scSam, sc3, sc4, sc5;
+       String buffer;
+        try {
+            File plik1 = new File("src/resources/lotniska.txt");
+             scLotn = new Scanner(plik1);
+            File plik2 = new File("/resources/samoloty.txt");
+             scSam = new Scanner(plik2);
+            File plik3 = new File("/resources/klienci.txt");
+             sc3 = new Scanner(plik3);
+            File plik4 = new File("/resources/loty.txt");
+             sc4 = new Scanner(plik4);
+            File plik5 = new File("/resources/trasy.txt");
+             scTr = new Scanner(plik5);
+        }
         catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
