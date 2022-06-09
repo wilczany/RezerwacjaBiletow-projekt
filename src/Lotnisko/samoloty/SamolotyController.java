@@ -1,18 +1,20 @@
 package samoloty;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar.ButtonData;
 import main.Controller;
 import main.NaszaFirma;
 import trasy.Lotnisko;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class SamolotyController extends Controller {
     ArrayList<Samolot> samoloty;
 
     @FXML
-    ListView listSamoloty;
+    ListView<Samolot> listSamoloty;
 
     @FXML
     void initialize() {
@@ -24,36 +26,74 @@ public class SamolotyController extends Controller {
 
     @FXML
     void addSamolot() {
-/*
-        Dialog<String> dialog = new TextInputDialog();
-        dialog.setHeaderText("Podaj ID Samolotu:");
-        dialog.setContentText("ID: ");
-        Optional<String> result_nazwa = dialog.showAndWait();
-        String nazwa = result_nazwa.get();
-        if (NaszaFirma.getInstance().obslugaSamolotow.sprawdzNazwe(nazwa) || nazwa == "") {
-            dialog = new Dialog<String>();
-            dialog.setTitle("Błąd");
+        ChoiceDialog<String> dialog = new ChoiceDialog<>();
+        dialog.setHeaderText("Wybierz typ samolotu");
+        dialog.getItems().addAll("Boeing","ATR","Airbus");
+        Optional<String> result_typ = dialog.showAndWait();
+        String typ = result_typ.get();
+        if(typ == ""){
+            Dialog<String> dialog3 = new Dialog<String>();
+            dialog3.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            dialog.setContentText("Podana nazwa jest już zajeta.");
-            dialog.getDialogPane().getButtonTypes().add(bOk);
-            dialog.showAndWait();
-            return;
+            dialog3.setContentText("Należy wybrać któryś z dostępnych typów.");
+            dialog3.getDialogPane().getButtonTypes().add(bOk);
+            dialog3.showAndWait(); return;
         }
-        Samolot sss = new Samolot(nazwa);
-        NaszaFirma.getInstance().obslugaSamolotow.getSamoloty().add(sss);*/
+        Dialog<String> dialog2 = new TextInputDialog();
+        dialog2.setHeaderText("Podaj ID Samolotu:");
+        dialog2.setContentText("ID: ");
+        Optional<String> result_id = dialog2.showAndWait();
+        String id = result_id.get();
+        if (id == "" || NaszaFirma.getInstance().obslugaSamolotow.sprawdzID(id)) {
+            dialog2 = new Dialog<String>();
+            dialog2.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            if(id == "") dialog2.setContentText("Należy podać unikalne ID.");
+            else dialog2.setContentText("Podane ID jest już zajęte.");
+            dialog2.getDialogPane().getButtonTypes().add(bOk);
+            dialog2.showAndWait(); return;
+        }
+        Samolot sss;
+        if(typ.equals("Boeing")){
+            sss = new Boeing(id);
+        }else if(typ.equals("ATR")){
+            sss = new ATR(id);
+        }else{
+            sss = new Airbus(id);
+        }
+        NaszaFirma.getInstance().obslugaSamolotow.getSamoloty().add(sss);
+        refresh();
     }
-
 
     @FXML
     void delSamolot(){
-
+        Samolot wybrany = listSamoloty.getSelectionModel().getSelectedItem();
+        if(wybrany == null){
+            Dialog<String> dialogB = new Dialog<String>();
+            dialogB.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialogB.setContentText("Usuwając samolot należy wpierw wybrać samolot.");
+            dialogB.getDialogPane().getButtonTypes().add(bOk);
+            dialogB.showAndWait();
+            refresh(); return;
+        }
+        if( !(NaszaFirma.getInstance().obslugaSamolotow.usunSamolot(wybrany))){
+            Dialog<String> dialogB = new Dialog<String>();
+            dialogB.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialogB.setContentText("Dana samolot nie może zostać usunięty, gdyż jest używany przez istniejący lot lub loty.");
+            dialogB.getDialogPane().getButtonTypes().add(bOk);
+            dialogB.showAndWait();
+            refresh(); return;
+        }
+        refresh();
     }
 
     public void refresh(){
         listSamoloty.getItems().clear();
         for (Samolot s:NaszaFirma.getInstance().obslugaSamolotow.getSamoloty()
         ) {
-            listSamoloty.getItems().add(String.valueOf(s));
+            listSamoloty.getItems().add(s);
         }
 
     }

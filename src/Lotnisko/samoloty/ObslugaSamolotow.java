@@ -34,14 +34,12 @@ public class ObslugaSamolotow extends Controller{
                 return false;
             }
 
-        public void usunSamolot(String ID){
-                int i=0, j=-1;
+        public boolean usunSamolot(Samolot s){
+                if(NaszaFirma.getInstance().obslugaLotow.czySamolotUzywany(s)) return false;
                 for(Samolot sm : samoloty){
-                        if(sm.getID().equals(ID)) j=i;
-                        i++;
+                        if(sm.equals(s)) { NaszaFirma.getInstance().obslugaSamolotow.samoloty.remove(s); return true; }
                 }
-                if(j!=-1) samoloty.remove(j);
-                else return;
+                return true;
 
                 /*for(Lot l : NaszaFirma.getInstance().obslugaLotow.loty){
                         //if(l.getSamolot().getID().equals(ID)) NaszaFirma.getInstance().obslugaLotow.anulujLot(l);

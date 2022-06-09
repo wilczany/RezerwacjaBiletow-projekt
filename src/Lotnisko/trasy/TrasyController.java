@@ -108,11 +108,10 @@ public class TrasyController extends Controller {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            dialogB.setContentText("Usuwając lotnisko należy wybrać lotnisko.");
+            dialogB.setContentText("Usuwając lotnisko należy wpierw wybrać lotnisko.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh();
-            return;
+            refresh(); return;
         }
         if(!(NaszaFirma.getInstance().obslugaTras.usunLotnisko(wybrane))){
             Dialog<String> dialogB = new Dialog<String>();
@@ -121,8 +120,7 @@ public class TrasyController extends Controller {
             dialogB.setContentText("Dane lotnisko nie może zostać usunięte, gdyż jest używane przez istniejący lot lub loty.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh();
-            return;
+            refresh(); return;
         }
         refresh();
     }
@@ -133,11 +131,10 @@ public class TrasyController extends Controller {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            dialogB.setContentText("Usuwając trasę należy wybrać trasę.");
+            dialogB.setContentText("Usuwając trasę należy wpierw wybrać trasę.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh();
-            return;
+            refresh(); return;
         }
         if( !(NaszaFirma.getInstance().obslugaTras.usunTrase(wybrana))){
             Dialog<String> dialogB = new Dialog<String>();
@@ -146,8 +143,7 @@ public class TrasyController extends Controller {
             dialogB.setContentText("Dana trasa nie może zostać usunięta, gdyż jest używana przez istniejący lot lub loty.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh();
-            return;
+            refresh(); return;
         }
         refresh();
     }

@@ -111,6 +111,13 @@ public class ObslugaLotow  {
         return false;
     }
 
+    public boolean czySamolotUzywany(Samolot s){
+        for(Lot lot : loty){
+            if(s.equals(lot.getSamolot())) return true;
+        }
+        return false;
+    }
+
     public ArrayList<Lot> getLoty(Trasa t) throws BrakLotowException {
         ArrayList<Lot> lotyNaTrasie=new ArrayList<>();
         for (Lot l:loty) {
