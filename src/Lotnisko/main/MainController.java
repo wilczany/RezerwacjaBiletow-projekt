@@ -31,6 +31,7 @@ public class MainController {
         }
         MenuController menu = fxml.getController();
         menu.setMainController(this);
+        NaszaFirma.getInstance();
         setScreen(pane);
     }
 

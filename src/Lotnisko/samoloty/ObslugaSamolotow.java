@@ -8,35 +8,33 @@ import java.util.ArrayList;
 import main.NaszaFirma;
 
 public class ObslugaSamolotow extends Controller{
-        NaszaFirma firma;
-        ArrayList<Samolot>samoloty;
+        ArrayList<Samolot> samoloty;
 
         //FXML
 
 
 
         //Kontroler
-        //ArrayList<Lot> loty; jednak UML troszke przestarzaly xDD
 
         public void dodajSamolot(Samolot s){
-                for(Samolot sm : firma.getSamoloty()){
+                for(Samolot sm : samoloty){
                         if(s.equals(sm)) return;
                 }
-                firma.getSamoloty().add(s);
+                samoloty.add(s);
         }
 
         public void usunSamolot(String ID){
                 int i=0, j=-1;
-                for(Samolot sm : firma.getSamoloty()){
+                for(Samolot sm : samoloty){
                         if(sm.getID().equals(ID)) j=i;
                         i++;
                 }
-                if(j!=-1) firma.getSamoloty().remove(j);
+                if(j!=-1) samoloty.remove(j);
                 else return;
 
-                for(Lot l : NaszaFirma.getInstance().loty){
+                /*for(Lot l : NaszaFirma.getInstance().obslugaLotow.loty){
                         //if(l.getSamolot().getID().equals(ID)) NaszaFirma.getInstance().obslugaLotow.anulujLot(l);
-                }
+                }*/
 
         }
 

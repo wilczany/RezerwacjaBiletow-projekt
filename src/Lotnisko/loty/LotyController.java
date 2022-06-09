@@ -1,28 +1,29 @@
 package loty;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import main.Controller;
+import main.NaszaFirma;
 
 import java.io.DataInput;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class LotyController extends Controller {
 
-    ArrayList<Lot>loty=new ArrayList();
+    ArrayList<Lot>loty;
 
     @FXML
     ListView listLoty;
 
-    @FXML
-    void initialize(){
 
-    }
     @FXML
     public void dodajLot(){
 
@@ -33,16 +34,20 @@ public class LotyController extends Controller {
     public void refresh(){
 
     }
-    public LocalDateTime wyborDaty(){
-        FXMLLoader fxml=new FXMLLoader(getClass().getResource("/fxml/DateTimePicker"));
-        try{DialogPane dialog=fxml.load();}
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        } ;
-        DatyController daty=fxml.getController();
+    public void wyborDaty(ActionEvent event) {
+        try {
+            Dialog<String> dialog = new TextInputDialog();
+            dialog.setHeaderText("Podaj datę w formacie DD/MM/YYYY");
+            Optional<String> result_data = dialog.showAndWait();
+            String data = result_data.get();
 
-        Dialog dialog=new Dialog();
-        //dialog.setDialogPane(DialogPane);
-        return LocalDateTime.of(2000,11,10,12,20);
+        } catch (Exception e) {
+
+        }
+
     }
+    public void dodajKolejnyLot(ActionEvent event){}
+    public void dodajPowrotnyLot(ActionEvent event){}
+    public void anulujLot(ActionEvent event){}
+
 }

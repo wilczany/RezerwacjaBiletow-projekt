@@ -15,6 +15,7 @@ import uslugobiorcy.Klient;
 import uslugobiorcy.ObslugaKlientow;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,34 +28,47 @@ public class NaszaFirma {
     //
     // ALBO TO
     //
+    //
+    /*
     public ArrayList<Lotnisko> lotniska = new ArrayList<>();
     public ArrayList<Trasa> trasy = new ArrayList<>();
     public ArrayList<Samolot> samoloty = new ArrayList<>();
     public ArrayList<Klient> klienci = new ArrayList<>();
     public ArrayList<Lot> loty = new ArrayList<>();
-
+*/
     String n1, n2;
     int m1, m2;
 
     private NaszaFirma() {
-        File plik1 = new File("/resources/lotniska.txt");
-        Scanner sc1 = new Scanner(plik1);
-        File plik2 = new File("/resources/samoloty.txt");
-        Scanner sc2 = new Scanner(plik2);
+       Scanner sc1;
+        Scanner sc2;
+        Scanner sc3;
+        Scanner sc4;
+        Scanner sc5;
+        try{
+        File plik1 = new File("src/resources/lotniska.txt");
+         sc1 = new Scanner(plik1);
+       /* File plik2 = new File("/resources/samoloty.txt");
+         sc2 = new Scanner(plik2);
         File plik3 = new File("/resources/klienci.txt");
-        Scanner sc3 = new Scanner(plik3);
+         sc3 = new Scanner(plik3);
         File plik4 = new File("/resources/loty.txt");
-        Scanner sc4 = new Scanner(plik4);
+         sc4 = new Scanner(plik4);
         File plik5 = new File("/resources/bilety.txt");
-        Scanner sc5 = new Scanner(plik5);
+         sc5 = new Scanner(plik5);*/}
+        catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         while (sc1.hasNextLine()) {
             n1 = sc1.next();
             m1 = sc1.nextInt();
             m2 = sc1.nextInt();
             Lotnisko l = new Lotnisko(n1, m1, m2);
-            lotniska.add(l);
+            System.out.println(n1+"\t"+m1+"\t"+m2+"\t");
+            System.out.println(l);
+            obslugaTras.getLotniska().add(l);
         }
-        while (sc2.hasNextLine()) {
+       /* while (sc2.hasNextLine()) {
             n1 = sc2.next();
             m1 = sc2.nextInt();
             m2 = sc2.nextInt();
@@ -66,14 +80,14 @@ public class NaszaFirma {
             n2 = sc3.next();
             Klienc l = new Klienc(n1, n2);
             klienci.add(l);
-        }
+        }*/
 
     }
 
     public static NaszaFirma getInstance() {
         return inner.FIRMA;
     }
-
+/*
     public ArrayList<Lotnisko> getLotniska() {
         return lotniska;
     }
@@ -93,7 +107,7 @@ public class NaszaFirma {
     public ArrayList<Lot> getLoty() {
         return loty;
     }
-
+*/
     public static class inner {
         private static final NaszaFirma FIRMA = new NaszaFirma();
 

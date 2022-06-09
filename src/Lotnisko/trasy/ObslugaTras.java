@@ -19,13 +19,12 @@ import java.util.Scanner;
 //dodanie parametru do metod wypisujacych informacje dla uzytkownika, ktory by blokowal wypisywanie/przelaczal na tryb graficzny?
 
 public class ObslugaTras{
-
     public ArrayList<Lotnisko> getLotniska() {
         return lotniska;
     }
 
     // NaszaFirma firma=NaszaFirma.getInstance();
-    ArrayList<Lotnisko>lotniska=new ArrayList<>();
+    protected ArrayList<Lotnisko>lotniska=new ArrayList<>();
     ArrayList<Trasa>trasy=new ArrayList<>();
     /**
      * @param l
@@ -209,24 +208,13 @@ public class ObslugaTras{
         ListView<String> listLotniska;
 
 
-
-    public void refresh(){
-            ArrayList<Lotnisko>llll=new ArrayList<>();
-            llll=lotniska;
-            listLotniska.getItems().clear();
-        for (Lotnisko l:llll
-             ) {listLotniska.getItems().add(String.valueOf(l));
-                System.out.println(l);
-        }
-
-    }
     public void odczyt(){
         // public void getLotniska() {
         ArrayList<Lotnisko> lotniska2=new ArrayList<>();
         String nazwa;
         int x, y;
         Scanner scan=null;
-        File plik=new File("src/resources/Lotniska.txt");
+        File plik=new File("src/resources/lotniska.txt");
         try {scan = new Scanner(plik);}catch (Throwable t){
             System.out.println("wyjatek");
         }
