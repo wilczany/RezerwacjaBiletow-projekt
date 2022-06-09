@@ -18,7 +18,11 @@ public class NaszaFirma{
     ObslugaTras trasyController;
     ObslugaKlientow klienciController;
     ObslugaSamolotow samolotyController;
+/*
+Array
+getArray
 
+0 */
 
     ObslugaLotow loty=new ObslugaLotow();
     ObslugaTras trasy=new ObslugaTras();

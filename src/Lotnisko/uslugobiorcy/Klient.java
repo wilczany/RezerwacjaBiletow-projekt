@@ -6,16 +6,17 @@ import java.util.ArrayList;
 
 public abstract class Klient {
 
-    protected ArrayList<Bilet> b=new ArrayList<>();
+
+    protected ArrayList<Bilet> bilety=new ArrayList<>();
 
     void dodajBilet(Bilet bilet)
     {
-        b.add(bilet);
+        bilety.add(bilet);
     }
 
-    void usunBilet()
-    {
-        this.b=null;
+
+    public ArrayList<Bilet> getBilety() {
+        return bilety;
     }
 
     @Override

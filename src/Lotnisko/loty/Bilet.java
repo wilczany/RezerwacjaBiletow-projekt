@@ -11,6 +11,7 @@ public class Bilet {
     LocalDateTime data;
     //Calendar powrot=null;
     Trasa trasa;
+
     public final int id;
     //boolean czyDwustronny;
     boolean zajety =false;
@@ -56,6 +57,10 @@ public class Bilet {
                 ", trasa:" + trasa +
                 ", numer Biletu:" + id;
 
+    }
+
+    public int getId() {
+        return id;
     }
 }
 

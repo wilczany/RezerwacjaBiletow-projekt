@@ -237,7 +237,8 @@ public class ObslugaTras extends Controller{
             listLotniska.getItems().clear();
         for (Lotnisko l:lotniska
              ) {listLotniska.getItems().add(String.valueOf(l));
-
         }
+
     }
+
 }
