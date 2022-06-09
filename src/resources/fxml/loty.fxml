@@ -17,8 +17,8 @@
         </columns>
       </TableView>
       <Button layoutX="583.0" layoutY="411.0" mnemonicParsing="false" text="Anuluj Lot" />
-      <Button layoutX="42.0" layoutY="411.0" mnemonicParsing="false" text="Dodaj nowy lot" />
-      <Button layoutX="200.0" layoutY="411.0" mnemonicParsing="false" text="Dodaj powtórzony lot" />
-      <Button layoutX="437.0" layoutY="411.0" mnemonicParsing="false" text="Dodaj lot powrotny" />
+      <Button layoutX="42.0" layoutY="411.0" mnemonicParsing="false" onAction="#dodajLot" text="Dodaj nowy lot" />
+      <Button layoutX="200.0" layoutY="411.0" mnemonicParsing="false" onAction="#dodajKolejnyLot" text="Dodaj powtórzony lot" />
+      <Button layoutX="437.0" layoutY="411.0" mnemonicParsing="false" onAction="#dodajPowrotnyLot" text="Dodaj lot powrotny" />
    </children>
 </AnchorPane>
