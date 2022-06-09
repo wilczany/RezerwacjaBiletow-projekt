@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import main.Controller;
 import main.NaszaFirma;
 import samoloty.Samolot;
+import trasy.Lotnisko;
 import trasy.Trasa;
 
 import java.time.LocalDateTime;
@@ -95,6 +96,20 @@ public class ObslugaLotow  {
 
     }
 
+    public boolean czyLotniskoUzywane(Lotnisko l){
+        for(Lot lot : loty){
+            Lotnisko lotniska[] = lot.getTrasa().getLotniska();
+            if(l.equals(lotniska[0]) || l.equals(lotniska[1])) return true;
+        }
+        return false;
+    }
+
+    public boolean czyTrasaUzywana(Trasa t){
+        for(Lot lot : loty){
+            if(t.equals(lot.getTrasa())) return true;
+        }
+        return false;
+    }
 
     public ArrayList<Lot> getLoty(Trasa t) throws BrakLotowException {
         ArrayList<Lot> lotyNaTrasie=new ArrayList<>();

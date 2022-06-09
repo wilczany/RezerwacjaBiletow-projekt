@@ -31,12 +31,17 @@ public class KlienciController extends Controller {
     }
     @FXML
     public void dodajKlienta(ActionEvent event) {
-        Dialog<String> dialog = new TextInputDialog();
+        /*Dialog<String> dialog = new TextInputDialog();
         dialog.setHeaderText("Podaj imie/NIP:");
         dialog.setContentText("Imie/NIP: ");
         Optional<String> result_nazwa = dialog.showAndWait();
         String nazwa = result_nazwa.get();
-        if(NaszaFirma.getInstance().obslugaTras.sprawdzNazwe(nazwa) || nazwa==""){
+
+
+
+
+
+        if(NaszaFirma.getInstance().obslugaKlientow.sprawdzOsobe(imie) || nazwa==""){
             dialog = new Dialog<String>();
             dialog.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
@@ -63,7 +68,7 @@ public class KlienciController extends Controller {
 
         Klient kkk = new Klient(nazwa,nazwa2);
         NaszaFirma.getInstance().obslugaKlientow.getKlienci().add(kkk);
-        refresh();
+        refresh();*/
     }
 
 }

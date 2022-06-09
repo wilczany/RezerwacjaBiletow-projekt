@@ -27,9 +27,9 @@ public class ObslugaSamolotow extends Controller{
                 samoloty.add(s);
         }
 
-        public boolean sprawdzNazwe(String nazwa) {
+        public boolean sprawdzID(String id) {
                 for (Samolot s : samoloty) {
-                    if (nazwa.equals(s.getNazwa())) return true;
+                    if (id.equals(s.getID())) return true;
                 }
                 return false;
             }

@@ -1,10 +1,12 @@
 package trasy;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.text.Text;
+import loty.Lot;
 import main.Controller;
 import main.NaszaFirma;
 import samoloty.ATR;
@@ -17,9 +19,9 @@ import java.util.Optional;
 
 public class TrasyController extends Controller {
     @FXML
-    ListView listLotniska;
+    ListView<Lotnisko> listLotniska;
     @FXML
-    ListView listTrasy;
+    ListView<Trasa> listTrasy;
     ArrayList<Lotnisko>lotniska;
     ArrayList<Trasa> trasy;
 
@@ -99,7 +101,57 @@ public class TrasyController extends Controller {
         NaszaFirma.getInstance().obslugaTras.getLotniska().add(lll);
         refresh();
     }
-
+    @FXML
+    public void usunLotnisko(ActionEvent event){
+        Lotnisko wybrane = listLotniska.getSelectionModel().getSelectedItem();
+        if(wybrane == null){
+            Dialog<String> dialogB = new Dialog<String>();
+            dialogB.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialogB.setContentText("Usuwając lotnisko należy wybrać lotnisko.");
+            dialogB.getDialogPane().getButtonTypes().add(bOk);
+            dialogB.showAndWait();
+            refresh();
+            return;
+        }
+        if(!(NaszaFirma.getInstance().obslugaTras.usunLotnisko(wybrane))){
+            Dialog<String> dialogB = new Dialog<String>();
+            dialogB.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialogB.setContentText("Dane lotnisko nie może zostać usunięte, gdyż jest używane przez istniejący lot lub loty.");
+            dialogB.getDialogPane().getButtonTypes().add(bOk);
+            dialogB.showAndWait();
+            refresh();
+            return;
+        }
+        refresh();
+    }
+    @FXML
+    public void usunTrase(ActionEvent event){
+        Trasa wybrana = listTrasy.getSelectionModel().getSelectedItem();
+        if(wybrana == null){
+            Dialog<String> dialogB = new Dialog<String>();
+            dialogB.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialogB.setContentText("Usuwając trasę należy wybrać trasę.");
+            dialogB.getDialogPane().getButtonTypes().add(bOk);
+            dialogB.showAndWait();
+            refresh();
+            return;
+        }
+        if( !(NaszaFirma.getInstance().obslugaTras.usunTrase(wybrana))){
+            Dialog<String> dialogB = new Dialog<String>();
+            dialogB.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialogB.setContentText("Dana trasa nie może zostać usunięta, gdyż jest używana przez istniejący lot lub loty.");
+            dialogB.getDialogPane().getButtonTypes().add(bOk);
+            dialogB.showAndWait();
+            refresh();
+            return;
+        }
+        refresh();
+    }
+    @FXML
     public void dodajTrase(ActionEvent event){
         if(NaszaFirma.getInstance().obslugaTras.getLotniska().size()==0) return;
         Lotnisko l1, l2;
@@ -133,68 +185,18 @@ public class TrasyController extends Controller {
             return;
         }
         trasy.add(ttt);
+        refresh();
     }
-
-
-/*
-    public void dodajTrase(ActionEvent event){
-        Dialog<String> dialog = new TextInputDialog();
-        Lotnisko l1, l2;
-
-        dialog.setHeaderText("Podaj nazwę lotniska startowego:");
-        dialog.setContentText("Nazwa: ");
-        Optional<String> result_nazwa1 = dialog.showAndWait();
-        String nazwa1 = result_nazwa1.get();
-        for(Lotnisko l : lotniska){
-            if(nazwa.equals(l.getNazwa()){
-                l1=l;
-            }
-        }
-        if(l1 == null){
-            dialog = new Dialog<String>();
-            dialog.setTitle("Błąd");
-            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            dialog.setContentText("Lotnisko o podanej nazwie nie istnieje. Przejrzyj listę lotnisk.");
-            dialog.getDialogPane().getButtonTypes().add(bOk);
-            dialog.showAndWait();
-            return;
-        }
-
-
-        dialog.setHeaderText("Podaj nazwę lotniska końcowego:");
-        Optional<String> result_nazwa2 = dialog.showAndWait();
-        String nazwa2 = result_nazwa2.get();
-        for(Lotnisko l : lotniska){
-            if(nazwa.equals(l.getNazwa()){
-                l2=l;
-            }
-        }
-        if(l2 == null){
-            dialog = new Dialog<String>();
-            dialog.setTitle("Błąd");
-            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            dialog.setContentText("Lotnisko o podanej nazwie nie istnieje. Przejrzyj listę lotnisk.");
-            dialog.getDialogPane().getButtonTypes().add(bOk);
-            dialog.showAndWait();
-            return;
-        }
-
-        Trasa ttt = new Trasa(l1,l2)
-        NaszaFirma.getInstance().obslugaTras.getTrasy().add(ttt);
-
-    }*/
-
-    //public void usunLotnisko(ActionEvent event){}
 
     public void refresh(){
         listLotniska.getItems().clear();
         for (Lotnisko l:NaszaFirma.getInstance().obslugaTras.getLotniska()
         ) {
-            listLotniska.getItems().add(String.valueOf(l));
+            listLotniska.getItems().add(l);
         }
         listTrasy.getItems().clear();
         for(Trasa t:NaszaFirma.getInstance().obslugaTras.getTrasy()){
-            listTrasy.getItems().add(String.valueOf(t));
+            listTrasy.getItems().add(t);
         }
 
     }

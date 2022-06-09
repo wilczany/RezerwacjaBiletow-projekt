@@ -24,7 +24,7 @@ public class SamolotyController extends Controller {
 
     @FXML
     void addSamolot() {
-
+/*
         Dialog<String> dialog = new TextInputDialog();
         dialog.setHeaderText("Podaj ID Samolotu:");
         dialog.setContentText("ID: ");
@@ -40,14 +40,9 @@ public class SamolotyController extends Controller {
             return;
         }
         Samolot sss = new Samolot(nazwa);
-        NaszaFirma.getInstance().obslugaSamolotow.getSamoloty().add(sss);
+        NaszaFirma.getInstance().obslugaSamolotow.getSamoloty().add(sss);*/
     }
 
-   
-
-    refresh();
-
-    }
 
     @FXML
     void delSamolot(){

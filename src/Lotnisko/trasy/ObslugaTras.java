@@ -42,11 +42,37 @@ public class ObslugaTras{
                 break;
             }
         }
-        if (P == false) {
+        if (!P) {
             lotniska.add(l);
             return true;
         }
         return false;
+    }
+
+    public boolean usunLotnisko(Lotnisko l){
+        if(NaszaFirma.getInstance().obslugaLotow.czyLotniskoUzywane(l)) return false;
+        ArrayList<Integer> doUsuniecia = new ArrayList<>();
+        Integer i = 0;
+        for(Trasa t : trasy){
+            Lotnisko lotn[] = t.getLotniska();
+            if(l.equals(lotn[0]) || l.equals(lotn[1])) doUsuniecia.add(i);
+            i++;
+        }
+        for(int j=doUsuniecia.size()-1;j>=0;j--){
+            System.out.println(trasy.get(doUsuniecia.get(j).intValue()));
+            trasy.remove(doUsuniecia.get(j).intValue());
+        }
+        lotniska.remove(l);
+        return true;
+    }
+
+    public boolean usunTrase(Trasa t) {
+        if(NaszaFirma.getInstance().obslugaLotow.czyTrasaUzywana(t)) return false;
+        for (Trasa tr : trasy) {
+            Lotnisko lt[] = t.getLotniska();
+            if (t.equals(tr)) { trasy.remove(t); return true; }
+        }
+        return true;
     }
 
     /**
@@ -172,39 +198,6 @@ public class ObslugaTras{
         Lotnisko lt = new Lotnisko(nazwa, x, y);
         lotniska.add(lt);
         scan.close();
-        return true;
-    }
-
-    //rozszerzyc o usuwanie rowniez lotow
-    public boolean usunLotnisko(String nazwa) {
-        for (Lotnisko l : lotniska) {
-            if (nazwa.equals(l.getNazwa())) lotniska.remove(l);
-        }
-        for (Trasa t : trasy) {
-            if (nazwa.equals(t.getLotniska()[0].getNazwa()) || nazwa.equals(t.getLotniska()[1].getNazwa()))
-                trasy.remove(t);
-        }
-        /*
-        for(Lot l : loty){
-            if (nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa()) || nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa())) ObslugaLotow.anulujLot(ten lot);
-        }
-        */
-        return true;
-    }
-
-    //rozszerzyc o usuwanie rowniez lotow
-    //moze inne parametry? przy usuwaniu interfejsem wystarczyc powinien obiekt trasy?
-    public boolean usunTrase(String nazwa1, String nazwa2) {
-        Lotnisko[] lt = new Lotnisko[2];
-        for (Trasa t : trasy) {
-            lt = t.getLotniska();
-            if (nazwa1.equals(lt[0].getNazwa()) && nazwa2.equals(lt[0].getNazwa())) trasy.remove(t);
-        }
-        /*
-        for(Lot l : loty){
-            if (nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa()) && nazwa.equals(l.getTrasa().getLotniska()[0].getNazwa())) ObslugaLotow.anulujLot(ten lot);
-        }
-        */
         return true;
     }
 
