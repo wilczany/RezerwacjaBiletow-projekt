@@ -27,6 +27,13 @@ public class ObslugaSamolotow extends Controller{
                 samoloty.add(s);
         }
 
+        public boolean sprawdzNazwe(String nazwa) {
+                for (Samolot s : samoloty) {
+                    if (nazwa.equals(s.getNazwa())) return true;
+                }
+                return false;
+            }
+
         public void usunSamolot(String ID){
                 int i=0, j=-1;
                 for(Samolot sm : samoloty){

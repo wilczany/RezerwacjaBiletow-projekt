@@ -9,22 +9,43 @@ import trasy.Lotnisko;
 import java.util.ArrayList;
 
 public class SamolotyController extends Controller {
-    ArrayList<Samolot>samoloty;
+    ArrayList<Samolot> samoloty;
 
     @FXML
     ListView listSamoloty;
 
     @FXML
-    void initialize(){
-        samoloty= NaszaFirma.getInstance().obslugaSamolotow.getSamoloty();
-        for(Samolot s:samoloty){
+    void initialize() {
+        samoloty = NaszaFirma.getInstance().obslugaSamolotow.getSamoloty();
+        for (Samolot s : samoloty) {
             listSamoloty.getItems().add(s);
         }
     }
 
-
     @FXML
-    void addSamolot(){
+    void addSamolot() {
+
+        Dialog<String> dialog = new TextInputDialog();
+        dialog.setHeaderText("Podaj ID Samolotu:");
+        dialog.setContentText("ID: ");
+        Optional<String> result_nazwa = dialog.showAndWait();
+        String nazwa = result_nazwa.get();
+        if (NaszaFirma.getInstance().obslugaSamolotow.sprawdzNazwe(nazwa) || nazwa == "") {
+            dialog = new Dialog<String>();
+            dialog.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
+            dialog.setContentText("Podana nazwa jest już zajeta.");
+            dialog.getDialogPane().getButtonTypes().add(bOk);
+            dialog.showAndWait();
+            return;
+        }
+        Samolot sss = new Samolot(nazwa);
+        NaszaFirma.getInstance().obslugaSamolotow.getSamoloty().add(sss);
+    }
+
+   
+
+    refresh();
 
     }
 
