@@ -143,6 +143,13 @@ public class ObslugaTras{
         return false;
     }
 
+    public boolean sprawdzTrase(Trasa tt){
+        for (Trasa t : trasy) {
+            if (tt.equals(t)) return true;
+        }
+        return false;
+    }
+
     //jakkolwiek ta nazwa brzmi..
     public boolean utworzLotnisko() {
         Scanner scan = new Scanner(System.in);

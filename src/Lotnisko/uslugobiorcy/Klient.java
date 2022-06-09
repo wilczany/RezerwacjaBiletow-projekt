@@ -19,6 +19,8 @@ public abstract class Klient {
         return bilety;
     }
 
+    public abstract String[] getDane();
+
     @Override
     public  abstract String toString();
 

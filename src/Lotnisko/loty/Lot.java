@@ -34,8 +34,8 @@ public class Lot {
         //DYSTANS NA CALKOWITE
         setDate(d, (int)t.getDystans());
 
-        for(int i=0;i<s.getMiejsca();i++){
-            bilety.add(new Bilet(d,trasa));
+        for(int i=0;i<s.getMiejsca();i++) {
+            bilety.add(new Bilet(d, trasa));
         }
 
     }
