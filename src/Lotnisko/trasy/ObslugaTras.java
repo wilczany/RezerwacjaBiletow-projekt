@@ -20,14 +20,6 @@ public class ObslugaTras extends Controller{
     NaszaFirma firma;
 
     /**
-     * Konstruktor
-     * @param f obiekt firmy, główny interfejs
-     */
-    public ObslugaTras(NaszaFirma f){
-        this.firma = f;
-    }
-
-    /**
      * @param l
      * @return boolean
      */

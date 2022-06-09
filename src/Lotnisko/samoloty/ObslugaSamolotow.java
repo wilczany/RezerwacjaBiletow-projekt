@@ -26,13 +26,6 @@ public class ObslugaSamolotow extends Controller{
         //ArrayList<Lot> loty; jednak UML troszke przestarzaly xDD
         ArrayList<Samolot> samoloty;
 
-        /**
-         * Konstruktor
-         * @param f obiekt firmy, główny interfejs
-         */
-        public ObslugaSamolotow(NaszaFirma f){
-                this.firma = f;
-        }
 
         //exception specjalne pod takie same id? sama informacja w okienku tekstowym?
         public void dodajSamolot(Samolot s){
@@ -61,6 +54,4 @@ public class ObslugaSamolotow extends Controller{
         public void refresh() {
 
         }
-
-        public
 }

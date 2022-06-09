@@ -11,16 +11,7 @@ import java.util.ArrayList;
 
 public class ObslugaLotow extends Controller {
     private final ArrayList<Lot> loty = new ArrayList<>();
-    private final NaszaFirma firma;
-    
-    /**
-     * Konstruktor
-     * @param f obiekt firmy, główny interfejs
-     */
-    public ObslugaLotow(NaszaFirma f){
-        this.firma = f;
-    }
-
+    private NaszaFirma firma;
 
     /**
      * Dodawanie lotow
