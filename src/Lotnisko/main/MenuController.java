@@ -13,6 +13,8 @@ import java.io.IOException;
 
 public class MenuController {
 
+
+
     @FXML
     MainController mainController;
     LotyController lotyController;

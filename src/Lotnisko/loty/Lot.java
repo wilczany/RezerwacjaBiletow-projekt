@@ -27,7 +27,7 @@ public class Lot {
      * @param s samolot przeznaczony do lotu
      * @param d data odlotu
      */
-    Lot(Trasa t, Samolot s, LocalDateTime d){
+    public Lot(Trasa t, Samolot s, LocalDateTime d){
         trasa=t;
         samolot=s;
         numer_lotu=this.hashCode();
@@ -45,7 +45,7 @@ public class Lot {
      * @param l podanie istniejącego lotu
      * @param d data odlotu
      */
-    Lot(Lot l,LocalDateTime d){
+    public Lot(Lot l,LocalDateTime d){
         trasa=l.getTrasa();
         samolot=l.getSamolot();
         numer_lotu=this.hashCode();

@@ -16,6 +16,9 @@ import uslugobiorcy.KlientIndywidualny;
 import uslugobiorcy.ObslugaKlientow;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -100,24 +103,45 @@ public class NaszaFirma {
         //odczyt tras
         while (scTr.hasNextLine()) {
             String dane[] = scTr.nextLine().split("\t");
-            Lotnisko l1,l2;
+            Lotnisko l1=new Lotnisko("1",1,1),l2=new Lotnisko("2",2,2);
             if(obslugaTras.sprawdzNazwe(dane[0]) && obslugaTras.sprawdzNazwe(dane[1])) {
                 for (Lotnisko l : obslugaTras.getLotniska()) {
                     if (dane[0].equals(l.getNazwa())) l1 = l;
                     if (dane[1].equals(l.getNazwa())) l2 = l;
                 }
                 Trasa t = new Trasa(l1, l2);
+                obslugaTras.getTrasy().add(t);
             }
         } scTr.close();
 
-    // }
-
+    //}
+// v samolot |           v trasa                    |  v data
+//id samolot \t nazwa lotnisko1 \t nazwa lotnisko2 \t localdatetime
      //odczyt lotow
-        while(sc4.hasNextLine()){
+        /*
+        while(scLoty.hasNextLine()){
+            String dane[] = scLoty.nextLine().split("\t");
+            Samolot s = null; Trasa t = null;
+            for(Samolot st : obslugaSamolotow.getSamoloty()){
+                if(dane[0].equals(st.getID())) s=st;
+            }
 
-
-        }
-
+            Lotnisko l1=new Lotnisko("1",1,1),l2=new Lotnisko("2",2,2);
+            if(obslugaTras.sprawdzNazwe(dane[1]) && obslugaTras.sprawdzNazwe(dane[2])) {
+                for (Lotnisko l : obslugaTras.getLotniska()) {
+                    if (dane[1].equals(l.getNazwa())) l1 = l;
+                    if (dane[2].equals(l.getNazwa())) l2 = l;
+                }
+                t = new Trasa(l1, l2);
+            }
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
+            LocalDateTime d = LocalDateTime.parse(dane[3],format);
+            assert s != null;
+            assert t != null;
+            Lot lot = new Lot(t, s, d);
+        } scLoty.close();
+/*
+*/
     }
 
 

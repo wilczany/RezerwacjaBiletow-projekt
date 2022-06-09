@@ -20,7 +20,6 @@ public class TrasyController extends Controller {
     ListView listLotniska;
     @FXML
     ListView listTrasy;
-
     ArrayList<Lotnisko>lotniska;
     ArrayList<Trasa> trasy;
 
@@ -31,11 +30,14 @@ public class TrasyController extends Controller {
             //listLotniska.getItems().clear();
             for (Lotnisko l:lotniska
             ) {
-                listLotniska.getItems().add(String.valueOf(l));
+                listLotniska.getItems().add(l);
             }
+            trasy=NaszaFirma.getInstance().obslugaTras.getTrasy();
+        for (Trasa t:trasy)
+            listTrasy.getItems().add(t);
+        }
 
 
-    }
 
     @FXML
     public void dodajLotnisko(ActionEvent event) {
@@ -171,6 +173,10 @@ public class TrasyController extends Controller {
         for (Lotnisko l:NaszaFirma.getInstance().obslugaTras.getLotniska()
         ) {
             listLotniska.getItems().add(String.valueOf(l));
+        }
+        listTrasy.getItems().clear();
+        for(Trasa t:NaszaFirma.getInstance().obslugaTras.getTrasy()){
+            listTrasy.getItems().add(String.valueOf(t));
         }
 
     }

@@ -86,6 +86,10 @@ public class ObslugaLotow  {
     }
 
     private void anulujLot(Lot l){
+        for (Bilet b:l.getBilety()) {
+           // if(!b.czyZajety())
+
+        }
 
 
 
