@@ -2,11 +2,10 @@ package samoloty;
 
 public class ATR extends Samolot {
 
-
     protected ATR(String id) {
         super(id);
-        Miejsca = 120;
-        Zasieg = 1200;
+        super.Miejsca = 120;
+        super.Zasieg = 1200;
     }
 
 }
