@@ -18,8 +18,6 @@ public class ObslugaSamolotow extends Controller{
         //Kontroler
         //ArrayList<Lot> loty; jednak UML troszke przestarzaly xDD
 
-
-
         public void dodajSamolot(Samolot s){
                 for(Samolot sm : firma.getSamoloty()){
                         if(s.equals(sm)) return;
