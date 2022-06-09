@@ -1,4 +1,3 @@
-Klasa String String
-if(klasa is tamta klasa)
-pole obiektu = String pierwszy
-pole = String drugi
+KlientIndywidualny  Karol    Wojtyla
+KlientIndywidualny  Warol   Kojtyla
+Firma   69213420    Kremowka S.A.

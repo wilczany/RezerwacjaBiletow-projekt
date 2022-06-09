@@ -42,23 +42,23 @@ public class NaszaFirma {
     int m1, m2;
 
     private NaszaFirma() {
-       Scanner scLotn, scTr, scSam, sc3, sc4, sc5;
-       String buffer;
+       Scanner scLotn, scTr, scSam, scKl, scLoty;
         try {
             File plik1 = new File("src/resources/lotniska.txt");
              scLotn = new Scanner(plik1);
-            File plik2 = new File("/resources/samoloty.txt");
+            File plik2 = new File("src/resources/samoloty.txt");
              scSam = new Scanner(plik2);
-            File plik3 = new File("/resources/klienci.txt");
-             sc3 = new Scanner(plik3);
-            File plik4 = new File("/resources/loty.txt");
-             sc4 = new Scanner(plik4);
-            File plik5 = new File("/resources/trasy.txt");
+            File plik3 = new File("src/resources/klienci.txt");
+             scKl = new Scanner(plik3);
+            File plik4 = new File("src/resources/loty.txt");
+             scLoty = new Scanner(plik4);
+            File plik5 = new File("src/resources/trasy.txt");
              scTr = new Scanner(plik5);
         }
         catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
         //odczyt lotnisk
         while (scLotn.hasNextLine()) {
             n1 = scLotn.next();
@@ -67,6 +67,7 @@ public class NaszaFirma {
             Lotnisko l = new Lotnisko(n1, m1, m2);
             obslugaTras.getLotniska().add(l);
         } scLotn.close();
+
         //odczyt samolotow
         while (scSam.hasNextLine()) {
             String dane[] = scSam.nextLine().split("\t");
@@ -75,6 +76,7 @@ public class NaszaFirma {
                     for(int i=1;i<dane.length;i++){
                         ATR s = new ATR(dane[i]);
                         obslugaSamolotow.getSamoloty().add(s);
+
                     }
                 case "Boeing" :
                     for(int i=1;i<dane.length;i++){
@@ -88,18 +90,15 @@ public class NaszaFirma {
                     }
             }
         } scSam.close();
-
         //odczyt klientow
-        while (sc3.hasNextLine()) {
-            n1 = sc3.next(); //<<< klasa
-            n2 = sc3.next(); //<<< Imie/NIP
-            n3 = sc3.next(); //<<< Nazwisko/Nazwa
-            Klient k;
-            if(n1.equals("KlientIndywidualny"))
-                k=new KlientIndywidualny(n2,n3);
-            else k=new Firma(n2,n3);
-            obslugaKlientow.getKlienci().add(k);
-        } sc3.close();
+        while (scKl.hasNextLine()) {
+            String dane[] = scKl.nextLine().split("\t");
+            switch(dane[0]){
+                case "KlientIndywidualny": Klient k = new KlientIndywidualny(dane[1],dane[2]); obslugaKlientow.getKlienci().add(k);
+                case "Firma": Klient kl = new Firma(dane[1],dane[2]); obslugaKlientow.getKlienci().add(kl);
+            }
+        } scKl.close();
+
         //odczyt tras
         while (scTr.hasNextLine()) {
             String dane[] = scTr.nextLine().split("\t");
@@ -146,6 +145,7 @@ public class NaszaFirma {
 
 
     void zapis() throws Exception{
+        /*
             PrintWriter zapis = new PrintWriter("src/resources/lotniska.txt");
             for(Lotnisko l : NaszaFirma.getInstance().obslugaTras.getLotniska()){
                 zapis.println(l.getNazwa()+"\t"+l.getX()+"\t"+l.getY()+"\n");
@@ -166,7 +166,7 @@ public class NaszaFirma {
             for(Lot lo : obslugaLotow.getLoty()){
                 zapis.println();
                 zapis.close();
-            }*/
+            }*//*
             zapis = new PrintWriter("src/resources/trasy.txt");
             //trasy ja ogarne bo to praca z lotniskami dodatkowo w logice
             for(Trasa t : obslugaTras.getTrasy()){
@@ -174,7 +174,7 @@ public class NaszaFirma {
                 zapis.println(lt[0].getNazwa()+"\t"+lt[1].getNazwa());
                 zapis.close();
             }
-
+    */
 
 
 
