@@ -24,6 +24,7 @@ public class ObslugaLotow  {
 
 
     void dodajLot(Trasa t, Samolot s, LocalDateTime data) throws LotyException{
+
         if(s.getZasieg()<t.getDystans()) throw new ZasiegException("Samolot ma za krotki zasieg!",s,t.getDystans());
         for (Lot l: loty) {
             if(l.getSamolot()==s){

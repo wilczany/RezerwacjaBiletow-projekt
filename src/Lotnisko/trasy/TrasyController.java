@@ -56,7 +56,7 @@ public class TrasyController extends Controller {
         Lotnisko lll=new Lotnisko(nazwa,x,y);
         NaszaFirma.getInstance().obslugaTras.dodajLotnisko(lll);
         refresh();
-        System.out.println(lll);
+
 
 
     }
