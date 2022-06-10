@@ -2,6 +2,9 @@ package loty;
 
 import samoloty.Samolot;
 
+/**
+ * Wyjatek brak zasiegu
+ */
 public class ZasiegException extends LotyException {
     Samolot s;
     double Odleglosc;

@@ -78,6 +78,10 @@ public abstract class Samolot {
         return false;
     }
 
+    /**
+     * Wypisywanie danych Samolotu
+     * @return
+     */
     public String toString() {
         return this.getClass().getSimpleName() + "\t" + "ID Samolotu: " + ID + " Miejsca: " + Miejsca + " Zasieg: " + Zasieg;
     }

@@ -1,5 +1,8 @@
 package samoloty;
 
+/**
+ * Pochodna Samolotu z okreslonymi wartosciami
+ */
 public class Boeing extends Samolot {
 
     public Boeing(String id) {
