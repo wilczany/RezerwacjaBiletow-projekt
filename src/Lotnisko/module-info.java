@@ -2,8 +2,8 @@ module IdeaProjects {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens main to javafx.fxml;
-    exports main;
+    opens Glowny to javafx.fxml;
+    exports Glowny;
     opens trasy to javafx.fxml;
     exports trasy;
     opens loty to javafx.fxml;

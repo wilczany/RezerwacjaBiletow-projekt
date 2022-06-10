@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.ButtonBar.ButtonData;
-import main.Controller;
-import main.NaszaFirma;
+import Glowny.Controller;
+import Glowny.NaszaFirma;
 
 import java.util.ArrayList;
 import java.util.Optional;

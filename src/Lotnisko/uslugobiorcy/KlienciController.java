@@ -7,8 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import loty.Bilet;
 import loty.Lot;
-import main.Controller;
-import main.NaszaFirma;
+import Glowny.Controller;
+import Glowny.NaszaFirma;
 
 import java.util.ArrayList;
 import java.util.Optional;
