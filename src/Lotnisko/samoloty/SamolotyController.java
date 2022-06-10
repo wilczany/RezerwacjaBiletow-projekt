@@ -9,6 +9,8 @@ import main.NaszaFirma;
 import java.util.ArrayList;
 import java.util.Optional;
 
+//potrzebne do FXML
+
 public class SamolotyController extends Controller {
     ArrayList<Samolot> samoloty;
 

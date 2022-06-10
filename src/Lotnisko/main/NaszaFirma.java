@@ -17,29 +17,21 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
+/**
+ * Wczytywanie, zapisywanie do plikow
+ */
 public class NaszaFirma {
     public ObslugaTras obslugaTras = new ObslugaTras();
     public ObslugaSamolotow obslugaSamolotow = new ObslugaSamolotow();
     public ObslugaLotow obslugaLotow = new ObslugaLotow();
     public ObslugaKlientow obslugaKlientow = new ObslugaKlientow();
-    //
-    // ALBO TO
-    // JEDNAK NIE TO, WYPIERDOLMY TO
-    //
-    /*
-    public ArrayList<Lotnisko> lotniska = new ArrayList<>();
-    public ArrayList<Trasa> trasy = new ArrayList<>();
-    public ArrayList<Samolot> samoloty = new ArrayList<>();
-    public ArrayList<Klient> klienci = new ArrayList<>();
-    public ArrayList<Lot> loty = new ArrayList<>();
-*/
+
     String n1, n2, n3;
     int m1, m2;
 
     private NaszaFirma() {
         Scanner scLotn, scTr, scSam, scKl, scLoty;
-
+        //wczytywanie plikow
         try {
             File plik1 = new File("src/resources/lotniska.txt");
             scLotn = new Scanner(plik1);
@@ -58,7 +50,6 @@ public class NaszaFirma {
         //odczyt lotnisk
         odczytLotnisk(scLotn);
 
-
         //odczyt samolotow
         odczytSamolotow(scSam);
 
@@ -69,7 +60,7 @@ public class NaszaFirma {
         odczytTras(scTr, scLoty);
 
     }
-
+    //odczyt z plikow
     private void odczytLotnisk(Scanner scLotn) {
         while (!scLotn.nextLine().isBlank()) {
             n1 = scLotn.next();
@@ -189,7 +180,10 @@ public class NaszaFirma {
 
     }
 
-
+    /**
+     * Zapis Lotnisk
+     * @throws FileNotFoundException
+     */
     private void zapisLotnisk() throws FileNotFoundException {
         PrintWriter zapis = new PrintWriter("src/resources/lotniska.txt");
         for(Lotnisko l : NaszaFirma.getInstance().obslugaTras.getLotniska()){
@@ -198,7 +192,6 @@ public class NaszaFirma {
         zapis.close();
         zapis = new PrintWriter("src/resources/trasy.txt");
 
-        //trasy ja ogarne bo to praca z lotniskami dodatkowo w logice
 
         for(Trasa t : obslugaTras.getTrasy()){
             Lotnisko[] lt =t.getLotniska();
@@ -206,7 +199,10 @@ public class NaszaFirma {
         }
         zapis.close();
     }
-
+    /**
+     * Zapis Klientow
+     * @throws FileNotFoundException
+     */
     private void zapisKlientow() throws FileNotFoundException {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/klienci.txt");
@@ -216,7 +212,10 @@ public class NaszaFirma {
         }
         zapis.close();
     }
-
+    /**
+     * Zapis Lotow
+     * @throws FileNotFoundException
+     */
     private void zapisLotow() throws FileNotFoundException {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/loty.txt");
@@ -231,7 +230,10 @@ public class NaszaFirma {
         }
         zapis.close();
     }
-
+    /**
+     * Zapis Samolotow
+     * @throws FileNotFoundException
+     */
     private void zapisSamolotow() throws FileNotFoundException {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/samoloty.txt");
@@ -258,7 +260,7 @@ public class NaszaFirma {
     }
 
 
-    public static class inner {
+    private static class inner {
         private static final NaszaFirma FIRMA = new NaszaFirma();
 
     }

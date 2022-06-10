@@ -20,7 +20,10 @@ public class Lotnisko {
         this.x = l.x;
         this.y = l.y;
     }
-
+    /**
+     * Gettry
+     * @return
+     */
     public int getX() {
         return this.x;
     }
@@ -36,7 +39,9 @@ public class Lotnisko {
     public String toString() {
         return this.nazwa + ", pozycja: (" + this.x + "," + this.y + ")";
     }
-
+    /**
+     * Porownywanie zawartosci obiektu
+     */
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (this == obj) return true;

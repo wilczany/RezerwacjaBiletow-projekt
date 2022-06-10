@@ -8,11 +8,18 @@ public abstract class Samolot {
     public String ID;
     int i;
     Calendar[] tab;
-
+    /**
+     * Kreator samolotu
+     * @param I
+     */
     Samolot(String I) {
         this.ID = I;
     }
-
+    /**
+     * Sprawdzanie czy samolot jest zajety
+     * @param x
+     * @return
+     */
     boolean czyZajety(Calendar[] x) {
         int n = 0;
         while (tab[this.i] != null) {
@@ -28,29 +35,37 @@ public abstract class Samolot {
             return false;
         }
     }
-
+    /**
+     * Gettery
+     * @return
+     */
     public int getMiejsca() {
         return this.Miejsca;
     }
 
-    //settery tbh niepotrzebne są, chyba że dodajemy funkcję modyfikacji samolotów jako bonus xDD
-    void setMiejsca(int m) {
-        Miejsca = m;
-    }
-
     public int getZasieg() {
         return this.Zasieg;
+    }  
+
+    public String getID() {
+        return ID;
+    }
+    /**
+     * Settery
+     * @param m
+     */
+    void setMiejsca(int m) {
+        Miejsca = m;
     }
 
     void setZasieg(int m) {
         Zasieg = m;
     }
 
-    public String getID() {
-        return ID;
-    }
 
-    //potrzebowałem do interfejsu
+    /**
+     * Porownywanie zawartosci obiektow
+     */
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (this == obj) return true;
@@ -59,7 +74,9 @@ public abstract class Samolot {
         if (ID.equals(s.ID)) return true;
         return false;
     }
-
+    /**
+     * Wypisanie danych obiektu
+     */
     public String toString() {
         return this.getClass().getSimpleName() + "\t" + "ID Samolotu: " + ID + " Miejsca: " + Miejsca + " Zasieg: " + Zasieg;
     }

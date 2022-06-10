@@ -123,9 +123,9 @@ public class ObslugaTras {
     }
 
     /**
-     * @return boolean
+     * Tworzenie tras
+     * @return
      */
-    //do uzycia przy generowaniu lotu!!
     public boolean utworzTrase() {
         Scanner scan = new Scanner(System.in);
         int nr;
@@ -164,21 +164,34 @@ public class ObslugaTras {
         System.out.println("Dodawanie się nie powiodło, trasa jest duplikatem istniejącej.");
         return false;
     }
-
+    /**
+     * Sprawdzanie czy nazwa juz wystapila
+     * @param nazwa
+     * @return
+     */
     public boolean sprawdzNazwe(String nazwa) {
         for (Lotnisko l : lotniska) {
             if (nazwa.equals(l.getNazwa())) return true;
         }
         return false;
     }
-
+    /**
+     * Sprawdzanie czy koordynaty juz wystapily
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean sprawdzKoordynaty(int x, int y) {
         for (Lotnisko l : lotniska) {
             if (x == l.getX() && y == l.getY()) return true;
         }
         return false;
     }
-
+    /**
+     * Sprawdzanie czy trasa juz wystapila
+     * @param tt
+     * @return
+     */
     public boolean sprawdzTrase(Trasa tt) {
         for (Trasa t : trasy) {
             if (tt.equals(t)) return true;
@@ -186,9 +199,10 @@ public class ObslugaTras {
         return false;
     }
 
-    //Kontroler
-
-    //jakkolwiek ta nazwa brzmi..
+    /**
+     * Kontroler
+     * @return
+     */
     public boolean utworzLotnisko() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Podaj nazwę dla lotniska: ");
@@ -212,9 +226,11 @@ public class ObslugaTras {
         scan.close();
         return true;
     }
-
+    /**
+     * Odczytywanie z pliku
+     */
     public void odczyt() {
-        // public void getLotniska() {
+ 
         ArrayList<Lotnisko> lotniska2 = new ArrayList<>();
         String nazwa;
         int x, y;
@@ -236,7 +252,6 @@ public class ObslugaTras {
             System.out.println(l);
         }
         lotniska = lotniska2;
-        // }
         System.out.println("odczyt");
     }
 }
