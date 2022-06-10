@@ -6,8 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 /**
- * bileciki do kontroli
- * XDDDDDDDDDDDDDDDDDDD
+ * Tworzenie biletow
  */
 public class Bilet {
     public final int id;

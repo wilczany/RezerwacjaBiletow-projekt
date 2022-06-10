@@ -1,7 +1,9 @@
 package loty;
 
 import trasy.Trasa;
-
+/**
+ * Wyjatek na brak lotow
+ */
 public class BrakLotowException extends LotyException {
     Trasa t;
 

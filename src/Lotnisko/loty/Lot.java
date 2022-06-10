@@ -109,7 +109,10 @@ public class Lot {
         return false;
     }
 
-    //GETTERS
+    /**
+     * Gettery
+     * @return
+     */
     public Trasa getTrasa() {
         return trasa;
     }
@@ -134,6 +137,9 @@ public class Lot {
         return czas_lotu;
     }
 
+    /**
+     * Wypisywanie zawartosci klasy
+     */
     @Override
     public String toString() {
        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy  kk:mm");
