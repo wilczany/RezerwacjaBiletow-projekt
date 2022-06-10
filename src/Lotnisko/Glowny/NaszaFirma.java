@@ -18,6 +18,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * Nasza firma, za jej pomocą pracujemy na wszystkich danych
+ */
+
 public class NaszaFirma {
     public ObslugaTras obslugaTras = new ObslugaTras();
     public ObslugaSamolotow obslugaSamolotow = new ObslugaSamolotow();
@@ -26,9 +30,12 @@ public class NaszaFirma {
 
 
 
-    String n1, n2, n3;
+    String n1;
     int m1, m2;
 
+    /**
+     * Konstruktor naszej firmy, automatycznie czyta dane z plików po utworzeniu obiektu
+     */
     private NaszaFirma() {
         Scanner scLotn, scTr, scSam, scKl, scLoty;
 
@@ -60,7 +67,7 @@ public class NaszaFirma {
         scKl.close();
 
         //odczyt tras
-        odczytTras(scTr, scLoty);
+        odczytTras(scTr);
         scTr.close();
 
         odczytLotow(scLoty);
@@ -80,14 +87,13 @@ public class NaszaFirma {
             m2 = scLotn.nextInt();
             Lotnisko l = new Lotnisko(n1, m1, m2);
             obslugaTras.getLotniska().add(l);
-            System.out.println(l);
         }
-
     }
 
     private void odczytSamolotow(Scanner scSam) {
         while (scSam.hasNextLine()) {
             String dane[] = scSam.nextLine().replace("\n","").split(";");
+            if(dane[0].equals("")) return;
             if (dane[0].equals("ATR")) {
                 for (int i = 1; i < dane.length; i++) {
                     ATR s = new ATR(dane[i]);
@@ -110,13 +116,12 @@ public class NaszaFirma {
                 }
             }
         }
-        scSam.close();
     }
 
     private void odczytKlientow(Scanner scKl) {
         while (scKl.hasNextLine()) {
-            String dane[] = scKl.nextLine().replace("\n","").split(";");
-            System.out.println(dane[0]);
+            String dane[] = scKl.nextLine().replace("\n", "").split(";");
+            if (dane[0].equals("")) return;
             if (dane[0].equals("KlientIndywidualny")) {
                 Klient k = new KlientIndywidualny(dane[1], dane[2]);
                 obslugaKlientow.getKlienci().add(k);
@@ -126,13 +131,16 @@ public class NaszaFirma {
                 obslugaKlientow.getKlienci().add(kl);
             }
         }
-        scKl.close();
     }
 
-
-    private void odczytTras(Scanner scTr, Scanner scLoty) {
+    /**
+     * Odczytywanie danych trasy z wczytanego pliku
+     * @param scTr
+     */
+    private void odczytTras(Scanner scTr) {
         while (scTr.hasNextLine()) {
             String[] dane = scTr.nextLine().replace("\n","").split(";");
+            if(dane[0].equals("")) return;
             Lotnisko l1 = new Lotnisko("1", 1, 1), l2 = new Lotnisko("2", 2, 2);
             if (obslugaTras.sprawdzNazwe(dane[0]) && obslugaTras.sprawdzNazwe(dane[1])) {
                 for (Lotnisko l : obslugaTras.getLotniska()) {
@@ -143,15 +151,12 @@ public class NaszaFirma {
                 obslugaTras.getTrasy().add(t);
             }
         }
-        scTr.close();
-
-        //odczyt lotow
-        odczytLotow(scLoty);
     }
 
     private void odczytLotow(Scanner scLoty) {
         while(scLoty.hasNextLine()){
             String[] dane = scLoty.nextLine().replace("\n","").split(";");
+            if(dane[0].equals("")) return;
             Samolot s = null; Trasa t = null;
             for(Samolot st : obslugaSamolotow.getSamoloty()){
                 if(dane[0].equals(st.getID())) s=st;
@@ -172,9 +177,14 @@ public class NaszaFirma {
         scLoty.close();
     }
 
+    /**
+     * Użycie wzorca Singleton, zapewnienie tylko jednego obiektu danej klasy
+     * @return
+     */
     public static NaszaFirma getInstance() {
         return inner.FIRMA;
     }
+
 
     void zapis() throws Exception {
 
@@ -189,16 +199,18 @@ public class NaszaFirma {
 
     }
 
+    /**
+     * Zapisuje lotniska do pliku src/resources/lotniska.txt oraz trasy do pliku src/resources/trasy.txt
+     * @throws FileNotFoundException
+     */
 
     private void zapisLotnisk() throws FileNotFoundException {
         PrintWriter zapis = new PrintWriter("src/resources/lotniska.txt");
         for(Lotnisko l : NaszaFirma.getInstance().obslugaTras.getLotniska()){
-            zapis.print("\n"+l.getNazwa()+" "+l.getX()+" "+l.getY());
+            zapis.print(l.getNazwa()+" "+l.getX()+" "+l.getY()+"\n");
         }
         zapis.close();
         zapis = new PrintWriter("src/resources/trasy.txt");
-
-        //trasy ja ogarne bo to praca z lotniskami dodatkowo w logice
 
         for(Trasa t : obslugaTras.getTrasy()){
             Lotnisko[] lt =t.getLotniska();
@@ -207,6 +219,10 @@ public class NaszaFirma {
         zapis.close();
     }
 
+    /**
+     * Zapisuje klientów do pliku src/resources/klienci.txt
+     * @throws FileNotFoundException
+     */
     private void zapisKlientow() throws FileNotFoundException {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/klienci.txt");
@@ -217,6 +233,10 @@ public class NaszaFirma {
         zapis.close();
     }
 
+    /**
+     * Zapisuje loty do pliku src/resources/loty.txt
+     * @throws FileNotFoundException
+     */
     private void zapisLotow() throws FileNotFoundException {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/loty.txt");
@@ -232,6 +252,10 @@ public class NaszaFirma {
         zapis.close();
     }
 
+    /**
+     * Zapisuje samoloty do pliku src/resources/samoloty.txt
+     * @throws FileNotFoundException
+     */
     private void zapisSamolotow() throws FileNotFoundException {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/samoloty.txt");
@@ -242,13 +266,13 @@ public class NaszaFirma {
                 zapis.print(";"+s.getID());
             }
         }
-        zapis.println(Boeing.class.getSimpleName());
+        zapis.print("\n"+Boeing.class.getSimpleName());
         for(Samolot s: obslugaSamolotow.getSamoloty()){
             if(s.getClass()==Boeing.class){
                 zapis.print(";"+s.getID());
             }
         }
-        zapis.println(ATR.class.getSimpleName());
+        zapis.print("\n"+ATR.class.getSimpleName());
         for(Samolot s: obslugaSamolotow.getSamoloty()){
             if(s.getClass()==ATR.class){
                 zapis.print(";"+s.getID());
@@ -257,7 +281,9 @@ public class NaszaFirma {
         zapis.close();
     }
 
-
+    /**
+     * Statyczna klasa wewnętrzna
+     */
     private static class inner {
         private static final NaszaFirma FIRMA = new NaszaFirma();
 
