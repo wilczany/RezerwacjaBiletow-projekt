@@ -155,6 +155,15 @@ public class TrasyController extends Controller {
         dialog.setHeaderText("Wybierz lotnisko startowe");
         dialog.getItems().addAll(NaszaFirma.getInstance().obslugaTras.getLotniska());
         Optional<Lotnisko> wynik = dialog.showAndWait();
+        if (wynik.toString().equals("Optional.empty")) {
+            Dialog<String> dialog3 = new Dialog<String>();
+            dialog3.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            dialog3.setContentText("Należy wybrać któreś z dostępnych lotnisk.");
+            dialog3.getDialogPane().getButtonTypes().add(bOk);
+            dialog3.showAndWait();
+            return;
+        }
         //lotnisko poczatkowe
         l1=wynik.get();
 
@@ -169,6 +178,15 @@ public class TrasyController extends Controller {
         dialog.setHeaderText("Wybierz lotnisko końcowe");
         dialog.getItems().addAll(lotpow);
         wynik = dialog.showAndWait();
+        if (wynik.toString().equals("Optional.empty")) {
+            Dialog<String> dialog3 = new Dialog<String>();
+            dialog3.setTitle("Błąd");
+            ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            dialog3.setContentText("Należy wybrać któreś z dostępnych lotnisk.");
+            dialog3.getDialogPane().getButtonTypes().add(bOk);
+            dialog3.showAndWait();
+            return;
+        }
         l2=wynik.get();
         Trasa ttt = new Trasa(l1,l2);
         if(NaszaFirma.getInstance().obslugaTras.sprawdzTrase(ttt)) {

@@ -9,7 +9,9 @@
       <Button layoutX="717.0" layoutY="425.0" mnemonicParsing="false" onAction="#back" text="Wstecz" />
       <ListView fx:id="listKlienci" layoutX="36.0" layoutY="38.0" prefHeight="341.0" prefWidth="317.0" />
       <ListView fx:id="listBilety" layoutX="467.0" layoutY="38.0" prefHeight="341.0" prefWidth="304.0" />
-      <Button layoutX="36.0" layoutY="425.0" mnemonicParsing="false" text="Nowy Klient" />
-      <Button layoutX="475.0" layoutY="425.0" mnemonicParsing="false" text="Dodaj Bilet" />
+      <Button layoutX="36.0" layoutY="425.0" mnemonicParsing="false" onAction="#dodajKlienta" text="Nowy Klient" />
+      <Button layoutX="475.0" layoutY="425.0" mnemonicParsing="false" onAction="#dodajBilet" text="Dodaj Bilet" />
+      <Button layoutX="273.0" layoutY="425.0" mnemonicParsing="false" onAction="#usunKlienta" text="Usuń Klienta" />
+      <Button layoutX="584.0" layoutY="425.0" mnemonicParsing="false" onAction="#usunBilet" text="Usuń Bilet" />
    </children>
 </AnchorPane>

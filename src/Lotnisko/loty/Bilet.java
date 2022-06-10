@@ -6,15 +6,14 @@ import java.time.LocalDateTime;
 
 /**
  * bileciki do kontroli
+ * XDDDDDDDDDDDDDDDDDDD
  */
 public class Bilet {
     LocalDateTime data;
-    //Calendar powrot=null;
     Trasa trasa;
 
     public final int id;
-    //boolean czyDwustronny;
-    boolean zajety =false;
+    boolean zajety = false;
 
     /**
      *Standardowy konstruktor
@@ -25,7 +24,6 @@ public class Bilet {
     protected Bilet(LocalDateTime data,Trasa trasa) {
         this.data=data;
         this.trasa=trasa;
-      //  czyDwustronny=false;
         id=this.hashCode();
     }
 
@@ -43,7 +41,7 @@ public class Bilet {
         return this;
     }
     public void anuluj(){
-
+        zajety = false;
     }
 
     public boolean czyZajety() {

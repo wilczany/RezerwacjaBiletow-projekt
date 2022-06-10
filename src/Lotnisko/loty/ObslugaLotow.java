@@ -86,6 +86,7 @@ public class ObslugaLotow  {
 
     }
 
+    //tutaj zjebalem, bo chyba logike zrobilem w kontrolerze uhh
     private void anulujLot(Lot l){
         for (Bilet b:l.getBilety()) {
            // if(!b.czyZajety())

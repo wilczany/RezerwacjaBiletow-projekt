@@ -17,6 +17,12 @@ public class KlientIndywidualny extends Klient {
     }
 
     @Override
+    public boolean czyTenSam(String x, String y) {
+        if(x.equals(Imie) && y.equals(Nazwisko)) return true;
+        return false;
+    }
+
+    @Override
     public String toString()
     {
         return this.getClass().getSimpleName() + ": " + Imie + ' ' + Nazwisko + '\n';

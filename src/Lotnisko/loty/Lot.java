@@ -2,6 +2,7 @@ package loty;
 
 import samoloty.Samolot;
 import trasy.Trasa;
+import uslugobiorcy.Klient;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -55,6 +56,7 @@ public class Lot {
         }
     }
 
+
     /***
      *prywatna metoda do zmiany daty lotu
      * @param d data odlotu
@@ -86,7 +88,7 @@ public class Lot {
      * @return ww. bilet
      * @throws BrakMiejscException brak wolnych biletow
      */
-    public Bilet dejBilet()throws BrakMiejscException{
+    public Bilet dejBilet() throws BrakMiejscException{
         for (Bilet b:bilety) {
             if(!b.czyZajety()){
                 return b.zajmij();
@@ -94,6 +96,15 @@ public class Lot {
         }
         throw new BrakMiejscException("SAMOLOT PELNY",this);
     }
+    public boolean zajmijBilet(Klient k){
+        for(Bilet b:bilety){
+            if(!b.czyZajety()){
+                b.zajmij(); k.getBilety().add(b); return true;
+            }
+        }
+        return false;
+    }
+
     //GETTERS
     public Trasa getTrasa() {
         return trasa;
@@ -127,10 +138,10 @@ public class Lot {
 //        String przylotf=SDF.format(przylot);
         String dataf="dataf", przylotf="przylotf";
         return "Lot nr: "+numer_lotu+
-                "\ttrasa:" + trasa +
-                "\tsamolot:" + samolot.getID() +
-                "\tdata:" + dataf +
-                "\tprzylot:" + przylotf;
+                ", trasa: " + trasa +
+                ", id samolotu: " + samolot.getID() +
+                ", data: " + dataf +
+                ", przylot: " + przylotf;
     }
 
     //

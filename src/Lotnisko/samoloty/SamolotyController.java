@@ -30,8 +30,7 @@ public class SamolotyController extends Controller {
         dialog.setHeaderText("Wybierz typ samolotu");
         dialog.getItems().addAll("Boeing","ATR","Airbus");
         Optional<String> result_typ = dialog.showAndWait();
-        String typ = result_typ.get();
-        if(typ == ""){
+        if(result_typ.toString().equals("Optional.empty")){
             Dialog<String> dialog3 = new Dialog<String>();
             dialog3.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
@@ -39,6 +38,7 @@ public class SamolotyController extends Controller {
             dialog3.getDialogPane().getButtonTypes().add(bOk);
             dialog3.showAndWait(); return;
         }
+        String typ = result_typ.get();
         Dialog<String> dialog2 = new TextInputDialog();
         dialog2.setHeaderText("Podaj ID Samolotu:");
         dialog2.setContentText("ID: ");

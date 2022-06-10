@@ -21,6 +21,8 @@ public abstract class Klient {
 
     public abstract String[] getDane();
 
+    public abstract boolean czyTenSam(String x, String y);
+
     @Override
     public  abstract String toString();
 

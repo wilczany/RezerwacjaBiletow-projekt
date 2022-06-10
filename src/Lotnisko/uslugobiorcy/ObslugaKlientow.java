@@ -11,6 +11,20 @@ public class ObslugaKlientow {
 
     ArrayList<Klient>klienci=new ArrayList<>();
 
+    public boolean sprawdzKlienta(String x, String y){
+        for(Klient k : klienci){
+            if(k.czyTenSam(x,y)) return true;
+        }
+        return false;
+    }
+
+    public void usunKlienta(Klient k){
+        for(Bilet b:k.getBilety()){
+            b.anuluj();
+        }
+        klienci.remove(k);
+    }
+
     public void anulujBilet(Bilet b){
         for (Klient k:klienci
              ) {

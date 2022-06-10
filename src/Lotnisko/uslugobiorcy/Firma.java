@@ -16,6 +16,12 @@ public class Firma extends Klient {
     }
 
     @Override
+    public boolean czyTenSam(String x, String y) {
+        if(x.equals(NIP) && y.equals(Nazwa)) return true;
+        return false;
+    }
+
+    @Override
     public String toString()
     {
         return this.getClass().getSimpleName() + ": " + Nazwa + ", NIP: " + NIP ;

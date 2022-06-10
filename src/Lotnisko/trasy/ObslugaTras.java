@@ -49,6 +49,15 @@ public class ObslugaTras{
         return false;
     }
 
+    public Trasa znajdzTrase(Lotnisko l1, Lotnisko l2){
+        Trasa t=null;
+        for(Trasa tr : trasy){
+            Lotnisko lt[] = tr.getLotniska();
+            if(l1.equals(lt[0]) && l2.equals(lt[1])) return t;
+        }
+        return t;
+    }
+
     public boolean usunLotnisko(Lotnisko l){
         if(NaszaFirma.getInstance().obslugaLotow.czyLotniskoUzywane(l)) return false;
         ArrayList<Integer> doUsuniecia = new ArrayList<>();
