@@ -23,17 +23,9 @@ public class NaszaFirma {
     public ObslugaSamolotow obslugaSamolotow = new ObslugaSamolotow();
     public ObslugaLotow obslugaLotow = new ObslugaLotow();
     public ObslugaKlientow obslugaKlientow = new ObslugaKlientow();
-    //
-    // ALBO TO
-    // JEDNAK NIE TO, WYPIERDOLMY TO
-    //
-    /*
-    public ArrayList<Lotnisko> lotniska = new ArrayList<>();
-    public ArrayList<Trasa> trasy = new ArrayList<>();
-    public ArrayList<Samolot> samoloty = new ArrayList<>();
-    public ArrayList<Klient> klienci = new ArrayList<>();
-    public ArrayList<Lot> loty = new ArrayList<>();
-*/
+
+
+
     String n1, n2, n3;
     int m1, m2;
 
@@ -57,27 +49,26 @@ public class NaszaFirma {
 
         //odczyt lotnisk
         odczytLotnisk(scLotn);
-
+        scLotn.close();
 
         //odczyt samolotow
         odczytSamolotow(scSam);
+        scSam.close();
 
         //odczyt klientow
         odczytKlientow(scKl);
+        scKl.close();
 
         //odczyt tras
         odczytTras(scTr, scLoty);
-
+        scTr.close();
     }
 
 
     private void odczytLotnisk(Scanner scLotn) {
-        while (scLotn.hasNextLine()) {
-            if(!scLotn.hasNextLine())
-            { scLotn.close();
-                break;
-            }
-            n1 = scLotn.next();
+
+        while (scLotn.hasNextLine() && scLotn.nextLine().isBlank()) {
+
             m1 = scLotn.nextInt();
             m2 = scLotn.nextInt();
             Lotnisko l = new Lotnisko(n1, m1, m2);
@@ -89,7 +80,7 @@ public class NaszaFirma {
 
     private void odczytSamolotow(Scanner scSam) {
         while (scSam.hasNextLine()) {
-            String dane[] = scSam.nextLine().split(";");
+            String dane[] = scSam.nextLine().replace("\n","").split(";");
             if (dane[0].equals("ATR")) {
                 for (int i = 1; i < dane.length; i++) {
                     ATR s = new ATR(dane[i]);
@@ -117,8 +108,7 @@ public class NaszaFirma {
 
     private void odczytKlientow(Scanner scKl) {
         while (scKl.hasNextLine()) {
-            if(!scKl.hasNextLine())break;
-            String dane[] = scKl.nextLine().split(";");
+            String dane[] = scKl.nextLine().replace("\n","").split(";");
             System.out.println(dane[0]);
             if (dane[0].equals("KlientIndywidualny")) {
                 Klient k = new KlientIndywidualny(dane[1], dane[2]);
@@ -135,8 +125,7 @@ public class NaszaFirma {
 
     private void odczytTras(Scanner scTr, Scanner scLoty) {
         while (scTr.hasNextLine()) {
-            if(scTr.hasNextLine())break;
-            String[] dane = scTr.nextLine().split(";");
+            String[] dane = scTr.nextLine().replace("\n","").split(";");
             Lotnisko l1 = new Lotnisko("1", 1, 1), l2 = new Lotnisko("2", 2, 2);
             if (obslugaTras.sprawdzNazwe(dane[0]) && obslugaTras.sprawdzNazwe(dane[1])) {
                 for (Lotnisko l : obslugaTras.getLotniska()) {
@@ -154,9 +143,8 @@ public class NaszaFirma {
     }
 
     private void odczytLotow(Scanner scLoty) {
-        while(scLoty.hasNextLine()&&!scLoty.nextLine().isBlank()){
-            if(!scLoty.hasNextLine())break;
-            String[] dane = scLoty.nextLine().split(";");
+        while(scLoty.hasNextLine()){
+            String[] dane = scLoty.nextLine().replace("\n","").split(";");
             Samolot s = null; Trasa t = null;
             for(Samolot st : obslugaSamolotow.getSamoloty()){
                 if(dane[0].equals(st.getID())) s=st;
@@ -172,10 +160,7 @@ public class NaszaFirma {
             }
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
             LocalDateTime d = LocalDateTime.parse(dane[3],format);
-            assert s != null;
-            assert t != null;
-            Lot lot = new Lot(t, s, d);
-            obslugaLotow.getLoty().add(lot);
+            if(t != null && s!= null) { Lot lot = new Lot(t, s, d); obslugaLotow.getLoty().add(lot); }
         }
         scLoty.close();
     }
@@ -244,29 +229,29 @@ public class NaszaFirma {
         PrintWriter zapis;
         zapis = new PrintWriter("src/resources/samoloty.txt");
 
-        zapis.println(Airbus.class.getSimpleName()+";");
+        zapis.print(Airbus.class.getSimpleName());
         for(Samolot s: obslugaSamolotow.getSamoloty()){
             if(s.getClass()==Airbus.class){
-                zapis.print(s.getID()+";");
+                zapis.print(";"+s.getID());
             }
         }
-        zapis.println(Boeing.class.getSimpleName()+";");
+        zapis.println(Boeing.class.getSimpleName());
         for(Samolot s: obslugaSamolotow.getSamoloty()){
             if(s.getClass()==Boeing.class){
-                zapis.print(s.getID()+";");
+                zapis.print(";"+s.getID());
             }
         }
-        zapis.println(ATR.class.getSimpleName()+";");
+        zapis.println(ATR.class.getSimpleName());
         for(Samolot s: obslugaSamolotow.getSamoloty()){
             if(s.getClass()==ATR.class){
-                zapis.print(s.getID()+";");
+                zapis.print(";"+s.getID());
             }
         }
         zapis.close();
     }
 
 
-    public static class inner {
+    private static class inner {
         private static final NaszaFirma FIRMA = new NaszaFirma();
 
     }

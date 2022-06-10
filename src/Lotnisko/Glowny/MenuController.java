@@ -56,7 +56,7 @@ public class MenuController {
     }
 
     public void openSamoloty() {
-        FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("/fxml/Samoloty.fxml"));
+        FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("/fxml/samoloty.fxml"));
         Parent root = null;
         try {
             root = fxml.load();
