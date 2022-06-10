@@ -7,10 +7,9 @@ import java.util.ArrayList;
 public abstract class Klient {
 
 
-    protected ArrayList<Bilet> bilety=new ArrayList<>();
+    protected ArrayList<Bilet> bilety = new ArrayList<>();
 
-    void dodajBilet(Bilet bilet)
-    {
+    void dodajBilet(Bilet bilet) {
         bilety.add(bilet);
     }
 
@@ -24,8 +23,7 @@ public abstract class Klient {
     public abstract boolean czyTenSam(String x, String y);
 
     @Override
-    public  abstract String toString();
-
+    public abstract String toString();
 
 
 }

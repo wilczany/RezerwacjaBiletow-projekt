@@ -5,16 +5,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.ListView;
 import loty.Bilet;
 import loty.Lot;
 import main.Controller;
 import main.NaszaFirma;
-import samoloty.ATR;
-import samoloty.Airbus;
-import samoloty.Boeing;
-import samoloty.Samolot;
-
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -28,9 +22,9 @@ public class KlienciController extends Controller {
     ArrayList<Klient> klienci;
 
     @FXML
-    void initialize(){
-        klienci= NaszaFirma.getInstance().obslugaKlientow.getKlienci();
-        for(Klient k:klienci){
+    void initialize() {
+        klienci = NaszaFirma.getInstance().obslugaKlientow.getKlienci();
+        for (Klient k : klienci) {
             listKlienci.getItems().add(k);
         }
         listKlienci.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -38,16 +32,17 @@ public class KlienciController extends Controller {
             public void handle(MouseEvent mouseEvent) {
                 listBilety.getItems().clear();
                 Klient k = listKlienci.getSelectionModel().getSelectedItem();
-                for(Bilet b : k.getBilety()){
+                for (Bilet b : k.getBilety()) {
                     listBilety.getItems().add(b);
                 }
             }
         });
     }
 
-    void wyswietlBilety(MouseEvent event){
+    void wyswietlBilety(MouseEvent event) {
 
     }
+
     @FXML
     void dodajKlienta(ActionEvent event) {
         ChoiceDialog<String> dialog = new ChoiceDialog<>();
@@ -117,32 +112,34 @@ public class KlienciController extends Controller {
     }
 
     @FXML
-    void usunKlienta(){
+    void usunKlienta() {
         Klient wybrany = listKlienci.getSelectionModel().getSelectedItem();
-        if(wybrany == null){
+        if (wybrany == null) {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
             dialogB.setContentText("Usuwając klienta należy wpierw wybrać klienta.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh(); return;
+            refresh();
+            return;
         }
         NaszaFirma.getInstance().obslugaKlientow.usunKlienta(wybrany);
         refresh();
     }
 
     @FXML
-    void dodajBilet(){
+    void dodajBilet() {
         Klient wybrany = listKlienci.getSelectionModel().getSelectedItem();
-        if(wybrany == null){
+        if (wybrany == null) {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
             dialogB.setContentText("Do dodania biletu musi być wpierw wybrany klient.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh(); return;
+            refresh();
+            return;
         }
         ChoiceDialog<Lot> dialog = new ChoiceDialog<>();
         dialog.setHeaderText("Wybierz lot");
@@ -158,7 +155,7 @@ public class KlienciController extends Controller {
             return;
         }
         Lot lot = wynik.get();
-        if(!(lot.zajmijBilet(wybrany))){
+        if (!(lot.zajmijBilet(wybrany))) {
             Dialog<String> dialog3 = new Dialog<String>();
             dialog3.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
@@ -171,26 +168,31 @@ public class KlienciController extends Controller {
     }
 
     @FXML
-    void usunBilet(){
+    void usunBilet() {
         Bilet wybrany = listBilety.getSelectionModel().getSelectedItem();
-        if(wybrany == null){
+        if (wybrany == null) {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
             dialogB.setContentText("Usuwając bilet należy wpierw wybrać bilet.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
-            dialogB.showAndWait(); return;
+            dialogB.showAndWait();
+            return;
         }
         wybrany.anuluj();
-        for(Klient k:klienci){
-            for(Bilet b:k.getBilety()){
-                if(b.equals(wybrany)) { k.getBilety().remove(wybrany); listBilety.getItems().remove(wybrany); return; }
+        for (Klient k : klienci) {
+            for (Bilet b : k.getBilety()) {
+                if (b.equals(wybrany)) {
+                    k.getBilety().remove(wybrany);
+                    listBilety.getItems().remove(wybrany);
+                    return;
+                }
             }
         }
         refresh();
     }
 
-    public void refresh () {
+    public void refresh() {
         listKlienci.getItems().clear();
         klienci = NaszaFirma.getInstance().obslugaKlientow.getKlienci();
         for (Klient k : klienci) {

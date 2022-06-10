@@ -9,38 +9,40 @@ public class Lotnisko {
     //nad zapisem koordynatów musimy jeszcze pomyśleć
     private int x, y;
 
-    public Lotnisko(String nazwa, int x, int y){
+    public Lotnisko(String nazwa, int x, int y) {
         this.nazwa = nazwa;
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
     }
 
-    public Lotnisko(Lotnisko l){
+    public Lotnisko(Lotnisko l) {
         this.nazwa = l.nazwa;
-        this.x = l.x; this.y=l.y;
+        this.x = l.x;
+        this.y = l.y;
     }
 
-    public int getX(){
+    public int getX() {
         return this.x;
     }
 
-    public int getY(){
+    public int getY() {
         return this.y;
     }
 
-    public String getNazwa(){
+    public String getNazwa() {
         return this.nazwa;
     }
 
-    public String toString(){
-        return this.nazwa+", pozycja: ("+this.x+","+this.y+")";
+    public String toString() {
+        return this.nazwa + ", pozycja: (" + this.x + "," + this.y + ")";
     }
-    
-    public boolean equals(Object obj){
-        if(obj == null) return false;
-        if(this == obj) return true;
-        if(getClass() != obj.getClass()) return false;
+
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (getClass() != obj.getClass()) return false;
         Lotnisko l = (Lotnisko) obj;
-        if(nazwa.equals(l.nazwa) && x==l.x && y==l.y) return true;
+        if (nazwa.equals(l.nazwa) && x == l.x && y == l.y) return true;
         return false;
     }
 }

@@ -9,14 +9,14 @@ import java.io.IOException;
 
 public class MainController {
 
-    Object firma=null;
+    Object firma = null;
 
     @FXML
     private StackPane mainStackPane;
 
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         goToMenu();
     }
 
@@ -26,7 +26,7 @@ public class MainController {
         Parent pane = null;
         try {
             pane = fxml.load();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         MenuController menu = fxml.getController();
@@ -35,11 +35,11 @@ public class MainController {
         setScreen(pane);
     }
 
-    public void setScreen(Parent pane){
+    public void setScreen(Parent pane) {
 
         mainStackPane.getChildren().clear();
         mainStackPane.getChildren().add(pane);
 
-        }
+    }
 
 }

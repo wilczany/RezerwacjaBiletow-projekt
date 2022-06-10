@@ -1,38 +1,38 @@
 package trasy;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextInputDialog;
-import main.Controller;
 import main.NaszaFirma;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 
 //dodanie parametru do metod wypisujacych informacje dla uzytkownika, ktory by blokowal wypisywanie/przelaczal na tryb graficzny?
 
-public class ObslugaTras{
+public class ObslugaTras {
+    // NaszaFirma firma=NaszaFirma.getInstance();
+    protected ArrayList<Lotnisko> lotniska = new ArrayList<>();
+    ArrayList<Trasa> trasy = new ArrayList<>();
+    //TrasyController(ObslugaTras outer){this.outer=outer;}
+    @FXML
+    ListView<String> listLotniska;
+
     public ArrayList<Lotnisko> getLotniska() {
         return lotniska;
     }
-    public ArrayList<Trasa> getTrasy() { return trasy; }
 
-    // NaszaFirma firma=NaszaFirma.getInstance();
-    protected ArrayList<Lotnisko>lotniska=new ArrayList<>();
-    ArrayList<Trasa>trasy=new ArrayList<>();
+    public ArrayList<Trasa> getTrasy() {
+        return trasy;
+    }
+
     /**
      * @param l
      * @return boolean
      */
     public boolean dodajLotnisko(Lotnisko l) {
-        //na wyjatki zmienic 
+        //na wyjatki zmienic
 
         //P -- czy lotnisko juz jest dodane
         boolean P = false;
@@ -49,25 +49,25 @@ public class ObslugaTras{
         return false;
     }
 
-    public Trasa znajdzTrase(Lotnisko l1, Lotnisko l2){
-        Trasa t=null;
-        for(Trasa tr : trasy){
+    public Trasa znajdzTrase(Lotnisko l1, Lotnisko l2) {
+        Trasa t = null;
+        for (Trasa tr : trasy) {
             Lotnisko lt[] = tr.getLotniska();
-            if(l1.equals(lt[0]) && l2.equals(lt[1])) return t;
+            if (l1.equals(lt[0]) && l2.equals(lt[1])) return t;
         }
         return t;
     }
 
-    public boolean usunLotnisko(Lotnisko l){
-        if(NaszaFirma.getInstance().obslugaLotow.czyLotniskoUzywane(l)) return false;
+    public boolean usunLotnisko(Lotnisko l) {
+        if (NaszaFirma.getInstance().obslugaLotow.czyLotniskoUzywane(l)) return false;
         ArrayList<Integer> doUsuniecia = new ArrayList<>();
         Integer i = 0;
-        for(Trasa t : trasy){
+        for (Trasa t : trasy) {
             Lotnisko lotn[] = t.getLotniska();
-            if(l.equals(lotn[0]) || l.equals(lotn[1])) doUsuniecia.add(i);
+            if (l.equals(lotn[0]) || l.equals(lotn[1])) doUsuniecia.add(i);
             i++;
         }
-        for(int j=doUsuniecia.size()-1;j>=0;j--){
+        for (int j = doUsuniecia.size() - 1; j >= 0; j--) {
             System.out.println(trasy.get(doUsuniecia.get(j).intValue()));
             trasy.remove(doUsuniecia.get(j).intValue());
         }
@@ -76,10 +76,13 @@ public class ObslugaTras{
     }
 
     public boolean usunTrase(Trasa t) {
-        if(NaszaFirma.getInstance().obslugaLotow.czyTrasaUzywana(t)) return false;
+        if (NaszaFirma.getInstance().obslugaLotow.czyTrasaUzywana(t)) return false;
         for (Trasa tr : trasy) {
             Lotnisko lt[] = t.getLotniska();
-            if (t.equals(tr)) { trasy.remove(t); return true; }
+            if (t.equals(tr)) {
+                trasy.remove(t);
+                return true;
+            }
         }
         return true;
     }
@@ -119,12 +122,10 @@ public class ObslugaTras{
         return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
 
-
     /**
      * @return boolean
      */
     //do uzycia przy generowaniu lotu!!
-    
     public boolean utworzTrase() {
         Scanner scan = new Scanner(System.in);
         int nr;
@@ -178,12 +179,14 @@ public class ObslugaTras{
         return false;
     }
 
-    public boolean sprawdzTrase(Trasa tt){
+    public boolean sprawdzTrase(Trasa tt) {
         for (Trasa t : trasy) {
             if (tt.equals(t)) return true;
         }
         return false;
     }
+
+    //Kontroler
 
     //jakkolwiek ta nazwa brzmi..
     public boolean utworzLotnisko() {
@@ -210,35 +213,29 @@ public class ObslugaTras{
         return true;
     }
 
-    //Kontroler
-
-
-        //TrasyController(ObslugaTras outer){this.outer=outer;}
-        @FXML
-        ListView<String> listLotniska;
-
-
-    public void odczyt(){
+    public void odczyt() {
         // public void getLotniska() {
-        ArrayList<Lotnisko> lotniska2=new ArrayList<>();
+        ArrayList<Lotnisko> lotniska2 = new ArrayList<>();
         String nazwa;
         int x, y;
-        Scanner scan=null;
-        File plik=new File("src/resources/lotniska.txt");
-        try {scan = new Scanner(plik);}catch (Throwable t){
+        Scanner scan = null;
+        File plik = new File("src/resources/lotniska.txt");
+        try {
+            scan = new Scanner(plik);
+        } catch (Throwable t) {
             System.out.println("wyjatek");
         }
         while (scan.hasNextLine()) {
 
-            nazwa=scan.next();
-            x=scan.nextInt();
-            y=scan.nextInt();
-            System.out.println(nazwa+" "+x+y);
-            Lotnisko l=new Lotnisko(nazwa,x,y);
+            nazwa = scan.next();
+            x = scan.nextInt();
+            y = scan.nextInt();
+            System.out.println(nazwa + " " + x + y);
+            Lotnisko l = new Lotnisko(nazwa, x, y);
             lotniska.add(l);
             System.out.println(l);
         }
-        lotniska=lotniska2;
+        lotniska = lotniska2;
         // }
         System.out.println("odczyt");
     }

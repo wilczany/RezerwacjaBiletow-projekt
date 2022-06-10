@@ -1,11 +1,6 @@
 package main;
 
 import javafx.fxml.FXML;
-import trasy.Lotnisko;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public abstract class Controller {
 
@@ -13,8 +8,8 @@ public abstract class Controller {
     NaszaFirma firma;
 
 
-    public void setMainController(MainController mainController){
-        this.mainController=mainController;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 
     @FXML

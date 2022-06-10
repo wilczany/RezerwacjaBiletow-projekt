@@ -1,11 +1,10 @@
 package samoloty;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.*;
 import main.Controller;
 import main.NaszaFirma;
-import trasy.Lotnisko;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -28,15 +27,16 @@ public class SamolotyController extends Controller {
     void addSamolot() {
         ChoiceDialog<String> dialog = new ChoiceDialog<>();
         dialog.setHeaderText("Wybierz typ samolotu");
-        dialog.getItems().addAll("Boeing","ATR","Airbus");
+        dialog.getItems().addAll("Boeing", "ATR", "Airbus");
         Optional<String> result_typ = dialog.showAndWait();
-        if(result_typ.toString().equals("Optional.empty")){
+        if (result_typ.toString().equals("Optional.empty")) {
             Dialog<String> dialog3 = new Dialog<String>();
             dialog3.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
             dialog3.setContentText("Należy wybrać któryś z dostępnych typów.");
             dialog3.getDialogPane().getButtonTypes().add(bOk);
-            dialog3.showAndWait(); return;
+            dialog3.showAndWait();
+            return;
         }
         String typ = result_typ.get();
         Dialog<String> dialog2 = new TextInputDialog();
@@ -48,17 +48,18 @@ public class SamolotyController extends Controller {
             dialog2 = new Dialog<String>();
             dialog2.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
-            if(id == "") dialog2.setContentText("Należy podać unikalne ID.");
+            if (id == "") dialog2.setContentText("Należy podać unikalne ID.");
             else dialog2.setContentText("Podane ID jest już zajęte.");
             dialog2.getDialogPane().getButtonTypes().add(bOk);
-            dialog2.showAndWait(); return;
+            dialog2.showAndWait();
+            return;
         }
         Samolot sss;
-        if(typ.equals("Boeing")){
+        if (typ.equals("Boeing")) {
             sss = new Boeing(id);
-        }else if(typ.equals("ATR")){
+        } else if (typ.equals("ATR")) {
             sss = new ATR(id);
-        }else{
+        } else {
             sss = new Airbus(id);
         }
         NaszaFirma.getInstance().obslugaSamolotow.getSamoloty().add(sss);
@@ -66,32 +67,34 @@ public class SamolotyController extends Controller {
     }
 
     @FXML
-    void delSamolot(){
+    void delSamolot() {
         Samolot wybrany = listSamoloty.getSelectionModel().getSelectedItem();
-        if(wybrany == null){
+        if (wybrany == null) {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
             dialogB.setContentText("Usuwając samolot należy wpierw wybrać samolot.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh(); return;
+            refresh();
+            return;
         }
-        if( !(NaszaFirma.getInstance().obslugaSamolotow.usunSamolot(wybrany))){
+        if (!(NaszaFirma.getInstance().obslugaSamolotow.usunSamolot(wybrany))) {
             Dialog<String> dialogB = new Dialog<String>();
             dialogB.setTitle("Błąd");
             ButtonType bOk = new ButtonType("OK", ButtonData.OK_DONE);
             dialogB.setContentText("Dana samolot nie może zostać usunięty, gdyż jest używany przez istniejący lot lub loty.");
             dialogB.getDialogPane().getButtonTypes().add(bOk);
             dialogB.showAndWait();
-            refresh(); return;
+            refresh();
+            return;
         }
         refresh();
     }
 
-    public void refresh(){
+    public void refresh() {
         listSamoloty.getItems().clear();
-        for (Samolot s:NaszaFirma.getInstance().obslugaSamolotow.getSamoloty()
+        for (Samolot s : NaszaFirma.getInstance().obslugaSamolotow.getSamoloty()
         ) {
             listSamoloty.getItems().add(s);
         }

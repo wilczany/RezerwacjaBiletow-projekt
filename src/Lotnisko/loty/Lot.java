@@ -7,6 +7,7 @@ import uslugobiorcy.Klient;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +18,10 @@ public class Lot {
 
     Trasa trasa;
     Samolot samolot;
-    LocalDateTime data,przylot;
+    LocalDateTime data, przylot;
     Period czas_lotu;
     int numer_lotu;
-    ArrayList<Bilet> bilety= new ArrayList<>();
+    ArrayList<Bilet> bilety = new ArrayList<>();
 
     /***
      * Zwykle tworzenie lotow. Klasa samolot zawiera predkosc, koniecznie uwzglednic
@@ -28,14 +29,14 @@ public class Lot {
      * @param s samolot przeznaczony do lotu
      * @param d data odlotu
      */
-    public Lot(Trasa t, Samolot s, LocalDateTime d){
-        trasa=t;
-        samolot=s;
-        numer_lotu=this.hashCode();
+    public Lot(Trasa t, Samolot s, LocalDateTime d) {
+        trasa = t;
+        samolot = s;
+        numer_lotu = this.hashCode();
         //DYSTANS NA CALKOWITE
-        setDate(d, (int)t.getDystans());
+        setDate(d, (int) t.getDystans());
 
-        for(int i=0;i<s.getMiejsca();i++) {
+        for (int i = 0; i < s.getMiejsca(); i++) {
             bilety.add(new Bilet(d, trasa));
         }
 
@@ -46,13 +47,13 @@ public class Lot {
      * @param l podanie istniejącego lotu
      * @param d data odlotu
      */
-    public Lot(Lot l,LocalDateTime d){
-        trasa=l.getTrasa();
-        samolot=l.getSamolot();
-        numer_lotu=this.hashCode();
-        setDate(d,(int)l.getTrasa().getDystans());
-        for(int i=0;i<l.getSamolot().getMiejsca();i++){
-            bilety.add(new Bilet(d,trasa));
+    public Lot(Lot l, LocalDateTime d) {
+        trasa = l.getTrasa();
+        samolot = l.getSamolot();
+        numer_lotu = this.hashCode();
+        setDate(d, (int) l.getTrasa().getDystans());
+        for (int i = 0; i < l.getSamolot().getMiejsca(); i++) {
+            bilety.add(new Bilet(d, trasa));
         }
     }
 
@@ -63,21 +64,21 @@ public class Lot {
      * @param dlugosc odlegosc miedzy lotniskami
      */
 
-    private void setDate(LocalDateTime d,int dlugosc){
+    private void setDate(LocalDateTime d, int dlugosc) {
 
-       this.data=d;
-       this.przylot=data.minusMinutes(dlugosc*10);
-       czas_lotu=Period.between(data.toLocalDate(),przylot.plusHours(12).toLocalDate());
+        this.data = d;
+        this.przylot = data.minusMinutes(dlugosc * 10);
+        czas_lotu = Period.between(data.toLocalDate(), przylot.plusHours(12).toLocalDate());
 
     }
 
     /***
      * sprawdzanie czy lot ma wolne bilety
      */
-    public boolean czyPelen(){
+    public boolean czyPelen() {
 
-        for (Bilet b:bilety) {
-            if(!b.czyZajety())
+        for (Bilet b : bilety) {
+            if (!b.czyZajety())
                 return false;
         }
         return true;
@@ -88,18 +89,21 @@ public class Lot {
      * @return ww. bilet
      * @throws BrakMiejscException brak wolnych biletow
      */
-    public Bilet dejBilet() throws BrakMiejscException{
-        for (Bilet b:bilety) {
-            if(!b.czyZajety()){
+    public Bilet dejBilet() throws BrakMiejscException {
+        for (Bilet b : bilety) {
+            if (!b.czyZajety()) {
                 return b.zajmij();
             }
         }
-        throw new BrakMiejscException("SAMOLOT PELNY",this);
+        throw new BrakMiejscException("SAMOLOT PELNY", this);
     }
-    public boolean zajmijBilet(Klient k){
-        for(Bilet b:bilety){
-            if(!b.czyZajety()){
-                b.zajmij(); k.getBilety().add(b); return true;
+
+    public boolean zajmijBilet(Klient k) {
+        for (Bilet b : bilety) {
+            if (!b.czyZajety()) {
+                b.zajmij();
+                k.getBilety().add(b);
+                return true;
             }
         }
         return false;
@@ -132,16 +136,15 @@ public class Lot {
 
     @Override
     public String toString() {
+       DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy  kk:mm");
 
-        SimpleDateFormat SDF=new SimpleDateFormat("yyyy-MM-dd  HH:mm");
-//        String dataf=SDF.format(data);
-//        String przylotf=SDF.format(przylot);
-        String dataf="dataf", przylotf="przylotf";
-        return "Lot nr: "+numer_lotu+
-                ", trasa: " + trasa +
-                ", id samolotu: " + samolot.getID() +
-                ", data: " + dataf +
-                ", przylot: " + przylotf;
+        String dataf = "dataf", przylotf = "przylotf";
+
+        return "ID: " + numer_lotu +
+                ", trasa: " + trasa.krotkiString() +
+                ", Id samolotu: " + samolot.getID() +
+                ", data: " + data.format(format) +
+                ", przylot: " + przylot.format(format);
     }
 
     //

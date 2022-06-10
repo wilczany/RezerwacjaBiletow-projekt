@@ -2,7 +2,7 @@ package loty;
 
 import samoloty.Samolot;
 
-public class ZasiegException extends LotyException{
+public class ZasiegException extends LotyException {
     Samolot s;
     double Odleglosc;
 

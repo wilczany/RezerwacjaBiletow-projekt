@@ -1,9 +1,9 @@
 package loty;
 
-public class BrakMiejscException extends LotyException{
+public class BrakMiejscException extends LotyException {
     Lot l;
 
-    public BrakMiejscException(String message,Lot l) {
+    public BrakMiejscException(String message, Lot l) {
         super(message);
         this.l = l;
 

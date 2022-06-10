@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="loty.ObslugaLotow">
+    <children>
+        <Button layoutX="701.0" layoutY="411.0" mnemonicParsing="false" onAction="#back" text="Wstecz"/>
+        <TableView layoutX="42.0" layoutY="20.0" prefHeight="332.0" prefWidth="717.0">
+            <columns>
+                <TableColumn prefWidth="115.0" text="Id"/>
+                <TableColumn prefWidth="226.0" text="Trasa"/>
+                <TableColumn minWidth="0.0" prefWidth="216.0" text="Data"/>
+                <TableColumn prefWidth="159.0" text="Samolot"/>
+            </columns>
+        </TableView>
+        <Button layoutX="583.0" layoutY="411.0" mnemonicParsing="false" text="Anuluj Lot"/>
+        <Button layoutX="42.0" layoutY="411.0" mnemonicParsing="false" text="Dodaj nowy lot"/>
+        <Button layoutX="200.0" layoutY="411.0" mnemonicParsing="false" text="Dodaj powtórzony lot"/>
+        <Button layoutX="437.0" layoutY="411.0" mnemonicParsing="false" text="Dodaj lot powrotny"/>
+    </children>
+</AnchorPane>
