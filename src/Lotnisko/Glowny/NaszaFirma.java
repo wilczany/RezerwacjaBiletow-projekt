@@ -38,7 +38,9 @@ public class NaszaFirma {
      */
     private NaszaFirma() {
         Scanner scLotn, scTr, scSam, scKl, scLoty;
-
+        /**
+         * Wczytywanie plikow
+         */
         try {
             File plik1 = new File("src/resources/lotniska.txt");
             scLotn = new Scanner(plik1);
@@ -74,7 +76,10 @@ public class NaszaFirma {
         scLoty.close();
     }
 
-
+    /**
+     * Odczytywanie danych lotniska z wczytanego pliku
+     * @param scLotn
+     */
     private void odczytLotnisk(Scanner scLotn) {
 
         while (scLotn.hasNextLine()) {
@@ -90,6 +95,10 @@ public class NaszaFirma {
         }
     }
 
+    /**
+     * Odczytywanie danych samolotu z wczytanego pliku
+     * @param scSam
+     */
     private void odczytSamolotow(Scanner scSam) {
         while (scSam.hasNextLine()) {
             String dane[] = scSam.nextLine().replace("\n","").split(";");
@@ -118,6 +127,10 @@ public class NaszaFirma {
         }
     }
 
+    /**
+     * Odczytywanie danych klienta z wczytanego pliku
+     * @param scKl
+     */
     private void odczytKlientow(Scanner scKl) {
         while (scKl.hasNextLine()) {
             String dane[] = scKl.nextLine().replace("\n", "").split(";");
@@ -153,6 +166,10 @@ public class NaszaFirma {
         }
     }
 
+    /**
+     * Odczytywanie danych lotu z wczytanego pliku
+     * @param scLoty
+     */
     private void odczytLotow(Scanner scLoty) {
         while(scLoty.hasNextLine()){
             String[] dane = scLoty.nextLine().replace("\n","").split(";");
