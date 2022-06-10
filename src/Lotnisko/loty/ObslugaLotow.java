@@ -7,6 +7,9 @@ import trasy.Trasa;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Klasa obsługująca zadania na lotach
+ */
 public class ObslugaLotow {
 
 

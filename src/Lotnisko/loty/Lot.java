@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- * Klasa reprezetujaca lot
+ * Klasa reprezentująca lot
  */
 
 public class Lot {
@@ -72,8 +72,9 @@ public class Lot {
 
     }
 
-    /***
-     * sprawdzanie czy lot ma wolne bilety
+    /**
+     * sprawdzenie czy ma wolne bilety
+     * @return
      */
     public boolean czyPelen() {
 
@@ -84,7 +85,7 @@ public class Lot {
         return true;
     }
 
-    /***
+    /**
      * pobranie wolnego bietu
      * @return ww. bilet
      * @throws BrakMiejscException brak wolnych biletow

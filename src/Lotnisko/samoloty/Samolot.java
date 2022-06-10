@@ -2,6 +2,9 @@ package samoloty;
 
 import java.util.Calendar;
 
+/**
+ * Tworzenie samolotow
+ */
 public abstract class Samolot {
     public int Miejsca;
     public int Zasieg;
@@ -9,6 +12,10 @@ public abstract class Samolot {
     int i;
     Calendar[] tab;
 
+    /**
+     * Konstruktor
+     * @param I ID samolotu
+     */
     Samolot(String I) {
         this.ID = I;
     }
@@ -33,24 +40,35 @@ public abstract class Samolot {
         return this.Miejsca;
     }
 
-    //settery tbh niepotrzebne są, chyba że dodajemy funkcję modyfikacji samolotów jako bonus xDD
+    /**
+     * settery
+     * @param m
+     */
     void setMiejsca(int m) {
         Miejsca = m;
-    }
-
-    public int getZasieg() {
-        return this.Zasieg;
     }
 
     void setZasieg(int m) {
         Zasieg = m;
     }
 
+    /**
+     * Gettery
+     * @return
+     */
+    public int getZasieg() {
+        return this.Zasieg;
+    }
+
     public String getID() {
         return ID;
     }
 
-    //potrzebowałem do interfejsu
+    /**
+     * Porownywanie zawartosci obiektow
+     * @param obj
+     * @return
+     */
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (this == obj) return true;

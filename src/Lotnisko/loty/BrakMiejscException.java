@@ -1,5 +1,8 @@
 package loty;
 
+/**
+ * Wyjatek brak miejsc
+ */
 public class BrakMiejscException extends LotyException {
     Lot l;
 

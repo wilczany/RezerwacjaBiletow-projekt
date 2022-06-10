@@ -8,6 +8,12 @@ public class ObslugaKlientow {
 
     ArrayList<Klient> klienci = new ArrayList<>();
 
+    /**
+     * Porownanie dowolnego klienta
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean sprawdzKlienta(String x, String y) {
         for (Klient k : klienci) {
             if (k.czyTenSam(x, y)) return true;
@@ -15,6 +21,10 @@ public class ObslugaKlientow {
         return false;
     }
 
+    /**
+     * usun klienta z listy klientow
+     * @param k obiekt klienta
+     */
     public void usunKlienta(Klient k) {
         for (Bilet b : k.getBilety()) {
             b.anuluj();
@@ -22,6 +32,10 @@ public class ObslugaKlientow {
         klienci.remove(k);
     }
 
+    /**
+     * Szukamy posiadacza biletu, a nastepnie anulujemy biet
+     * @param b obiekt biletu
+     */
     public void anulujBilet(Bilet b) {
         for (Klient k : klienci
         ) {
@@ -36,9 +50,6 @@ public class ObslugaKlientow {
         }
     }
 
-    public void refresh() {
-
-    }
 
     public ArrayList<Klient> getKlienci() {
         return klienci;

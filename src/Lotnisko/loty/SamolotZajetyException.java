@@ -4,6 +4,9 @@ import samoloty.Samolot;
 
 import java.time.LocalDateTime;
 
+/**
+ * Wyjatek samolot zajety
+ */
 public class SamolotZajetyException extends LotyException {
     Samolot s;
     LocalDateTime odlot, przylot;

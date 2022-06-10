@@ -1,19 +1,32 @@
-//Patryk
+
 package trasy;
-//Zmiany w lotniskach nie są przewidywane, ale może dodamy w przyszłości
-//zmianę nazw lotnisk. Ze względu na to niepotrzebne są settery.
+
 
 public class Lotnisko {
     private String nazwa;
 
-    //nad zapisem koordynatów musimy jeszcze pomyśleć
     private int x, y;
 
-    public Lotnisko(String nazwa, int x, int y) {
+    /**
+     * Konstruktor lotniska
+     * @param nazwa nazwa lotniska
+     * @param x X
+     * @param y Y
+
+     */
+
+    /**
+     * Konstruktor kopiujący
+     * @param nazwa nazwa lotniska
+           * @param x X
+          * @param y Y
+     */
+     public Lotnisko(String nazwa, int x, int y) {
         this.nazwa = nazwa;
         this.x = x;
         this.y = y;
     }
+
 
     public Lotnisko(Lotnisko l) {
         this.nazwa = l.nazwa;
@@ -29,6 +42,10 @@ public class Lotnisko {
         return this.y;
     }
 
+    /**
+     * sama nazwa wskazuje...
+     * @return
+     */
     public String getNazwa() {
         return this.nazwa;
     }

@@ -49,6 +49,12 @@ public class ObslugaTras {
         return false;
     }
 
+    /**
+     * Zwraca tablice otniks trasy
+     * @param l1
+     * @param l2
+     * @return tablica
+     */
     public Trasa znajdzTrase(Lotnisko l1, Lotnisko l2) {
         Trasa t = null;
         for (Trasa tr : trasy) {
@@ -58,6 +64,11 @@ public class ObslugaTras {
         return t;
     }
 
+    /**
+     * Usun lotniska z lsity lotnisk
+     * @param l obiekt lotniska
+     * @return powodzenie metody
+     */
     public boolean usunLotnisko(Lotnisko l) {
         if (NaszaFirma.getInstance().obslugaLotow.czyLotniskoUzywane(l)) return false;
         ArrayList<Integer> doUsuniecia = new ArrayList<>();
@@ -75,6 +86,11 @@ public class ObslugaTras {
         return true;
     }
 
+    /**
+     * usuwanie trasy z listy trasy
+     * @param t obiekt trasy
+     * @return powodzenie działania
+     */
     public boolean usunTrase(Trasa t) {
         if (NaszaFirma.getInstance().obslugaLotow.czyTrasaUzywana(t)) return false;
         for (Trasa tr : trasy) {
@@ -118,67 +134,32 @@ public class ObslugaTras {
         return false;
     }
 
-    double wyliczZasieg(int x1, int y1, int x2, int y2) {
-        return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-    }
+
 
     /**
+     * do uzycia przy generowaniu lotu!!
      * @return boolean
      */
-    //do uzycia przy generowaniu lotu!!
-    public boolean utworzTrase() {
-        Scanner scan = new Scanner(System.in);
-        int nr;
-
-        System.out.println("Wybierz lotnisko początkowe spośród niżej podanych. ");
-        int i = 1;
-        for (Lotnisko l : lotniska) {
-            System.out.println(i++ + ". " + l.toString());
-        }
-
-        System.out.print("Numer wybranego: ");
-        nr = scan.nextInt() - 1;
-        while (nr < 0 || nr > lotniska.size() - 1) {
-            System.out.print("Podaj prawidłowy numer lotniska :");
-            nr = scan.nextInt() - 1;
-        }
-        Lotnisko l1 = lotniska.get(nr);
-        lotniska.add(l1);
-        lotniska.remove(nr);
-
-        System.out.println("Wybierz lotnisko końcowe spośród niżej podanych. ");
-        i = 1;
-        for (Lotnisko l : lotniska) {
-            if (!(l.equals(l1))) System.out.println(i++ + ". " + l.toString());
-        }
-        System.out.print("Numer wybranego: ");
-        nr = scan.nextInt() - 1;
-        while (nr < 0 || nr > lotniska.size() - 2) {
-            System.out.print("Podaj prawidłowy numer lotniska :");
-            nr = scan.nextInt() - 1;
-        }
-        scan.close();
-        Lotnisko l2 = lotniska.get(nr);
-        Trasa t = new Trasa(l1, l2);
-        if (dodajTrase(t)) return true;
-        System.out.println("Dodawanie się nie powiodło, trasa jest duplikatem istniejącej.");
-        return false;
-    }
-
     public boolean sprawdzNazwe(String nazwa) {
         for (Lotnisko l : lotniska) {
             if (nazwa.equals(l.getNazwa())) return true;
         }
         return false;
     }
-
+    /**
+     * do uzycia przy generowaniu lotu!!
+     * @return boolean
+     */
     public boolean sprawdzKoordynaty(int x, int y) {
         for (Lotnisko l : lotniska) {
             if (x == l.getX() && y == l.getY()) return true;
         }
         return false;
     }
-
+    /**
+     * do uzycia przy generowaniu lotu!!
+     * @return boolean
+     */
     public boolean sprawdzTrase(Trasa tt) {
         for (Trasa t : trasy) {
             if (tt.equals(t)) return true;
@@ -186,57 +167,4 @@ public class ObslugaTras {
         return false;
     }
 
-    //Kontroler
-
-    //jakkolwiek ta nazwa brzmi..
-    public boolean utworzLotnisko() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Podaj nazwę dla lotniska: ");
-        String nazwa = scan.nextLine();
-        while (sprawdzNazwe(nazwa)) {
-            System.out.print("'" + nazwa + "' jest już zajęte, podaj inną nazwę: ");
-            nazwa = scan.nextLine();
-        }
-        System.out.print("Podaj koordynaty dla lotniska.\nx: ");
-        int x = scan.nextInt();
-        System.out.print("y: ");
-        int y = scan.nextInt();
-        while (sprawdzKoordynaty(x, y)) {
-            System.out.print("Koordynaty (" + x + "," + y + ") są już zajęte, podaj inne.\nx: ");
-            x = scan.nextInt();
-            System.out.print("y: ");
-            y = scan.nextInt();
-        }
-        Lotnisko lt = new Lotnisko(nazwa, x, y);
-        lotniska.add(lt);
-        scan.close();
-        return true;
-    }
-
-    public void odczyt() {
-        // public void getLotniska() {
-        ArrayList<Lotnisko> lotniska2 = new ArrayList<>();
-        String nazwa;
-        int x, y;
-        Scanner scan = null;
-        File plik = new File("src/resources/lotniska.txt");
-        try {
-            scan = new Scanner(plik);
-        } catch (Throwable t) {
-            System.out.println("wyjatek");
-        }
-        while (scan.hasNextLine()) {
-
-            nazwa = scan.next();
-            x = scan.nextInt();
-            y = scan.nextInt();
-            System.out.println(nazwa + " " + x + y);
-            Lotnisko l = new Lotnisko(nazwa, x, y);
-            lotniska.add(l);
-            System.out.println(l);
-        }
-        lotniska = lotniska2;
-        // }
-        System.out.println("odczyt");
-    }
 }
