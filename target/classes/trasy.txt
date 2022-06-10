@@ -1,0 +1,6 @@
+Warszawa;Wadowice
+Wadowice;Warszawa
+Wadowice;Watykan
+Watykan;Wadowice
+Warszawa;Watykan
+Watykan;Warszawa

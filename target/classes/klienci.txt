@@ -1,3 +1,6 @@
 KlientIndywidualny;Karol;Wojtyla
 KlientIndywidualny;Warol;Kojtyla
 Firma;692137420;Kremowka S.A.
+KlientIndywidualny;Andrey;Dud
+Firma;553285883;Amarena Production
+Firma;134567890;Jakaś nazwa

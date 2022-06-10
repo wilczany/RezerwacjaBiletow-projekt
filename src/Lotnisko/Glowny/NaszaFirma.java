@@ -62,13 +62,20 @@ public class NaszaFirma {
         //odczyt tras
         odczytTras(scTr, scLoty);
         scTr.close();
+
+        odczytLotow(scLoty);
+        scLoty.close();
     }
 
 
     private void odczytLotnisk(Scanner scLotn) {
 
-        while (scLotn.hasNextLine() && scLotn.nextLine().isBlank()) {
+        while (scLotn.hasNextLine()) {
+            try{n1 = scLotn.next();}catch (Exception e){
+                return;
+            }
 
+            if(n1.equals("")) return;
             m1 = scLotn.nextInt();
             m2 = scLotn.nextInt();
             Lotnisko l = new Lotnisko(n1, m1, m2);
