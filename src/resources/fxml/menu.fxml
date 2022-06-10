@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="80.0"
       prefHeight="500.0" prefWidth="800.0"
-      style="-fx-background-image: url(https://www.linkpicture.com/q/WTC.jpg);" xmlns="http://javafx.com/javafx/18" fx:controller="main.MenuController">
+      style="-fx-background-image: url(https://www.linkpicture.com/q/WTC.jpg);" xmlns="http://javafx.com/javafx/18" fx:controller="Glowny.MenuController">
     <children>
         <Button layoutX="374.0" layoutY="41.0" mnemonicParsing="false" onAction="#openTrasy" prefHeight="50.0"
                 prefWidth="51.0" text="Trasy"/>

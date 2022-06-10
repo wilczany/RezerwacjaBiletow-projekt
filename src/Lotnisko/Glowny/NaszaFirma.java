@@ -1,4 +1,4 @@
-package main;
+package Glowny;
 
 import loty.Lot;
 import loty.ObslugaLotow;
@@ -31,7 +31,9 @@ public class NaszaFirma {
 
     private NaszaFirma() {
         Scanner scLotn, scTr, scSam, scKl, scLoty;
-        //wczytywanie plikow
+        /**
+         * Wczytywanie plikow
+         */
         try {
             File plik1 = new File("src/resources/lotniska.txt");
             scLotn = new Scanner(plik1);
@@ -61,8 +63,14 @@ public class NaszaFirma {
 
     }
     //odczyt z plikow
+
+
     private void odczytLotnisk(Scanner scLotn) {
-        while (!scLotn.nextLine().isBlank()) {
+        while (scLotn.hasNextLine()) {
+            if(!scLotn.hasNextLine())
+            { scLotn.close();
+                break;
+            }
             n1 = scLotn.next();
             m1 = scLotn.nextInt();
             m2 = scLotn.nextInt();
@@ -70,7 +78,7 @@ public class NaszaFirma {
             obslugaTras.getLotniska().add(l);
             System.out.println(l);
         }
-        scLotn.close();
+
     }
 
     private void odczytSamolotow(Scanner scSam) {
@@ -102,7 +110,8 @@ public class NaszaFirma {
     }
 
     private void odczytKlientow(Scanner scKl) {
-        while (!scKl.nextLine().isBlank()) {
+        while (scKl.hasNextLine()) {
+            if(!scKl.hasNextLine())break;
             String dane[] = scKl.nextLine().split(";");
             System.out.println(dane[0]);
             if (dane[0].equals("KlientIndywidualny")) {
@@ -119,7 +128,8 @@ public class NaszaFirma {
 
 
     private void odczytTras(Scanner scTr, Scanner scLoty) {
-        while (!scTr.nextLine().isBlank()) {
+        while (scTr.hasNextLine()) {
+            if(scTr.hasNextLine())break;
             String[] dane = scTr.nextLine().split(";");
             Lotnisko l1 = new Lotnisko("1", 1, 1), l2 = new Lotnisko("2", 2, 2);
             if (obslugaTras.sprawdzNazwe(dane[0]) && obslugaTras.sprawdzNazwe(dane[1])) {
@@ -138,7 +148,8 @@ public class NaszaFirma {
     }
 
     private void odczytLotow(Scanner scLoty) {
-        while(!scLoty.nextLine().isBlank()){
+        while(scLoty.hasNextLine()&&!scLoty.nextLine().isBlank()){
+            if(!scLoty.hasNextLine())break;
             String[] dane = scLoty.nextLine().split(";");
             Samolot s = null; Trasa t = null;
             for(Samolot st : obslugaSamolotow.getSamoloty()){

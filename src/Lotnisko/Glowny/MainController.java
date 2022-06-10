@@ -1,4 +1,4 @@
-package main;
+package Glowny;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

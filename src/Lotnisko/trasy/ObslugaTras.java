@@ -2,7 +2,7 @@ package trasy;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import main.NaszaFirma;
+import Glowny.NaszaFirma;
 
 import java.io.File;
 import java.util.ArrayList;
