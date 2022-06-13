@@ -67,14 +67,14 @@ public class Lot {
     private void setDate(LocalDateTime d, int dlugosc) {
 
         this.data = d;
-        this.przylot = data.minusMinutes(dlugosc * 10);
+        this.przylot = data.plusMinutes(dlugosc * 10L);
         czas_lotu = Period.between(data.toLocalDate(), przylot.plusHours(12).toLocalDate());
 
     }
 
     /**
      * sprawdzenie czy ma wolne bilety
-     * @return
+     * @return boolean
      */
     public boolean czyPelen() {
 
