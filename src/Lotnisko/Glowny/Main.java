@@ -20,9 +20,10 @@ public class Main extends Application {
         Scene scene = new Scene(fxml.load());
 
 
-        stage.setTitle("Hello!");
-        Image ico = new Image("file:ikona.png",true);
+        stage.setTitle("WiatrLinia S.A.");
+        Image ico = new Image("/ikona.jpg");
 
+        stage.getIcons().clear();
         stage.getIcons().add(ico);
         stage.setResizable(false);
 
